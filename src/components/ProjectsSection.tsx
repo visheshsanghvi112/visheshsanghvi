@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { GitHub, ExternalLink, Code } from 'lucide-react';
+import { Github, ExternalLink, Code } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
 
@@ -88,7 +87,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
                 className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors"
                 aria-label={`View ${title} on GitHub`}
               >
-                <GitHub size={18} className="text-white" />
+                <Github size={18} className="text-white" />
               </a>
             )}
             {liveUrl && (

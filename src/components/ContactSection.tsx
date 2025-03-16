@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Mail, Phone, MapPin, Linkedin, GitHub, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
 const ContactSection: React.FC = () => {
@@ -74,7 +73,7 @@ const ContactSection: React.FC = () => {
                 className="w-10 h-10 rounded-full bg-secondary/70 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
                 aria-label="GitHub Profile"
               >
-                <GitHub size={18} />
+                <Github size={18} />
               </a>
               <a 
                 href="https://twitter.com/" 
