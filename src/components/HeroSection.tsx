@@ -1,0 +1,65 @@
+
+import React from 'react';
+import { ChevronDown } from 'lucide-react';
+
+const HeroSection: React.FC = () => {
+  const handleScrollToNext = () => {
+    const experienceSection = document.getElementById('experience');
+    if (experienceSection) {
+      experienceSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section
+      id="hero"
+      className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden"
+    >
+      {/* Background elements - subtle animated blobs */}
+      <div className="absolute top-1/4 -left-24 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl opacity-70 animate-blob"></div>
+      <div className="absolute bottom-1/4 -right-24 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl opacity-60 animate-blob animation-delay-2000"></div>
+
+      <div className="container max-w-5xl mx-auto px-6 sm:px-8 relative z-10 animate-fade-in">
+        <div className="text-center mb-8">
+          <p className="text-sm sm:text-base md:text-lg font-medium text-primary mb-4 tracking-wide animate-slide-down">
+            Hello, I'm
+          </p>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-foreground mb-4 animate-slide-down">
+            Vishesh Sanghvi
+          </h1>
+          <div className="chip bg-secondary/50 backdrop-blur-sm text-foreground/80 text-sm sm:text-base px-4 py-2 rounded-full inline-block mb-6 animate-slide-down">
+            MSC BDA Student | Software Developer
+          </div>
+          <p className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed animate-slide-up text-balance">
+            Full-stack developer specializing in building exceptional digital experiences. Currently focused on database management and big data analytics, with expertise in creating scalable web applications and solutions.
+          </p>
+        </div>
+
+        <div className="flex justify-center space-x-5 mt-8 animate-fade-in">
+          <a
+            href="#projects"
+            className="px-6 py-3 bg-primary text-white rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95"
+          >
+            View Projects
+          </a>
+          <a
+            href="#contact"
+            className="px-6 py-3 bg-secondary text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95"
+          >
+            Contact Me
+          </a>
+        </div>
+      </div>
+
+      <button
+        onClick={handleScrollToNext}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full glass-panel flex items-center justify-center animate-bounce cursor-pointer"
+        aria-label="Scroll down"
+      >
+        <ChevronDown className="text-foreground/80" />
+      </button>
+    </section>
+  );
+};
+
+export default HeroSection;
