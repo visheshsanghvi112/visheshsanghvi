@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Github, ExternalLink, Code } from 'lucide-react';
+import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +12,8 @@ interface ProjectProps {
   githubUrl?: string;
   liveUrl?: string;
   featured?: boolean;
+  icon?: React.ReactNode;
+  association?: string;
 }
 
 const projects: ProjectProps[] = [
@@ -20,31 +22,51 @@ const projects: ProjectProps[] = [
     description: "A comprehensive financial management application allowing users to track expenses, manage investments, and visualize spending patterns through interactive charts and reports.",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Chart.js"],
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi",
-    liveUrl: "#",
+    githubUrl: "https://github.com/visheshsanghvi112/Finanza",
+    icon: <FileType size={18} />,
     featured: true
   },
   {
-    title: "FoodyBite",
-    description: "Flutter-based restaurant discovery app with advanced filtering, user reviews, and integrated reservation system for a seamless dining experience.",
-    technologies: ["Flutter", "Firebase", "Google Maps API", "REST API"],
+    title: "FoodyBite 🍔",
+    description: "A vibrant Flutter-based restaurant app UI inspired by designs from Uplabs. Features beautifully crafted screens that showcase the potential of Flutter in creating engaging user interfaces.",
+    technologies: ["Flutter", "Firebase", "UI/UX Design"],
     image: "https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi",
+    githubUrl: "https://github.com/visheshsanghvi112/FoodApp_flutter",
+    icon: <Smartphone size={18} />,
     featured: true
   },
   {
-    title: "DataViz Dashboard",
-    description: "Interactive data visualization platform for business analytics with customizable widgets and real-time updates.",
-    technologies: ["Vue.js", "D3.js", "GraphQL", "PostgreSQL"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi"
+    title: "Interior Design AI",
+    description: "This project utilizes AI to help users create personalized interior design concepts. With a user-friendly interface, it offers real-time design suggestions tailored to individual preferences.",
+    technologies: ["AI", "Web Development", "UI/UX Design"],
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/InteriorDesignAi",
+    icon: <PenTool size={18} />
   },
   {
-    title: "CloudStore",
-    description: "Scalable cloud storage solution with end-to-end encryption and advanced file management capabilities.",
-    technologies: ["AWS", "React", "Node.js", "MongoDB"],
+    title: "My Portfolio",
+    description: "A visually appealing and interactive portfolio designed to highlight my projects and accomplishments. This platform reflects my creative vision and commitment to excellence.",
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/portfoliovishesh",
+    icon: <Home size={18} />
+  },
+  {
+    title: "PDF To Word-Converter",
+    description: "File conversion utilities created with Python for converting between PDF and Word formats. Features include PDF to Word conversion and Word to PDF transformation with efficient file handling.",
+    technologies: ["Python", "PyMuPDF", "python-docx"],
     image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi"
+    githubUrl: "https://github.com/visheshsanghvi112/PDF-and-Word-Converter",
+    icon: <FileType size={18} />
+  },
+  {
+    title: "Sports Team Management System",
+    description: "A Flutter-based app aimed at modernizing sports team management. Integrated with Firebase for real-time updates and Google Sign-In API for security, it fosters community engagement and event planning.",
+    technologies: ["Flutter", "Firebase", "Google Sign-In API"],
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/SportsTeamManagementFlutter",
+    association: "Kishinchand Chellaram Law College",
+    icon: <School size={18} />
   }
 ];
 
@@ -55,7 +77,9 @@ const ProjectCard: React.FC<ProjectProps> = ({
   image,
   githubUrl,
   liveUrl,
-  featured
+  featured,
+  icon,
+  association
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -115,7 +139,16 @@ const ProjectCard: React.FC<ProjectProps> = ({
             Featured Project
           </span>
         )}
-        <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-white via-primary/90 to-primary/70 bg-clip-text text-transparent">{title}</h3>
+        {association && (
+          <span className="inline-block px-2 py-1 text-xs font-medium bg-secondary/50 text-foreground/80 rounded mb-3 flex items-center gap-1">
+            <School size={12} />
+            {association}
+          </span>
+        )}
+        <div className="flex items-center gap-2 mb-2">
+          {icon && <span className="text-primary">{icon}</span>}
+          <h3 className="text-xl font-bold bg-gradient-to-r from-white via-primary/90 to-primary/70 bg-clip-text text-transparent">{title}</h3>
+        </div>
         <p className="text-foreground/70 text-sm mb-4 flex-grow">{description}</p>
         
         <div className="flex flex-wrap gap-2 mt-auto">
@@ -135,19 +168,67 @@ const ProjectCard: React.FC<ProjectProps> = ({
 };
 
 const ProjectsSection: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+  
+  const filteredProjects = activeFilter === 'all' 
+    ? projects 
+    : projects.filter(project => 
+        project.technologies.some(tech => 
+          tech.toLowerCase().includes(activeFilter.toLowerCase())
+        )
+      );
+
   return (
-    <AnimatedSection id="projects" className="section-container bg-gradient-to-b from-background to-secondary/20">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16">
+    <AnimatedSection id="projects" className="section-container bg-gradient-to-b from-background to-secondary/20 py-16">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12">
         <span className="inline-block bg-gradient-to-r from-primary/80 via-primary to-primary/60 text-transparent bg-clip-text mb-3">
           Projects
         </span>
       </h2>
+      
+      <div className="mb-8 flex justify-center flex-wrap gap-2">
+        <button 
+          onClick={() => setActiveFilter('all')}
+          className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
+            activeFilter === 'all' 
+              ? 'bg-primary text-white' 
+              : 'bg-secondary/30 text-foreground/70 hover:bg-secondary/50'
+          }`}
+        >
+          All Projects
+        </button>
+        {['React', 'Flutter', 'Python', 'AI'].map(tech => (
+          <button 
+            key={tech}
+            onClick={() => setActiveFilter(tech)}
+            className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
+              activeFilter === tech 
+                ? 'bg-primary text-white' 
+                : 'bg-secondary/30 text-foreground/70 hover:bg-secondary/50'
+            }`}
+          >
+            {tech}
+          </button>
+        ))}
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-        {projects.map((project, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {filteredProjects.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
       </div>
+      
+      {filteredProjects.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-foreground/70">No projects found with the selected filter.</p>
+          <button 
+            onClick={() => setActiveFilter('all')}
+            className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/80 transition-colors"
+          >
+            Show All Projects
+          </button>
+        </div>
+      )}
     </AnimatedSection>
   );
 };
