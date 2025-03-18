@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Code, Database, Layout, Smartphone, Star, Tool, Zap } from 'lucide-react';
+import { Code, Database, Layout, Smartphone, Star, Wrench, Zap } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
@@ -168,7 +168,7 @@ const SkillsSection: React.FC = () => {
           { id: 'backend', label: 'Backend', icon: <Code size={16} /> },
           { id: 'database', label: 'Databases', icon: <Database size={16} /> },
           { id: 'mobile', label: 'Mobile', icon: <Smartphone size={16} /> },
-          { id: 'tools', label: 'Tools', icon: <Tool size={16} /> }
+          { id: 'tools', label: 'Tools', icon: <Wrench size={16} /> }
         ].map(category => (
           <button
             key={category.id}
@@ -217,7 +217,7 @@ const SkillsSection: React.FC = () => {
         />
         <SkillCategory 
           title="Tools & DevOps" 
-          icon={<Tool size={20} />}
+          icon={<Wrench size={20} />}
           skills={toolsSkills}
           isActive={activeCategory === 'tools'}
           onClick={() => setActiveCategory('tools')}
