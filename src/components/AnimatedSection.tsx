@@ -8,6 +8,7 @@ interface AnimatedSectionProps {
   delay?: number;
   threshold?: number;
   id?: string;
+  animation?: 'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom';
 }
 
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
@@ -16,9 +17,29 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   delay = 0,
   threshold = 0.2,
   id,
+  animation = 'fade',
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  // Determine animation class based on prop
+  const getAnimationClasses = () => {
+    switch (animation) {
+      case 'slide-up':
+        return 'opacity-0 transform translate-y-16';
+      case 'slide-down':
+        return 'opacity-0 transform -translate-y-16';
+      case 'slide-left':
+        return 'opacity-0 transform translate-x-16';
+      case 'slide-right':
+        return 'opacity-0 transform -translate-x-16';
+      case 'zoom':
+        return 'opacity-0 transform scale-90';
+      case 'fade':
+      default:
+        return 'opacity-0';
+    }
+  };
 
   useEffect(() => {
     const currentRef = sectionRef.current;
@@ -51,8 +72,9 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       ref={sectionRef}
       id={id}
       className={cn(
-        'opacity-0 transform translate-y-8 transition-all duration-700 ease-out',
-        isVisible && 'opacity-100 translate-y-0',
+        getAnimationClasses(),
+        'transition-all duration-1000 ease-out',
+        isVisible && 'opacity-100 transform translate-y-0 translate-x-0 scale-100',
         className
       )}
     >

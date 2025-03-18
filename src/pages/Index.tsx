@@ -12,7 +12,7 @@ const Index: React.FC = () => {
   useEffect(() => {
     // Initialize any libraries or add event listeners here
     
-    // Scroll reveal functionality
+    // Enhanced scroll reveal functionality with more animation options
     const revealElements = document.querySelectorAll('.subtle-reveal');
     
     const revealOnScroll = () => {
@@ -22,6 +22,14 @@ const Index: React.FC = () => {
         
         if (elementTop < windowHeight - 100) {
           element.classList.add('revealed');
+          
+          // Add staggered animation to children with .stagger-item class
+          const staggerItems = element.querySelectorAll('.stagger-item');
+          staggerItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('revealed');
+            }, 100 * index);
+          });
         }
       });
     };
@@ -49,7 +57,7 @@ const Index: React.FC = () => {
         <ContactSection />
       </main>
       
-      <footer className="py-8 border-t border-border/60">
+      <footer className="py-8 border-t border-border/60 bg-gradient-to-t from-background to-background/50">
         <div className="container max-w-7xl mx-auto px-6 text-center">
           <p className="text-foreground/60 text-sm">
             © {new Date().getFullYear()} Vishesh Sanghvi. All rights reserved.

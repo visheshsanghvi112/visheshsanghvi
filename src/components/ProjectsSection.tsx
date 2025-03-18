@@ -62,7 +62,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   return (
     <div 
       className={cn(
-        "glass-panel rounded-2xl overflow-hidden transition-all duration-500 group h-full flex flex-col bg-gradient-to-br from-background to-secondary/20 border-white/10 hover:shadow-lg hover:shadow-primary/10",
+        "glass-panel rounded-2xl overflow-hidden transition-all duration-500 group h-full flex flex-col bg-gradient-to-br from-background/80 to-secondary/20 border-white/10 hover:shadow-lg hover:shadow-primary/20 transform hover:-translate-y-2",
         featured ? "col-span-1 md:col-span-2" : "col-span-1",
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -87,7 +87,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
                 href={githubUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors transform hover:scale-110 active:scale-95"
+                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-primary/30 transition-colors transform hover:scale-110 active:scale-95"
                 aria-label={`View ${title} on GitHub`}
               >
                 <Github size={18} className="text-white" />
@@ -98,7 +98,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
                 href={liveUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors transform hover:scale-110 active:scale-95"
+                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-primary/30 transition-colors transform hover:scale-110 active:scale-95"
                 aria-label={`View ${title} live demo`}
               >
                 <ExternalLink size={18} className="text-white" />
@@ -115,7 +115,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
             Featured Project
           </span>
         )}
-        <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">{title}</h3>
+        <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-white via-primary/90 to-primary/70 bg-clip-text text-transparent">{title}</h3>
         <p className="text-foreground/70 text-sm mb-4 flex-grow">{description}</p>
         
         <div className="flex flex-wrap gap-2 mt-auto">
@@ -136,11 +136,11 @@ const ProjectCard: React.FC<ProjectProps> = ({
 
 const ProjectsSection: React.FC = () => {
   return (
-    <AnimatedSection id="projects" className="section-container bg-secondary/30">
-      <h2 className="section-heading">
-        <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">My Work</span>
-        <br />
-        <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Projects</span>
+    <AnimatedSection id="projects" className="section-container bg-gradient-to-b from-background to-secondary/20">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16">
+        <span className="inline-block bg-gradient-to-r from-primary/80 via-primary to-primary/60 text-transparent bg-clip-text mb-3">
+          Projects
+        </span>
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">

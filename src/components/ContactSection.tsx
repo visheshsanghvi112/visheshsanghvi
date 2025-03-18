@@ -34,15 +34,15 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <AnimatedSection id="contact" className="section-container">
-      <h2 className="section-heading">
-        <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">Get in Touch</span>
-        <br />
-        Contact Me
+    <AnimatedSection id="contact" className="section-container" animation="slide-up">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16">
+        <span className="inline-block bg-gradient-to-r from-primary/80 via-primary to-primary/60 text-transparent bg-clip-text mb-3">
+          Contact Me
+        </span>
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-16">
-        <div className="glass-panel p-8 rounded-2xl bg-gradient-to-br from-secondary/50 to-background border-white/10">
+        <div className="glass-panel p-8 rounded-2xl bg-gradient-to-br from-secondary/50 via-secondary/30 to-background/80 border-white/10 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10">
           <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Let's Connect</h3>
           <p className="text-foreground/80 mb-8">
             I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
@@ -91,7 +91,7 @@ const ContactSection: React.FC = () => {
                 href="https://www.linkedin.com/in/vishesh-sanghvi/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-secondary/70 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-secondary/70 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors transform hover:scale-110"
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin size={18} />
@@ -100,7 +100,7 @@ const ContactSection: React.FC = () => {
                 href="https://github.com/visheshsanghvi" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-secondary/70 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-secondary/70 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors transform hover:scale-110"
                 aria-label="GitHub Profile"
               >
                 <Github size={18} />
@@ -109,7 +109,7 @@ const ContactSection: React.FC = () => {
                 href="https://twitter.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-secondary/70 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-secondary/70 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors transform hover:scale-110"
                 aria-label="Twitter Profile"
               >
                 <Twitter size={18} />
@@ -118,7 +118,7 @@ const ContactSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="glass-panel p-8 rounded-2xl bg-gradient-to-br from-background to-secondary/30 border-white/10">
+        <div className="glass-panel p-8 rounded-2xl bg-gradient-to-br from-background/90 via-background/70 to-secondary/30 border-white/10 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10">
           <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Send a Message</h3>
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
