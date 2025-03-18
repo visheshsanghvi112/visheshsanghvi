@@ -7,6 +7,9 @@ import EducationSection from '../components/EducationSection';
 import CertificationsSection from '../components/CertificationsSection';
 import ProjectsSection from '../components/ProjectsSection';
 import ContactSection from '../components/ContactSection';
+import SkillsSection from '../components/SkillsSection';
+import TestimonialsSection from '../components/TestimonialsSection';
+import FloatingNavDots from '../components/FloatingNavDots';
 
 const Index: React.FC = () => {
   useEffect(() => {
@@ -47,13 +50,15 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <NavBar />
+      <FloatingNavDots />
       
       <main>
         <HeroSection />
         <ExperienceSection />
         <EducationSection />
-        <CertificationsSection />
+        <SkillsSection />
         <ProjectsSection />
+        <TestimonialsSection />
         <ContactSection />
       </main>
       
@@ -62,6 +67,28 @@ const Index: React.FC = () => {
           <p className="text-foreground/60 text-sm">
             © {new Date().getFullYear()} Vishesh Sanghvi. All rights reserved.
           </p>
+          <div className="mt-4 flex justify-center space-x-4">
+            <a 
+              href="https://www.linkedin.com/in/vishesh-sanghvi/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-foreground/60 hover:text-primary transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a 
+              href="mailto:visheshsanghvi112@gmail.com" 
+              className="text-foreground/60 hover:text-primary transition-colors"
+            >
+              Email
+            </a>
+            <a 
+              href="tel:+917977282697" 
+              className="text-foreground/60 hover:text-primary transition-colors"
+            >
+              Phone
+            </a>
+          </div>
         </div>
       </footer>
     </div>

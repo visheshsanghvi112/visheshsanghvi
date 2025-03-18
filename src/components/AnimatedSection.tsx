@@ -8,7 +8,7 @@ interface AnimatedSectionProps {
   delay?: number;
   threshold?: number;
   id?: string;
-  animation?: 'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom';
+  animation?: 'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom' | 'rotate' | 'bounce' | 'flip';
 }
 
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
@@ -35,9 +35,29 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         return 'opacity-0 transform -translate-x-16';
       case 'zoom':
         return 'opacity-0 transform scale-90';
+      case 'rotate':
+        return 'opacity-0 transform rotate-6';
+      case 'bounce':
+        return 'opacity-0 transform -translate-y-4';
+      case 'flip':
+        return 'opacity-0 transform rotateX-90';
       case 'fade':
       default:
         return 'opacity-0';
+    }
+  };
+
+  // Determine visible animation classes
+  const getVisibleClasses = () => {
+    switch (animation) {
+      case 'bounce':
+        return 'opacity-100 transform-none animate-[bounce_0.5s_ease-out]';
+      case 'rotate':
+        return 'opacity-100 transform-none rotate-0';
+      case 'flip':
+        return 'opacity-100 transform-none rotateX-0';
+      default:
+        return 'opacity-100 transform-none';
     }
   };
 
@@ -74,7 +94,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       className={cn(
         getAnimationClasses(),
         'transition-all duration-1000 ease-out',
-        isVisible && 'opacity-100 transform translate-y-0 translate-x-0 scale-100',
+        isVisible && getVisibleClasses(),
         className
       )}
     >

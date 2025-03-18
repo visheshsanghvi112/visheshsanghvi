@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ThemeToggle from './ThemeToggle';
 
 const NavBar: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -22,19 +22,6 @@ const NavBar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle dark mode toggle
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -51,8 +38,9 @@ const NavBar: React.FC = () => {
     { label: 'Home', sectionId: 'hero' },
     { label: 'Experience', sectionId: 'experience' },
     { label: 'Education', sectionId: 'education' },
-    { label: 'Certifications', sectionId: 'certifications' },
+    { label: 'Skills', sectionId: 'skills' },
     { label: 'Projects', sectionId: 'projects' },
+    { label: 'Testimonials', sectionId: 'testimonials' },
     { label: 'Contact', sectionId: 'contact' },
   ];
 
@@ -75,7 +63,7 @@ const NavBar: React.FC = () => {
               handleNavLinkClick('hero');
             }}
           >
-            VS
+            <span className="text-primary">V</span>S
           </a>
         </div>
 
@@ -97,18 +85,12 @@ const NavBar: React.FC = () => {
         </nav>
 
         <div className="flex items-center ml-6">
-          <button
-            onClick={toggleDarkMode}
-            className="w-10 h-10 rounded-full flex items-center justify-center text-foreground/80 hover:text-foreground transition-colors hover:bg-muted"
-            aria-label="Toggle dark mode"
-          >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
+          <ThemeToggle />
 
           {/* Mobile menu button */}
           <button
             onClick={toggleMobileMenu}
-            className="ml-2 md:hidden w-10 h-10 rounded-full flex items-center justify-center text-foreground/80 hover:text-foreground transition-colors hover:bg-muted"
+            className="ml-4 md:hidden w-10 h-10 rounded-full flex items-center justify-center text-foreground/80 hover:text-foreground transition-colors hover:bg-muted"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -119,7 +101,7 @@ const NavBar: React.FC = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          'md:hidden fixed inset-0 bg-background backdrop-blur-lg z-40 transform transition-transform duration-300 ease-in-out',
+          'md:hidden fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transform transition-transform duration-300 ease-in-out',
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
@@ -137,6 +119,7 @@ const NavBar: React.FC = () => {
               {link.label}
             </a>
           ))}
+          <ThemeToggle className="mt-8" />
         </div>
       </div>
     </header>

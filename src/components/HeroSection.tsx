@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
+import Background3D from './Background3D';
+import DownloadCVButton from './DownloadCVButton';
 
 const HeroSection: React.FC = () => {
   const handleScrollToNext = () => {
@@ -15,16 +17,16 @@ const HeroSection: React.FC = () => {
       id="hero"
       className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden"
     >
-      {/* Background elements - subtle animated blobs */}
-      <div className="absolute top-1/4 -left-24 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl opacity-70 animate-blob"></div>
-      <div className="absolute bottom-1/4 -right-24 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl opacity-60 animate-blob animation-delay-2000"></div>
+      {/* 3D animated background */}
+      <Background3D className="absolute inset-0 z-0" />
 
+      {/* Content */}
       <div className="container max-w-5xl mx-auto px-6 sm:px-8 relative z-10 animate-fade-in">
         <div className="text-center mb-8">
           <p className="text-sm sm:text-base md:text-lg font-medium text-primary mb-4 tracking-wide animate-slide-down">
             Hello, I'm
           </p>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-foreground mb-4 animate-slide-down">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 animate-slide-down bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent">
             Vishesh Sanghvi
           </h1>
           <div className="chip bg-secondary/50 backdrop-blur-sm text-foreground/80 text-sm sm:text-base px-4 py-2 rounded-full inline-block mb-6 animate-slide-down">
@@ -35,16 +37,17 @@ const HeroSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex justify-center space-x-5 mt-8 animate-fade-in">
+        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-5 mt-8 animate-fade-in">
+          <DownloadCVButton />
           <a
             href="#projects"
-            className="px-6 py-3 bg-primary text-white rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95"
+            className="px-6 py-3 bg-secondary/80 text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95 backdrop-blur-sm"
           >
             View Projects
           </a>
           <a
             href="#contact"
-            className="px-6 py-3 bg-secondary text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95"
+            className="px-6 py-3 bg-secondary/50 text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95 backdrop-blur-sm"
           >
             Contact Me
           </a>
