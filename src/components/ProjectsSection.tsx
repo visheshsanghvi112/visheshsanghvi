@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Github, ExternalLink, Code } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
@@ -61,7 +62,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   return (
     <div 
       className={cn(
-        "glass-panel rounded-2xl overflow-hidden transition-all duration-500 group h-full flex flex-col",
+        "glass-panel rounded-2xl overflow-hidden transition-all duration-500 group h-full flex flex-col bg-gradient-to-br from-background to-secondary/20 border-white/10 hover:shadow-lg hover:shadow-primary/10",
         featured ? "col-span-1 md:col-span-2" : "col-span-1",
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -75,16 +76,18 @@ const ProjectCard: React.FC<ProjectProps> = ({
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
         <div className={cn(
-          "absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end p-6 transition-opacity duration-300",
+          "absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end p-6 transition-all duration-300",
           isHovered ? "opacity-100" : "opacity-0"
         )}>
-          <div className="flex space-x-3">
+          <div className="flex space-x-3 transform transition-transform duration-300 ease-out" style={{
+            transform: isHovered ? 'translateY(0)' : 'translateY(20px)'
+          }}>
             {githubUrl && (
               <a 
                 href={githubUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors transform hover:scale-110 active:scale-95"
                 aria-label={`View ${title} on GitHub`}
               >
                 <Github size={18} className="text-white" />
@@ -95,7 +98,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
                 href={liveUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors transform hover:scale-110 active:scale-95"
                 aria-label={`View ${title} live demo`}
               >
                 <ExternalLink size={18} className="text-white" />
@@ -112,14 +115,14 @@ const ProjectCard: React.FC<ProjectProps> = ({
             Featured Project
           </span>
         )}
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">{title}</h3>
         <p className="text-foreground/70 text-sm mb-4 flex-grow">{description}</p>
         
         <div className="flex flex-wrap gap-2 mt-auto">
           {technologies.map((tech, index) => (
             <span 
               key={index} 
-              className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-secondary/50 text-foreground/80"
+              className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-secondary/50 text-foreground/80 transform transition-transform hover:scale-105"
             >
               <Code size={12} className="mr-1" />
               {tech}
@@ -137,7 +140,7 @@ const ProjectsSection: React.FC = () => {
       <h2 className="section-heading">
         <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">My Work</span>
         <br />
-        Projects
+        <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Projects</span>
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
