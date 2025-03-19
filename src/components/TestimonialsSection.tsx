@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Star, UserRoundCheck } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
 
@@ -85,8 +85,8 @@ const TestimonialsSection: React.FC = () => {
 
       <div className="relative max-w-4xl mx-auto mt-16">
         {/* Background decoration */}
-        <div className="absolute -top-10 left-0 w-24 h-24 bg-primary/5 rounded-full blur-3xl dark:bg-primary/10"></div>
-        <div className="absolute -bottom-10 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl dark:bg-primary/10"></div>
+        <div className="absolute -top-10 left-0 w-24 h-24 bg-primary/10 rounded-full blur-3xl dark:bg-primary/20"></div>
+        <div className="absolute -bottom-10 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl dark:bg-primary/20"></div>
         
         {/* Quote Icon */}
         <div className="absolute -top-10 -left-8 md:-left-12 z-0 opacity-10">
@@ -94,7 +94,7 @@ const TestimonialsSection: React.FC = () => {
         </div>
 
         {/* Testimonial Carousel */}
-        <div className="relative z-10 glass-panel p-8 md:p-12 bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/10 border-white/10 shadow-xl">
+        <div className="relative z-10 glass-panel p-8 md:p-12 bg-gradient-to-br from-white/95 to-secondary/40 dark:from-background/80 dark:to-secondary/10 border-white/10 shadow-xl rounded-lg backdrop-blur-sm">
           <div className="overflow-hidden relative h-[280px] md:h-[240px]">
             {testimonials.map((testimonial, index) => (
               <div 
@@ -105,27 +105,32 @@ const TestimonialsSection: React.FC = () => {
                   index < activeIndex ? "opacity-0 -translate-x-full -z-10" : "opacity-0 translate-x-full -z-10"
                 )}
               >
-                <p className="text-lg md:text-xl text-foreground/90 italic mb-6 text-balance">
+                <div className="mb-4 flex items-center justify-center">
+                  <UserRoundCheck size={24} className="text-primary mr-2" />
+                  <span className="text-sm font-medium text-primary">Verified Client</span>
+                </div>
+                
+                <p className="text-lg md:text-xl text-foreground/90 italic mb-6 text-balance text-center">
                   "{testimonial.content}"
                 </p>
                 
                 {/* Star Rating */}
                 {testimonial.rating && (
-                  <div className="flex mb-4">
+                  <div className="flex justify-center mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star 
                         key={i} 
-                        size={16} 
+                        size={18} 
                         className={i < testimonial.rating! 
-                          ? "text-yellow-400 fill-yellow-400" 
-                          : "text-gray-300"
+                          ? "text-yellow-400 fill-yellow-400 mx-0.5" 
+                          : "text-gray-300 mx-0.5"
                         } 
                       />
                     ))}
                   </div>
                 )}
                 
-                <div className="flex items-center mt-2">
+                <div className="flex items-center justify-center mt-2">
                   {testimonial.image && (
                     <div className="mr-4">
                       <img 
@@ -135,7 +140,7 @@ const TestimonialsSection: React.FC = () => {
                       />
                     </div>
                   )}
-                  <div>
+                  <div className="text-center">
                     <h4 className="font-semibold text-primary">{testimonial.author}</h4>
                     <p className="text-sm text-foreground/70">
                       {testimonial.role}, {testimonial.company}
@@ -150,7 +155,7 @@ const TestimonialsSection: React.FC = () => {
           <div className="absolute bottom-6 right-8 flex space-x-2">
             <button 
               onClick={handlePrevious}
-              className="w-10 h-10 rounded-full bg-white/30 dark:bg-secondary/50 flex items-center justify-center hover:bg-primary/20 transition-colors"
+              className="w-10 h-10 rounded-full bg-white/50 dark:bg-secondary/50 flex items-center justify-center hover:bg-primary/20 transition-colors"
               aria-label="Previous testimonial"
               disabled={isAnimating}
             >
@@ -158,7 +163,7 @@ const TestimonialsSection: React.FC = () => {
             </button>
             <button 
               onClick={handleNext}
-              className="w-10 h-10 rounded-full bg-white/30 dark:bg-secondary/50 flex items-center justify-center hover:bg-primary/20 transition-colors"
+              className="w-10 h-10 rounded-full bg-white/50 dark:bg-secondary/50 flex items-center justify-center hover:bg-primary/20 transition-colors"
               aria-label="Next testimonial"
               disabled={isAnimating}
             >
