@@ -1,33 +1,27 @@
-
 import React, { useState } from 'react';
 import { Download, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/use-toast';
 
-interface DownloadCVButtonProps {
-  className?: string;
-}
-
-const DownloadCVButton: React.FC<DownloadCVButtonProps> = ({ className }) => {
+const DownloadCVButton = ({ className }: { className?: string }) => {
   const [isDownloading, setIsDownloading] = useState(false);
-  
+
   const handleDownload = (e: React.MouseEvent<HTMLAnchorElement>) => {
     setIsDownloading(true);
-    
-    // Simulate download process
+
     setTimeout(() => {
       setIsDownloading(false);
       toast({
-        title: "Resume downloaded",
+        title: "Redirecting to Resume",
         description: "Thank you for your interest in my resume!",
       });
+      window.location.href = "https://drive.google.com/file/d/1fjc-mHrwavHSOmJm6ck3zF7fNKIy1tXW/view?usp=sharing";
     }, 1500);
   };
 
   return (
     <a
-      href="/vishesh-sanghvi-resume.pdf"
-      download="vishesh-sanghvi-resume.pdf"
+      href="#"
       onClick={handleDownload}
       className={cn(
         "inline-flex items-center px-6 py-3 rounded-lg font-medium relative overflow-hidden group",
@@ -43,12 +37,12 @@ const DownloadCVButton: React.FC<DownloadCVButtonProps> = ({ className }) => {
         {isDownloading ? (
           <>
             <Check size={18} className="mr-2 animate-pulse" />
-            Downloading...
+            Redirecting...
           </>
         ) : (
           <>
             <Download size={18} className="mr-2 group-hover:animate-bounce" />
-            Download Resume
+            View Resume
           </>
         )}
       </span>
