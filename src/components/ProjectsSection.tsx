@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home, Bot, BarChart } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 interface ProjectProps {
   title: string;
@@ -14,6 +15,7 @@ interface ProjectProps {
   featured?: boolean;
   icon?: React.ReactNode;
   association?: string;
+  category: string; // Added category property
 }
 
 const projects: ProjectProps[] = [
@@ -24,7 +26,8 @@ const projects: ProjectProps[] = [
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     liveUrl: "https://visheshai2.streamlit.app/",
     icon: <Bot size={18} />,
-    featured: true
+    featured: true,
+    category: "AI"
   },
   {
     title: "Stock Analysis Tool",
@@ -33,7 +36,8 @@ const projects: ProjectProps[] = [
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/Analysis-tool",
     icon: <BarChart size={18} />,
-    featured: true
+    featured: true,
+    category: "Data"
   },
   {
     title: "Finanza",
@@ -42,7 +46,8 @@ const projects: ProjectProps[] = [
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/Finanza",
     icon: <FileType size={18} />,
-    featured: true
+    featured: true,
+    category: "Web"
   },
   {
     title: "FoodyBite 🍔",
@@ -50,7 +55,8 @@ const projects: ProjectProps[] = [
     technologies: ["Flutter", "Firebase", "UI/UX Design"],
     image: "https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/FoodApp_flutter",
-    icon: <Smartphone size={18} />
+    icon: <Smartphone size={18} />,
+    category: "Mobile"
   },
   {
     title: "Interior Design AI",
@@ -58,7 +64,8 @@ const projects: ProjectProps[] = [
     technologies: ["AI", "Web Development", "UI/UX Design"],
     image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/InteriorDesignAi",
-    icon: <PenTool size={18} />
+    icon: <PenTool size={18} />,
+    category: "AI"
   },
   {
     title: "My Portfolio",
@@ -66,7 +73,8 @@ const projects: ProjectProps[] = [
     technologies: ["React", "TypeScript", "Tailwind CSS"],
     image: "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/portfoliovishesh",
-    icon: <Home size={18} />
+    icon: <Home size={18} />,
+    category: "Web"
   },
   {
     title: "PDF To Word-Converter",
@@ -74,7 +82,8 @@ const projects: ProjectProps[] = [
     technologies: ["Python", "PyMuPDF", "python-docx"],
     image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/PDF-and-Word-Converter",
-    icon: <FileType size={18} />
+    icon: <FileType size={18} />,
+    category: "Utilities"
   },
   {
     title: "Sports Team Management System",
@@ -83,7 +92,8 @@ const projects: ProjectProps[] = [
     image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/SportsTeamManagementFlutter",
     association: "Kishinchand Chellaram Law College",
-    icon: <School size={18} />
+    icon: <School size={18} />,
+    category: "Mobile"
   }
 ];
 
@@ -185,67 +195,45 @@ const ProjectCard: React.FC<ProjectProps> = ({
 };
 
 const ProjectsSection: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+  // Get unique categories from projects
+  const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
   
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => 
-        project.technologies.some(tech => 
-          tech.toLowerCase().includes(activeFilter.toLowerCase())
-        )
-      );
-
   return (
     <AnimatedSection id="projects" className="section-container bg-gradient-to-b from-background to-secondary/20 py-16">
-      <h2 className="section-heading">
+      <h2 className="section-heading mb-12">
         <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">My Work</span>
         <br />
         Projects
       </h2>
       
-      <div className="mb-8 flex justify-center flex-wrap gap-2">
-        <button 
-          onClick={() => setActiveFilter('all')}
-          className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
-            activeFilter === 'all' 
-              ? 'bg-primary text-white' 
-              : 'bg-secondary/30 text-foreground/70 hover:bg-secondary/50'
-          }`}
-        >
-          All Projects
-        </button>
-        {['React', 'Flutter', 'Python', 'AI'].map(tech => (
-          <button 
-            key={tech}
-            onClick={() => setActiveFilter(tech)}
-            className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
-              activeFilter === tech 
-                ? 'bg-primary text-white' 
-                : 'bg-secondary/30 text-foreground/70 hover:bg-secondary/50'
-            }`}
-          >
-            {tech}
-          </button>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {filteredProjects.map((project, index) => (
-          <ProjectCard key={index} {...project} />
-        ))}
-      </div>
-      
-      {filteredProjects.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-foreground/70">No projects found with the selected filter.</p>
-          <button 
-            onClick={() => setActiveFilter('all')}
-            className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/80 transition-colors"
-          >
-            Show All Projects
-          </button>
+      <Tabs defaultValue="All" className="w-full">
+        <div className="flex justify-center mb-10">
+          <TabsList className="bg-secondary/20 p-1 rounded-full overflow-x-auto flex-wrap justify-center">
+            {categories.map(category => (
+              <TabsTrigger 
+                key={category} 
+                value={category}
+                className="px-4 py-2 rounded-full text-sm data-[state=active]:bg-primary data-[state=active]:text-white"
+              >
+                {category}
+              </TabsTrigger>
+            ))}
+          </TabsList>
         </div>
-      )}
+        
+        {categories.map(category => (
+          <TabsContent key={category} value={category} className="mt-0 animate-fade-in">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {(category === "All" 
+                ? projects 
+                : projects.filter(project => project.category === category)
+              ).map((project, index) => (
+                <ProjectCard key={index} {...project} />
+              ))}
+            </div>
+          </TabsContent>
+        ))}
+      </Tabs>
     </AnimatedSection>
   );
 };

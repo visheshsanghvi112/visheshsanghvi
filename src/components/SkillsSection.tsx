@@ -106,7 +106,9 @@ const SkillCategory: React.FC<{
     className={cn(
       "glass-panel p-6 transition-all duration-500 cursor-pointer",
       "bg-gradient-to-br border-white/10",
-      isActive ? "from-background/80 to-primary/10 shadow-lg shadow-primary/5 scale-100" : "from-background/50 to-secondary/10 scale-95 opacity-90"
+      isActive 
+        ? "from-background/80 to-primary/10 shadow-lg shadow-primary/5 scale-105" 
+        : "from-background/50 to-secondary/10 scale-100"
     )}
     onClick={onClick}
   >
