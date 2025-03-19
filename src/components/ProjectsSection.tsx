@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home } from 'lucide-react';
+import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home, Bot, BarChart } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
 
@@ -18,6 +18,24 @@ interface ProjectProps {
 
 const projects: ProjectProps[] = [
   {
+    title: "VisheshGpt",
+    description: "An advanced AI-powered chatbot designed for daily needs. Leveraging state-of-the-art language models to provide intelligent responses, assistance, and information on a wide range of topics.",
+    technologies: ["AI", "Python", "Streamlit", "NLP"],
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://visheshai2.streamlit.app/",
+    icon: <Bot size={18} />,
+    featured: true
+  },
+  {
+    title: "Stock Analysis Tool",
+    description: "A comprehensive Python application that fetches historical stock data from Yahoo Finance, calculates various technical indicators, performs sentiment analysis on news articles, and provides insights on support and resistance levels.",
+    technologies: ["Python", "Data Analysis", "Plotly", "NLP"],
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/Analysis-tool",
+    icon: <BarChart size={18} />,
+    featured: true
+  },
+  {
     title: "Finanza",
     description: "A comprehensive financial management application allowing users to track expenses, manage investments, and visualize spending patterns through interactive charts and reports.",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Chart.js"],
@@ -32,8 +50,7 @@ const projects: ProjectProps[] = [
     technologies: ["Flutter", "Firebase", "UI/UX Design"],
     image: "https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/FoodApp_flutter",
-    icon: <Smartphone size={18} />,
-    featured: true
+    icon: <Smartphone size={18} />
   },
   {
     title: "Interior Design AI",
@@ -86,7 +103,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   return (
     <div 
       className={cn(
-        "glass-panel rounded-2xl overflow-hidden transition-all duration-500 group h-full flex flex-col bg-gradient-to-br from-background/80 to-secondary/20 border-white/10 hover:shadow-lg hover:shadow-primary/20 transform hover:-translate-y-2",
+        "glass-panel rounded-2xl overflow-hidden transition-all duration-500 group h-full flex flex-col bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20 border-white/10 hover:shadow-lg hover:shadow-primary/20 transform hover:-translate-y-2",
         featured ? "col-span-1 md:col-span-2" : "col-span-1",
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -147,7 +164,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
         )}
         <div className="flex items-center gap-2 mb-2">
           {icon && <span className="text-primary">{icon}</span>}
-          <h3 className="text-xl font-bold bg-gradient-to-r from-white via-primary/90 to-primary/70 bg-clip-text text-transparent">{title}</h3>
+          <h3 className="text-xl font-bold bg-gradient-to-r from-foreground via-primary/90 to-primary/70 bg-clip-text text-transparent">{title}</h3>
         </div>
         <p className="text-foreground/70 text-sm mb-4 flex-grow">{description}</p>
         
@@ -180,10 +197,10 @@ const ProjectsSection: React.FC = () => {
 
   return (
     <AnimatedSection id="projects" className="section-container bg-gradient-to-b from-background to-secondary/20 py-16">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12">
-        <span className="inline-block bg-gradient-to-r from-primary/80 via-primary to-primary/60 text-transparent bg-clip-text mb-3">
-          Projects
-        </span>
+      <h2 className="section-heading">
+        <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">My Work</span>
+        <br />
+        Projects
       </h2>
       
       <div className="mb-8 flex justify-center flex-wrap gap-2">

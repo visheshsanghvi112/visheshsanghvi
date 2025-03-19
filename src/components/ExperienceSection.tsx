@@ -28,7 +28,7 @@ const experiences: ExperienceProps[] = [
       "Web & Software Developer | ERP Administrator | SEO",
       "Manage and develop websites and applications utilizing WordPress, CodeIgniter, Laravel, HTML, CSS, and JavaScript",
       "Oversee and optimize ERP system ensuring seamless business operations",
-      "Enhance performance and visibility of websites through SEO strategies",
+      "Enhance performance and visibility of websites through SEO strategies, improving site rankings and user experience",
       "Build efficient, scalable solutions that support business growth"
     ],
     skills: ["Full-Stack Development", "Laravel", "Data Analysis"],
@@ -146,7 +146,7 @@ const ExperienceCard: React.FC<ExperienceProps & { index: number }> = ({
   index
 }) => (
   <div className={cn(
-    "glass-panel p-6 md:p-8 transition-all hover:shadow-lg",
+    "glass-panel p-6 md:p-8 transition-all hover:shadow-lg bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20",
     index % 2 === 0 ? "md:ml-8 lg:ml-16" : "md:mr-8 lg:mr-16"
   )}>
     <div className="flex flex-wrap items-center justify-between mb-4">
@@ -197,13 +197,13 @@ const ExperienceCard: React.FC<ExperienceProps & { index: number }> = ({
       {(hasOfferLetter || hasCertificate) && (
         <div className="flex gap-2 mt-2">
           {hasOfferLetter && (
-            <span className="text-xs flex items-center gap-1 px-2 py-1 rounded-full bg-blue-500/20 text-blue-400">
+            <span className="text-xs flex items-center gap-1 px-2 py-1 rounded-full bg-blue-500/20 text-blue-400 dark:text-blue-300">
               <ExternalLink size={12} />
               Offer Letter
             </span>
           )}
           {hasCertificate && (
-            <span className="text-xs flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/20 text-green-400">
+            <span className="text-xs flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/20 text-green-400 dark:text-green-300">
               <ExternalLink size={12} />
               Certificate
             </span>
@@ -225,7 +225,7 @@ const ExperienceSection: React.FC = () => {
 
       <div className="relative mt-16">
         {/* Timeline center line */}
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:-translate-x-1/2"></div>
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/20 via-border to-border md:-translate-x-1/2"></div>
 
         <div className="space-y-12">
           {experiences.map((experience, index) => (
