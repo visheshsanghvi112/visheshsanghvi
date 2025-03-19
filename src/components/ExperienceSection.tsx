@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Briefcase, Calendar } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
 
@@ -8,65 +8,126 @@ interface ExperienceProps {
   title: string;
   company: string;
   period: string;
+  location?: string;
   description: string[];
+  skills?: string[];
   isActive?: boolean;
+  isRemote?: boolean;
+  hasOfferLetter?: boolean;
+  hasCertificate?: boolean;
+  companyLogo?: string;
 }
 
 const experiences: ExperienceProps[] = [
   {
     title: "Software Developer",
     company: "Ambica Pharma | Johnlee",
-    period: "2023 - Present",
+    period: "May 2024 - Present",
+    location: "Mumbai, Maharashtra, India",
     description: [
-      "Develop and maintain web applications for pharmaceutical management",
-      "Administer ERP systems ensuring seamless operations",
-      "Implement SEO strategies to improve online visibility",
-      "Create responsive interfaces for cross-platform functionality"
+      "Web & Software Developer | ERP Administrator | SEO",
+      "Manage and develop websites and applications utilizing WordPress, CodeIgniter, Laravel, HTML, CSS, and JavaScript",
+      "Oversee and optimize ERP system ensuring seamless business operations",
+      "Enhance performance and visibility of websites through SEO strategies",
+      "Build efficient, scalable solutions that support business growth"
     ],
-    isActive: true
+    skills: ["Full-Stack Development", "Laravel", "Data Analysis"],
+    isActive: true,
+    hasOfferLetter: true
   },
   {
-    title: "Cloud Computing Intern",
+    title: "Cloud Computing",
     company: "Pinnacle Labs",
-    period: "2023",
+    period: "Oct 2024 - Oct 2024",
+    location: "Mumbai, Maharashtra, India",
     description: [
-      "Managed cloud infrastructure across AWS and Azure platforms",
+      "Managed cloud infrastructure across platforms",
       "Deployed scalable solutions using containerization technologies",
-      "Optimized resource allocation for cost-effective operations",
-      "Collaborated on cloud security implementation strategies"
-    ]
+      "Optimized resource allocation for cost-effective operations"
+    ],
+    skills: ["Data Analysis"],
+    isRemote: true,
+    hasOfferLetter: true,
+    hasCertificate: true,
+    companyLogo: "Pinnacle Labs logo"
   },
   {
-    title: "Data Analysis Intern",
+    title: "Data Analyst",
     company: "Oasis Infobyte",
-    period: "2023",
+    period: "Sep 2024 - Oct 2024",
+    location: "Mumbai, Maharashtra, India",
     description: [
       "Performed exploratory data analysis on large datasets",
       "Created visualization dashboards to represent insights",
-      "Developed predictive models using machine learning algorithms",
-      "Collaborated with cross-functional teams to implement data-driven solutions"
-    ]
+      "Developed predictive models using machine learning algorithms"
+    ],
+    skills: ["Statistical Data Analysis"],
+    isRemote: true,
+    hasOfferLetter: true,
+    hasCertificate: true,
+    companyLogo: "Oasis Infobyte logo"
   },
   {
-    title: "Data Analyst Intern",
-    company: "Cognifyz Technologies",
-    period: "2022",
-    description: [
-      "Analyzed customer behavior patterns from transaction data",
-      "Built statistical models to forecast market trends",
-      "Automated reporting processes using Python and SQL",
-      "Provided data-driven recommendations to improve business operations"
-    ]
-  },
-  {
-    title: "Data Scientist",
-    company: "EVOASTRA Ventures",
-    period: "2022",
+    title: "Data Scientist Intern",
+    company: "EVOASTRA VENTURES PVT LTD",
+    period: "Sep 2024 - Oct 2024",
     description: [
       "Implemented machine learning solutions for business challenges",
       "Designed and optimized database architectures",
-      "Conducted A/B testing to validate new features",
-      "Developed algorithms to improve data processing efficiency"
+      "Conducted A/B testing to validate new features"
+    ],
+    isRemote: true,
+    hasOfferLetter: true,
+    companyLogo: "EVOASTRA VENTURES PVT LTD logo"
+  },
+  {
+    title: "Data Analysis Intern",
+    company: "Cognifyz Technologies",
+    period: "Aug 2024 - Sep 2024",
+    location: "Mumbai, Maharashtra, India",
+    description: [
+      "Analyzed customer behavior patterns from transaction data",
+      "Built statistical models to forecast market trends",
+      "Automated reporting processes using Python and SQL"
+    ],
+    skills: ["Data Analysis", "Big Data Analytics"],
+    isRemote: true,
+    companyLogo: "Cognifyz Technologies logo"
+  },
+  {
+    title: "Machine Learning Internship",
+    company: "CognoRise InfoTech",
+    period: "Aug 2024 - Sep 2024",
+    location: "Mumbai, Maharashtra, India",
+    description: [
+      "Developed and implemented machine learning algorithms",
+      "Analyzed complex datasets to extract valuable insights",
+      "Collaborated on AI-driven solutions for business problems"
+    ],
+    isRemote: true,
+    hasCertificate: true,
+    companyLogo: "CognoRise InfoTech logo"
+  },
+  {
+    title: "Freelance Web Developer",
+    company: "Freelance",
+    period: "Sep 2021 - Jul 2022",
+    description: [
+      "Developed custom websites for various clients",
+      "Implemented responsive designs and user-friendly interfaces",
+      "Managed project timelines and client relationships"
+    ],
+    companyLogo: "freelance logo"
+  },
+  {
+    title: "Human Resources Manager",
+    company: "Prateek Power Industry",
+    period: "Nov 2020 - Jul 2021",
+    location: "Udaipur, Rajasthan, India",
+    description: [
+      "Managed recruitment and onboarding processes",
+      "Developed and implemented HR policies and procedures",
+      "Handled employee relations and performance management"
     ]
   }
 ];
@@ -75,8 +136,13 @@ const ExperienceCard: React.FC<ExperienceProps & { index: number }> = ({
   title,
   company,
   period,
+  location,
   description,
+  skills,
   isActive,
+  isRemote,
+  hasOfferLetter,
+  hasCertificate,
   index
 }) => (
   <div className={cn(
@@ -87,13 +153,23 @@ const ExperienceCard: React.FC<ExperienceProps & { index: number }> = ({
       <div>
         <h3 className="text-xl font-bold text-foreground mb-1">{title}</h3>
         <h4 className="text-lg font-medium text-primary">{company}</h4>
+        
+        {location && (
+          <div className="flex items-center mt-1 text-foreground/70 text-sm">
+            <MapPin size={14} className="mr-1" />
+            <span>{location}</span>
+            {isRemote && <span className="ml-1">{" · "}Remote</span>}
+            {!isRemote && location.includes("Mumbai") && <span className="ml-1">{" · "}On-site</span>}
+          </div>
+        )}
       </div>
       <div className="flex items-center mt-2 sm:mt-0 px-3 py-1 rounded-full bg-secondary/70 text-foreground/80 text-sm">
         <Calendar size={14} className="mr-1" />
         <span>{period}</span>
       </div>
     </div>
-    <ul className="space-y-2 text-foreground/80">
+    
+    <ul className="space-y-2 text-foreground/80 mb-4">
       {description.map((item, i) => (
         <li key={i} className="flex items-start">
           <span className="inline-block w-1 h-1 rounded-full bg-primary mt-2 mr-2"></span>
@@ -101,11 +177,40 @@ const ExperienceCard: React.FC<ExperienceProps & { index: number }> = ({
         </li>
       ))}
     </ul>
-    {isActive && (
-      <div className="mt-4 inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary">
-        Current Position
-      </div>
-    )}
+    
+    <div className="flex flex-wrap gap-2 mt-3">
+      {skills && skills.map((skill, i) => (
+        <span 
+          key={i} 
+          className="text-xs px-2 py-1 rounded-full bg-secondary/40 text-foreground/80"
+        >
+          {skill}
+        </span>
+      ))}
+
+      {isActive && (
+        <span className="text-xs px-2 py-1 rounded-full bg-primary/20 text-primary font-medium">
+          Current Position
+        </span>
+      )}
+      
+      {(hasOfferLetter || hasCertificate) && (
+        <div className="flex gap-2 mt-2">
+          {hasOfferLetter && (
+            <span className="text-xs flex items-center gap-1 px-2 py-1 rounded-full bg-blue-500/20 text-blue-400">
+              <ExternalLink size={12} />
+              Offer Letter
+            </span>
+          )}
+          {hasCertificate && (
+            <span className="text-xs flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/20 text-green-400">
+              <ExternalLink size={12} />
+              Certificate
+            </span>
+          )}
+        </div>
+      )}
+    </div>
   </div>
 );
 
