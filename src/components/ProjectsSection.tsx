@@ -15,7 +15,7 @@ interface ProjectProps {
   featured?: boolean;
   icon?: React.ReactNode;
   association?: string;
-  category: string; // Added category property
+  category: string;
 }
 
 const projects: ProjectProps[] = [
@@ -97,33 +97,23 @@ const projects: ProjectProps[] = [
   }
 ];
 
-const ProjectCard: React.FC<ProjectProps> = ({
-  title,
-  description,
-  technologies,
-  image,
-  githubUrl,
-  liveUrl,
-  featured,
-  icon,
-  association
-}) => {
+const ProjectCard: React.FC<{ project: ProjectProps; isFeatured: boolean }> = ({ project, isFeatured }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div 
       className={cn(
-        "glass-panel rounded-2xl overflow-hidden transition-all duration-500 group h-full flex flex-col bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20 border-white/10 hover:shadow-lg hover:shadow-primary/20 transform hover:-translate-y-2",
-        featured ? "col-span-1 md:col-span-2" : "col-span-1",
+        "glass-panel h-full rounded-2xl overflow-hidden transition-all duration-500 group flex flex-col bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20 border-white/10 hover:shadow-lg hover:shadow-primary/20 transform hover:-translate-y-2",
+        isFeatured ? "col-span-1 md:col-span-2 lg:col-span-2" : "col-span-1"
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image container with overlay */}
-      <div className="relative overflow-hidden h-48 md:h-64">
+      <div className="relative overflow-hidden h-48">
         <img 
-          src={image} 
-          alt={title} 
+          src={project.image} 
+          alt={project.title} 
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
         <div className={cn(
@@ -133,24 +123,24 @@ const ProjectCard: React.FC<ProjectProps> = ({
           <div className="flex space-x-3 transform transition-transform duration-300 ease-out" style={{
             transform: isHovered ? 'translateY(0)' : 'translateY(20px)'
           }}>
-            {githubUrl && (
+            {project.githubUrl && (
               <a 
-                href={githubUrl} 
+                href={project.githubUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-primary/30 transition-colors transform hover:scale-110 active:scale-95"
-                aria-label={`View ${title} on GitHub`}
+                aria-label={`View ${project.title} on GitHub`}
               >
                 <Github size={18} className="text-white" />
               </a>
             )}
-            {liveUrl && (
+            {project.liveUrl && (
               <a 
-                href={liveUrl} 
+                href={project.liveUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-primary/30 transition-colors transform hover:scale-110 active:scale-95"
-                aria-label={`View ${title} live demo`}
+                aria-label={`View ${project.title} live demo`}
               >
                 <ExternalLink size={18} className="text-white" />
               </a>
@@ -161,25 +151,25 @@ const ProjectCard: React.FC<ProjectProps> = ({
 
       {/* Content */}
       <div className="p-6 flex flex-col flex-grow">
-        {featured && (
+        {project.featured && (
           <span className="inline-block px-2 py-1 text-xs font-medium bg-primary/20 text-primary rounded mb-3">
             Featured Project
           </span>
         )}
-        {association && (
+        {project.association && (
           <span className="inline-block px-2 py-1 text-xs font-medium bg-secondary/50 text-foreground/80 rounded mb-3 flex items-center gap-1">
             <School size={12} />
-            {association}
+            {project.association}
           </span>
         )}
         <div className="flex items-center gap-2 mb-2">
-          {icon && <span className="text-primary">{icon}</span>}
-          <h3 className="text-xl font-bold bg-gradient-to-r from-foreground via-primary/90 to-primary/70 bg-clip-text text-transparent">{title}</h3>
+          {project.icon && <span className="text-primary">{project.icon}</span>}
+          <h3 className="text-xl font-bold bg-gradient-to-r from-foreground via-primary/90 to-primary/70 bg-clip-text text-transparent">{project.title}</h3>
         </div>
-        <p className="text-foreground/70 text-sm mb-4 flex-grow">{description}</p>
+        <p className="text-foreground/70 text-sm mb-4 flex-grow">{project.description}</p>
         
         <div className="flex flex-wrap gap-2 mt-auto">
-          {technologies.map((tech, index) => (
+          {project.technologies.map((tech, index) => (
             <span 
               key={index} 
               className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-secondary/50 text-foreground/80 transform transition-transform hover:scale-105"
@@ -228,7 +218,11 @@ const ProjectsSection: React.FC = () => {
                 ? projects 
                 : projects.filter(project => project.category === category)
               ).map((project, index) => (
-                <ProjectCard key={index} {...project} />
+                <ProjectCard 
+                  key={index} 
+                  project={project} 
+                  isFeatured={project.featured && (category === "All" || projects.filter(p => p.category === category).length <= 3)}
+                />
               ))}
             </div>
           </TabsContent>

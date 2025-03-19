@@ -108,7 +108,7 @@ const SkillCategory: React.FC<{
       "bg-gradient-to-br border-white/10",
       isActive 
         ? "from-background/80 to-primary/10 shadow-lg shadow-primary/5 scale-105" 
-        : "from-background/50 to-secondary/10 scale-100"
+        : "from-background/50 to-secondary/10 scale-100 opacity-100" // Removed the opacity reduction
     )}
     onClick={onClick}
   >

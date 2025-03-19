@@ -155,6 +155,23 @@
   .chip {
     @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground;
   }
+  
+  /* New testimonial card animation */
+  .testimonial-card {
+    @apply opacity-0;
+    animation: fadeSlideUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeSlideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @layer utilities {
@@ -168,6 +185,16 @@
   
   .text-pretty {
     text-wrap: pretty;
+  }
+  
+  /* Improved gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-foreground via-primary to-primary/70 bg-clip-text text-transparent;
+  }
+  
+  /* Enhanced glass effect for light mode */
+  .glass-light {
+    @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-xl;
   }
 }
 
