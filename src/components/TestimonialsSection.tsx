@@ -126,7 +126,7 @@ const TestimonialsSection: React.FC = () => {
     <AnimatedSection 
       id="testimonials" 
       className="section-container bg-gradient-to-b from-secondary/10 to-background/50 py-24"
-      animation="fade-in"
+      animation="fade"
     >
       <div className="max-w-3xl mx-auto text-center mb-16">
         <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">
