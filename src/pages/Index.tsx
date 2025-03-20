@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection';
@@ -69,6 +68,7 @@ const Index: React.FC = () => {
       
       <main className="pt-16 md:pt-20">
         <HeroSection />
+        {/* Make sure ExperienceSection is properly included here */}
         <ExperienceSection />
         <EducationSection />
         <SkillsSection />

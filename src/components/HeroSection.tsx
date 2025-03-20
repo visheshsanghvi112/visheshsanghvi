@@ -56,7 +56,7 @@ const HeroSection: React.FC = () => {
 
       <button
         onClick={handleScrollToNext}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full glass-panel flex items-center justify-center animate-bounce cursor-pointer"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-secondary/50 hover:bg-secondary/80 transition-colors backdrop-blur-sm flex items-center justify-center animate-bounce cursor-pointer"
         aria-label="Scroll down"
       >
         <ChevronDown className="text-foreground/80" />

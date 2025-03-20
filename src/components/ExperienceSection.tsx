@@ -216,7 +216,7 @@ const ExperienceCard: React.FC<ExperienceProps & { index: number }> = ({
 
 const ExperienceSection: React.FC = () => {
   return (
-    <AnimatedSection id="experience" className="section-container py-20 md:py-24">
+    <section id="experience" className="py-20 md:py-24 w-full max-w-7xl mx-auto px-6">
       <h2 className="section-heading mb-16 text-center">
         <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">Career Path</span>
         <br />
@@ -229,7 +229,7 @@ const ExperienceSection: React.FC = () => {
 
       <div className="relative mt-16">
         {/* Timeline center line */}
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/20 to-border md:-translate-x-1/2"></div>
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-secondary/30"></div>
 
         <div className="space-y-12">
           {experiences.map((experience, index) => (
@@ -255,7 +255,7 @@ const ExperienceSection: React.FC = () => {
           ))}
         </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 };
 
