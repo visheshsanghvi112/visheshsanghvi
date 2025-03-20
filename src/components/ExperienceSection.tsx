@@ -146,7 +146,7 @@ const ExperienceCard: React.FC<ExperienceProps & { index: number }> = ({
   index
 }) => (
   <div className={cn(
-    "glass-panel p-6 md:p-8 transition-all hover:shadow-lg bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20",
+    "glass-panel p-6 md:p-8 transition-all hover:shadow-lg bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20 border border-white/20 dark:border-white/10 rounded-lg",
     index % 2 === 0 ? "md:ml-8 lg:ml-16" : "md:mr-8 lg:mr-16"
   )}>
     <div className="flex flex-wrap items-center justify-between mb-4">
@@ -217,15 +217,19 @@ const ExperienceCard: React.FC<ExperienceProps & { index: number }> = ({
 const ExperienceSection: React.FC = () => {
   return (
     <AnimatedSection id="experience" className="section-container py-20 md:py-24">
-      <h2 className="section-heading">
+      <h2 className="section-heading mb-16 text-center">
         <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">Career Path</span>
         <br />
-        Professional Experience
+        <span className="text-3xl sm:text-4xl md:text-5xl font-bold">
+          <span className="bg-gradient-to-r from-primary/80 via-primary to-primary/60 bg-clip-text text-transparent">
+            Professional Experience
+          </span>
+        </span>
       </h2>
 
       <div className="relative mt-16">
         {/* Timeline center line */}
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/20 via-border to-border md:-translate-x-1/2"></div>
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/20 to-border md:-translate-x-1/2"></div>
 
         <div className="space-y-12">
           {experiences.map((experience, index) => (
