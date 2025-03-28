@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
             Hello, I'm
           </p>
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 animate-slide-down bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent">
-            Vishesh Sanghvi
+            Vishesh Sanghvii
           </h1>
           <div className="chip bg-secondary/50 backdrop-blur-sm text-foreground/80 text-sm sm:text-base px-4 py-2 rounded-full inline-block mb-6 animate-slide-down">
             MSC BDA Student | Software Developer
