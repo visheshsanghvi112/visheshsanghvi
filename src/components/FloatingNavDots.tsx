@@ -1,10 +1,14 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface Section {
   id: string;
   label: string;
+}
+
+interface FloatingNavDotsProps {
+  activeSection?: string;
 }
 
 const sections: Section[] = [
@@ -17,33 +21,16 @@ const sections: Section[] = [
   { id: 'contact', label: 'Contact' },
 ];
 
-const FloatingNavDots: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [isVisible, setIsVisible] = useState(false);
+const FloatingNavDots: React.FC<FloatingNavDotsProps> = ({ activeSection = 'hero' }) => {
+  const [isVisible, setIsVisible] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleScroll = () => {
       // Show/hide based on scroll position
       if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
-      }
-
-      // Determine which section is in view
-      const sectionElements = sections.map(section => ({
-        id: section.id,
-        element: document.getElementById(section.id),
-      }));
-
-      const currentSection = sectionElements.find(({ element }) => {
-        if (!element) return false;
-        const rect = element.getBoundingClientRect();
-        return rect.top <= 200 && rect.bottom >= 200;
-      });
-
-      if (currentSection) {
-        setActiveSection(currentSection.id);
       }
     };
 

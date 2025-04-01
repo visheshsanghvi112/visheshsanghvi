@@ -4,7 +4,11 @@ import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ThemeToggle from './ThemeToggle';
 
-const NavBar: React.FC = () => {
+interface NavBarProps {
+  activeSection?: string;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -73,7 +77,12 @@ const NavBar: React.FC = () => {
             <a
               key={link.sectionId}
               href={`#${link.sectionId}`}
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors interactive-link"
+              className={cn(
+                "text-sm font-medium transition-colors interactive-link",
+                activeSection === link.sectionId 
+                  ? "text-primary font-semibold"
+                  : "text-foreground/80 hover:text-foreground"
+              )}
               onClick={(e) => {
                 e.preventDefault();
                 handleNavLinkClick(link.sectionId);
@@ -110,7 +119,12 @@ const NavBar: React.FC = () => {
             <a
               key={link.sectionId}
               href={`#${link.sectionId}`}
-              className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors"
+              className={cn(
+                "text-lg font-medium transition-colors",
+                activeSection === link.sectionId 
+                  ? "text-primary font-semibold"
+                  : "text-foreground/80 hover:text-foreground"
+              )}
               onClick={(e) => {
                 e.preventDefault();
                 handleNavLinkClick(link.sectionId);
