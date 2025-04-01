@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection';
 import ExperienceSection from '../components/ExperienceSection';
@@ -12,7 +13,8 @@ import FloatingNavDots from '../components/FloatingNavDots';
 import { ArrowUp } from 'lucide-react';
 
 const Index: React.FC = () => {
-  const [showScrollTop, setShowScrollTop] = React.useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     // Enhanced scroll reveal functionality with more animation options
@@ -42,6 +44,20 @@ const Index: React.FC = () => {
           });
         }
       });
+
+      // Update active section for highlighting in navigation
+      const sections = ['hero', 'experience', 'education', 'skills', 'projects', 'certifications', 'testimonials', 'contact'];
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= 100) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
     };
     
     window.addEventListener('scroll', revealOnScroll);
@@ -63,12 +79,11 @@ const Index: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <NavBar />
-      <FloatingNavDots />
+      <NavBar activeSection={activeSection} />
+      <FloatingNavDots activeSection={activeSection} />
       
       <main className="pt-16 md:pt-20">
         <HeroSection />
-        {/* Make sure ExperienceSection is properly included here */}
         <ExperienceSection />
         <EducationSection />
         <SkillsSection />

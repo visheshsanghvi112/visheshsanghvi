@@ -4,6 +4,7 @@ import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ProjectProps {
   title: string;
@@ -99,6 +100,10 @@ const projects: ProjectProps[] = [
 
 const ProjectCard: React.FC<{ project: ProjectProps; isFeatured: boolean }> = ({ project, isFeatured }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const isMobile = useIsMobile();
+  
+  // Always show action buttons on mobile
+  const showActions = isMobile || isHovered;
 
   return (
     <div 
@@ -118,10 +123,10 @@ const ProjectCard: React.FC<{ project: ProjectProps; isFeatured: boolean }> = ({
         />
         <div className={cn(
           "absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end p-6 transition-all duration-300",
-          isHovered ? "opacity-100" : "opacity-0"
+          showActions ? "opacity-100" : "opacity-0"
         )}>
           <div className="flex space-x-3 transform transition-transform duration-300 ease-out" style={{
-            transform: isHovered ? 'translateY(0)' : 'translateY(20px)'
+            transform: showActions ? 'translateY(0)' : 'translateY(20px)'
           }}>
             {project.githubUrl && (
               <a 
@@ -187,6 +192,7 @@ const ProjectCard: React.FC<{ project: ProjectProps; isFeatured: boolean }> = ({
 const ProjectsSection: React.FC = () => {
   // Get unique categories from projects
   const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
+  const isMobile = useIsMobile();
   
   return (
     <AnimatedSection id="projects" className="section-container bg-gradient-to-b from-background to-secondary/20 py-16">
@@ -197,13 +203,13 @@ const ProjectsSection: React.FC = () => {
       </h2>
       
       <Tabs defaultValue="All" className="w-full">
-        <div className="flex justify-center mb-10">
-          <TabsList className="bg-secondary/20 p-1 rounded-full overflow-x-auto flex-wrap justify-center">
+        <div className="flex justify-center mb-10 overflow-x-auto pb-2">
+          <TabsList className="bg-secondary/20 p-1 rounded-full flex-nowrap justify-start md:justify-center w-auto min-w-full md:min-w-0">
             {categories.map(category => (
               <TabsTrigger 
                 key={category} 
                 value={category}
-                className="px-4 py-2 rounded-full text-sm data-[state=active]:bg-primary data-[state=active]:text-white"
+                className="px-4 py-2 rounded-full text-sm whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-white"
               >
                 {category}
               </TabsTrigger>

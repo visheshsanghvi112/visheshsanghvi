@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Award, ExternalLink, Search, Filter, Code, Database, Shield, Bot, BarChart2 } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface CertificationProps {
   title: string;
@@ -276,14 +277,19 @@ const CertificationCard: React.FC<CertificationProps> = ({
   skills,
   category
 }) => {
+  const isMobile = useIsMobile();
+  
   return (
-    <div className="glass-panel p-6 bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20 card-hover">
+    <div className="glass-panel p-4 sm:p-6 bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20 card-hover">
       <div className="flex items-start">
-        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-          <Award size={24} className="text-primary" />
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+          <Award size={isMobile ? 20 : 24} className="text-primary" />
         </div>
-        <div className="ml-4 flex-1">
-          <h3 className="text-lg font-semibold mb-1">{title}</h3>
+        <div className="ml-3 sm:ml-4 flex-1">
+          <h3 className={cn(
+            "font-semibold mb-1",
+            isMobile ? "text-base" : "text-lg"
+          )}>{title}</h3>
           <p className="text-foreground/70 text-sm">{organization}</p>
           <p className="text-foreground/60 text-xs mt-1">{date}</p>
           
@@ -335,6 +341,7 @@ const CertificationCard: React.FC<CertificationProps> = ({
 const CertificationsSection: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState<string>("all");
+  const isMobile = useIsMobile();
   
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -355,14 +362,14 @@ const CertificationsSection: React.FC = () => {
     });
 
   return (
-    <AnimatedSection id="certifications" className="section-container py-20">
+    <AnimatedSection id="certifications" className="section-container py-16 sm:py-20">
       <h2 className="section-heading">
         <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">Achievements</span>
         <br />
         Certifications
       </h2>
 
-      <div className="max-w-3xl mx-auto mb-8 mt-12">
+      <div className="max-w-3xl mx-auto mb-6 sm:mb-8 mt-8 sm:mt-12">
         <div className="flex flex-col sm:flex-row gap-4 items-center">
           {/* Search input */}
           <div className="relative w-full">
@@ -400,14 +407,14 @@ const CertificationsSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6">
         {filteredCertifications.map((certification, index) => (
           <CertificationCard key={index} {...certification} />
         ))}
       </div>
       
       {filteredCertifications.length === 0 && (
-        <div className="text-center py-12">
+        <div className="text-center py-10 sm:py-12">
           <p className="text-foreground/70">No certifications found matching your search criteria.</p>
           <button 
             onClick={() => {
