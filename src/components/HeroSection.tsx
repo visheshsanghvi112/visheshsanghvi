@@ -35,12 +35,12 @@ const HeroSection: React.FC = () => {
       <Background3D className="absolute inset-0 z-0" />
 
       {/* Content */}
-      <div className="container max-w-5xl mx-auto px-6 sm:px-8 relative z-10">
+      <div className="container max-w-5xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="text-center mb-8">
           <p className="text-sm sm:text-base md:text-lg font-medium text-primary mb-4 tracking-wide animate-slide-down">
             Hello, I'm
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-slide-down bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent tracking-normal">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-slide-down bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent tracking-normal px-2 sm:px-0 prevent-overflow">
             Vishesh Sanghvi
           </h1>
           <div className="chip bg-secondary/50 backdrop-blur-sm text-foreground/80 text-sm sm:text-base px-4 py-2 rounded-full inline-block mb-6 animate-slide-down">

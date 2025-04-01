@@ -95,6 +95,7 @@
     font-feature-settings: 'ss01' 1, 'ss02' 1, 'cv01' 1, 'cv02' 1, 'cv03' 1;
     overflow-x: hidden;
     width: 100%;
+    -webkit-overflow-scrolling: touch; /* Add for better mobile scroll experience */
   }
   
   body {
@@ -127,6 +128,21 @@
   img {
     max-width: 100%;
     height: auto;
+  }
+  
+  /* Ensure sections always have proper display */
+  section {
+    display: block !important;
+    width: 100% !important;
+    min-height: 100px;
+    visibility: visible !important;
+  }
+  
+  /* Fix for section visibility on mobile */
+  #projects, #certifications {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 
@@ -188,12 +204,17 @@
 
   /* Enhanced responsive grid for projects */
   .projects-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full;
   }
 
   /* Enhanced mobile menu styling */
   .mobile-nav {
     @apply fixed inset-x-0 top-16 bg-background/95 border-b border-border shadow-lg p-4 transform transition-transform duration-300;
+  }
+  
+  /* Improved project card display on mobile */
+  .project-card {
+    @apply block w-full overflow-hidden rounded-lg shadow-md mb-6;
   }
 }
 
@@ -266,5 +287,16 @@
   .tablist-container {
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
+  }
+  
+  /* Ensure projects and certificates are visible on mobile */
+  #projects, #certifications {
+    display: block !important;
+    visibility: visible !important;
+    min-height: 300px;
+    width: 100% !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    z-index: 1;
   }
 }

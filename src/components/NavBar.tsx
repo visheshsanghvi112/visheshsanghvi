@@ -28,10 +28,18 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    // When opening the mobile menu, prevent body scrolling
+    if (!isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   };
 
   const handleNavLinkClick = (sectionId: string) => {
     setIsMobileMenuOpen(false);
+    // Re-enable scrolling when closing the menu
+    document.body.style.overflow = '';
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -44,6 +52,7 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
     { label: 'Education', sectionId: 'education' },
     { label: 'Skills', sectionId: 'skills' },
     { label: 'Projects', sectionId: 'projects' },
+    { label: 'Certifications', sectionId: 'certifications' },
     { label: 'Testimonials', sectionId: 'testimonials' },
     { label: 'Contact', sectionId: 'contact' },
   ];
@@ -110,11 +119,12 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          'md:hidden fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transform transition-transform duration-300 ease-in-out',
+          'md:hidden fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transition-transform duration-300 ease-in-out overflow-auto',
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
+        style={{ top: 0, height: '100vh' }} // Explicitly set top:0 and full viewport height
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 p-8">
+        <div className="flex flex-col items-center justify-center h-full space-y-8 p-8 pt-20">
           {navLinks.map((link) => (
             <a
               key={link.sectionId}
