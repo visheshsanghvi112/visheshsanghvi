@@ -93,20 +93,27 @@
   html {
     scroll-behavior: smooth;
     font-feature-settings: 'ss01' 1, 'ss02' 1, 'cv01' 1, 'cv02' 1, 'cv03' 1;
+    overflow-x: hidden;
+    width: 100%;
   }
   
   body {
     @apply bg-background text-foreground antialiased;
     -webkit-font-smoothing: antialiased;
     font-feature-settings: 'ss01' 1, 'ss02' 1, 'cv01' 1, 'cv02' 1, 'cv03' 1;
+    overflow-x: hidden;
+    width: 100%;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans font-medium tracking-tight;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   h1 {
     @apply text-4xl sm:text-5xl md:text-6xl font-bold;
+    word-break: keep-all;
   }
   
   h2 {
@@ -115,6 +122,11 @@
   
   h3 {
     @apply text-2xl sm:text-3xl font-semibold;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -140,11 +152,12 @@
   }
   
   .section-container {
-    @apply w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-16 sm:py-20 md:py-24;
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 overflow-hidden;
   }
   
   .section-heading {
     @apply text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16 relative;
+    word-wrap: break-word;
   }
   
   .section-heading::after {
@@ -172,6 +185,16 @@
       transform: translateY(0);
     }
   }
+
+  /* Enhanced responsive grid for projects */
+  .projects-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  /* Enhanced mobile menu styling */
+  .mobile-nav {
+    @apply fixed inset-x-0 top-16 bg-background/95 border-b border-border shadow-lg p-4 transform transition-transform duration-300;
+  }
 }
 
 @layer utilities {
@@ -196,6 +219,14 @@
   .glass-light {
     @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-xl;
   }
+
+  /* Prevent text overflow issues */
+  .prevent-overflow {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
 }
 
 /* Google Fonts - SF Pro Display, SF Pro Text, SF Mono */
@@ -217,4 +248,23 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground));
+}
+
+/* Mobile specific optimizations */
+@media (max-width: 640px) {
+  .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* Smaller heading on mobile */
+    letter-spacing: -0.5px; /* Tighter letter spacing for better mobile display */
+    padding: 0 0.5rem;
+  }
+
+  .tablist-container {
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
 }

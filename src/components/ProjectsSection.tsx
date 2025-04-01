@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home, Bot, BarChart } from 'lucide-react';
+import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home, Bot, BarChart, Pill, Package, Building2, Tag } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
@@ -21,6 +21,46 @@ interface ProjectProps {
 
 const projects: ProjectProps[] = [
   {
+    title: "Yugrow Pharmacy",
+    description: "A comprehensive pharmacy management system with inventory tracking, order management, and customer relationship features. Built for seamless pharmacy operations and improved patient care.",
+    technologies: ["React", "Node.js", "MongoDB", "Express", "Bootstrap"],
+    image: "https://images.unsplash.com/photo-1631549916768-4119b4123a21?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://yugrowpharmacy.com/",
+    icon: <Pill size={18} />,
+    featured: true,
+    category: "Web"
+  },
+  {
+    title: "Pharma ERP",
+    description: "A specialized ERP solution designed for pharmaceutical companies to streamline operations, manage inventory, handle regulatory compliance, and optimize supply chain processes.",
+    technologies: ["React", "Node.js", "PostgreSQL", "Redux", "Material UI"],
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://pharmaerp.co.in/",
+    icon: <Package size={18} />,
+    featured: true,
+    category: "Web"
+  },
+  {
+    title: "BrainYug ERP",
+    description: "An enterprise resource planning system tailored for businesses to integrate core processes including planning, purchasing, inventory, sales, marketing, finance and human resources.",
+    technologies: ["Angular", "Node.js", "MongoDB", "Express", "Chart.js"],
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://brainyug.com/auth/login/",
+    icon: <Building2 size={18} />,
+    featured: true,
+    category: "Web"
+  },
+  {
+    title: "Yugrow Discount Platform",
+    description: "A dynamic discount platform offering deals across various categories. Features user accounts, wishlist functionality, and a responsive product catalog for enhanced shopping experience.",
+    technologies: ["Next.js", "React", "Tailwind CSS", "MongoDB"],
+    image: "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://yugrow.vercel.app/",
+    icon: <Tag size={18} />,
+    featured: true,
+    category: "Web"
+  },
+  {
     title: "VisheshGpt",
     description: "An advanced AI-powered chatbot designed for daily needs. Leveraging state-of-the-art language models to provide intelligent responses, assistance, and information on a wide range of topics.",
     technologies: ["AI", "Python", "Streamlit", "NLP"],
@@ -37,7 +77,7 @@ const projects: ProjectProps[] = [
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/Analysis-tool",
     icon: <BarChart size={18} />,
-    featured: true,
+    featured: false,
     category: "Data"
   },
   {
@@ -47,7 +87,7 @@ const projects: ProjectProps[] = [
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/Finanza",
     icon: <FileType size={18} />,
-    featured: true,
+    featured: false,
     category: "Web"
   },
   {
