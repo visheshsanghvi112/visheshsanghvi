@@ -39,7 +39,7 @@ const ContactSection: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Insert the form data into Supabase using a raw query to bypass TypeScript type issues
+      // Insert the form data into Supabase
       const { error } = await supabase
         .from('contact_submissions')
         .insert({
