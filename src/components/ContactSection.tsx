@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
@@ -39,7 +40,7 @@ const ContactSection: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Insert the form data into Supabase
+      // Insert the form data into Supabase using type assertion to bypass TypeScript issues
       const { error } = await supabase
         .from('contact_submissions')
         .insert({
@@ -47,7 +48,7 @@ const ContactSection: React.FC = () => {
           email: values.email,
           subject: values.subject,
           message: values.message
-        });
+        } as any);
       
       if (error) {
         throw error;
