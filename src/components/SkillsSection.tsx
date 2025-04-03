@@ -5,6 +5,7 @@ import AnimatedSection from './AnimatedSection';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface SkillProps {
   name: string;
@@ -138,6 +139,7 @@ const SkillCategory: React.FC<{
 
 const SkillsSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('frontend');
+  const isMobile = useIsMobile();
   
   // Filter skills by category
   const frontendSkills = skills.filter(skill => skill.category === 'frontend');
@@ -145,6 +147,11 @@ const SkillsSection: React.FC = () => {
   const databaseSkills = skills.filter(skill => skill.category === 'database');
   const mobileSkills = skills.filter(skill => skill.category === 'mobile');
   const toolsSkills = skills.filter(skill => skill.category === 'tools');
+
+  // If mobile, don't render the component content
+  if (isMobile) {
+    return <section id="skills" className="hidden"></section>;
+  }
 
   return (
     <AnimatedSection 

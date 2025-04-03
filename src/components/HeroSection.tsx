@@ -29,7 +29,7 @@ const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden"
+      className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden pt-16 md:pt-20"
     >
       {/* 3D animated background */}
       <Background3D className="absolute inset-0 z-0" />

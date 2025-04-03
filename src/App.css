@@ -1,7 +1,8 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0; /* Removed padding to have full width sections */
   text-align: center;
 }
 
@@ -39,4 +40,35 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Ensure the proper visibility of sections on all devices */
+section {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+}
+
+/* Fix for the hero section spacing */
+#hero {
+  padding-top: 4rem; /* Added padding for better spacing */
+}
+
+/* For better mobile experience */
+@media (max-width: 768px) {
+  #skills {
+    display: none !important;
+  }
+  
+  #projects, #certifications {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1;
+  }
+  
+  /* Improve touch experience */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
 }

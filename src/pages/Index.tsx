@@ -11,11 +11,13 @@ import SkillsSection from '../components/SkillsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import FloatingNavDots from '../components/FloatingNavDots';
 import { ArrowUp } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-
+  const isMobile = useIsMobile();
+  
   useEffect(() => {
     // Enhanced scroll reveal functionality with more animation options
     const revealElements = document.querySelectorAll('.subtle-reveal');
@@ -46,7 +48,9 @@ const Index: React.FC = () => {
       });
 
       // Update active section for highlighting in navigation
-      const sections = ['hero', 'experience', 'education', 'skills', 'projects', 'certifications', 'testimonials', 'contact'];
+      const sections = isMobile 
+        ? ['hero', 'experience', 'education', 'projects', 'certifications', 'testimonials', 'contact'] 
+        : ['hero', 'experience', 'education', 'skills', 'projects', 'certifications', 'testimonials', 'contact'];
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
@@ -68,7 +72,7 @@ const Index: React.FC = () => {
     return () => {
       window.removeEventListener('scroll', revealOnScroll);
     };
-  }, []);
+  }, [isMobile]);
   
   const scrollToTop = () => {
     window.scrollTo({

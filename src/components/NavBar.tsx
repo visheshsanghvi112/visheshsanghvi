@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ThemeToggle from './ThemeToggle';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface NavBarProps {
   activeSection?: string;
@@ -11,6 +12,7 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   // Handle scroll event
   useEffect(() => {
@@ -46,16 +48,26 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
     }
   };
 
-  const navLinks = [
-    { label: 'Home', sectionId: 'hero' },
-    { label: 'Experience', sectionId: 'experience' },
-    { label: 'Education', sectionId: 'education' },
-    { label: 'Skills', sectionId: 'skills' },
-    { label: 'Projects', sectionId: 'projects' },
-    { label: 'Certifications', sectionId: 'certifications' },
-    { label: 'Testimonials', sectionId: 'testimonials' },
-    { label: 'Contact', sectionId: 'contact' },
-  ];
+  const getNavLinks = () => {
+    const baseLinks = [
+      { label: 'Home', sectionId: 'hero' },
+      { label: 'Experience', sectionId: 'experience' },
+      { label: 'Education', sectionId: 'education' },
+      { label: 'Projects', sectionId: 'projects' },
+      { label: 'Certifications', sectionId: 'certifications' },
+      { label: 'Testimonials', sectionId: 'testimonials' },
+      { label: 'Contact', sectionId: 'contact' },
+    ];
+
+    // Only show Skills section in desktop view
+    if (!isMobile) {
+      baseLinks.splice(3, 0, { label: 'Skills', sectionId: 'skills' });
+    }
+
+    return baseLinks;
+  };
+
+  const navLinks = getNavLinks();
 
   return (
     <header
