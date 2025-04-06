@@ -7,7 +7,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 
 const HeroSection: React.FC = () => {
   const [typedText, setTypedText] = useState("");
-  const fullText = "Full-stack developer specializing in exceptional digital experiences";
+  const fullText = "Full-stack developer specializing in web development and database management";
   const isMobile = useIsMobile();
   
   useEffect(() => {
@@ -44,7 +44,7 @@ const HeroSection: React.FC = () => {
             Vishesh Sanghvi
           </h1>
           <div className="chip bg-secondary/50 backdrop-blur-sm text-foreground/80 text-sm sm:text-base px-4 py-2 rounded-full inline-block mb-6 animate-slide-down">
-            MSC BDA Student | Software Developer
+            BDA Student | Full Stack Developer
           </div>
           <div className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed animate-slide-up">
             <span className="text-balance">{typedText}</span>
@@ -63,7 +63,7 @@ const HeroSection: React.FC = () => {
               <p className="text-xs sm:text-sm text-foreground/70">Projects</p>
             </div>
             <div className="glass-panel p-3 sm:p-4 rounded-lg backdrop-blur-sm">
-              <p className="text-xl sm:text-2xl font-bold text-primary">30+</p>
+              <p className="text-xl sm:text-2xl font-bold text-primary">6+</p>
               <p className="text-xs sm:text-sm text-foreground/70">Certifications</p>
             </div>
           </div>

@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -70,7 +71,7 @@ const Resume: React.FC = () => {
                   <p className="text-sm text-gray-600">visheshsanghvi112@gmail.com</p>
                   <p className="text-sm text-gray-600">+91 7977282697</p>
                   <div className="flex mt-2 justify-end gap-2">
-                    <a href="https://github.com/visheshsanghvi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                    <a href="https://github.com/visheshsanghvi112" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
                       <Github size={16} />
                     </a>
                     <a href="https://linkedin.com/in/vishesh-sanghvi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
@@ -86,7 +87,7 @@ const Resume: React.FC = () => {
                   Professional Summary
                 </h2>
                 <p className="text-gray-600">
-                  Results-driven full-stack developer with expertise in building responsive web applications and managing databases. Passionate about creating exceptional digital experiences with attention to detail and scalability. Currently focused on database management and big data analytics with expertise in creating enterprise web solutions.
+                  Highly motivated web developer currently pursuing a Master's degree in Big Data Analytics with a proven track record in creating dynamic and user-friendly websites and mobile applications. Proficient in database management with SQL, Firebase, and MongoDB. Skilled in Android app development and Flutter for cross-platform app creation.
                 </p>
               </div>
               
@@ -116,40 +117,40 @@ const Resume: React.FC = () => {
                   <div className="border-l-2 border-primary/30 pl-4 space-y-6">
                     <div>
                       <div className="flex justify-between items-start">
-                        <h4 className="font-medium text-gray-900">Senior Software Developer</h4>
-                        <span className="text-sm text-gray-500">Jan 2023 - Present</span>
+                        <h4 className="font-medium text-gray-900">Software Developer</h4>
+                        <span className="text-sm text-gray-500">May 2024 - Present</span>
                       </div>
-                      <p className="text-sm text-gray-600">TechSolutions Inc.</p>
+                      <p className="text-sm text-gray-600">JohnLee Pharmaceuticals, GenericPlus, Ambica Pharma</p>
                       <ul className="mt-2 list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>Led the development of a high-traffic e-commerce platform using React and Node.js</li>
-                        <li>Implemented CI/CD pipelines resulting in 40% faster deployment times</li>
-                        <li>Mentored junior developers and conducted code reviews</li>
+                        <li>Created WordPress websites for JohnLee Pharmaceuticals and Ambica Pharma, enhancing their digital presence</li>
+                        <li>Developed Tally-like software for GenericPlus, optimizing their financial management</li>
+                        <li>Implemented responsive designs and user-friendly interfaces across multiple platforms</li>
                       </ul>
                     </div>
                     
                     <div>
                       <div className="flex justify-between items-start">
-                        <h4 className="font-medium text-gray-900">Frontend Developer</h4>
-                        <span className="text-sm text-gray-500">May 2021 - Dec 2022</span>
+                        <h4 className="font-medium text-gray-900">Freelance Web Developer</h4>
+                        <span className="text-sm text-gray-500">Sep 2021 - Jul 2022</span>
                       </div>
-                      <p className="text-sm text-gray-600">WebCraft Studios</p>
+                      <p className="text-sm text-gray-600">Self-employed</p>
                       <ul className="mt-2 list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>Developed responsive user interfaces for 12+ client projects</li>
-                        <li>Optimized application performance resulting in 30% faster load times</li>
-                        <li>Collaborated with designers to implement pixel-perfect UI components</li>
+                        <li>Spearheaded the development of a dynamic website specializing in 2-wheeler accessories</li>
+                        <li>Created a user-friendly platform for motorcycle enthusiasts to explore and purchase high-quality accessories</li>
+                        <li>Focused on bike accessories such as mudguards and protective gear to enhance riding experience</li>
                       </ul>
                     </div>
                     
                     <div>
                       <div className="flex justify-between items-start">
-                        <h4 className="font-medium text-gray-900">Junior Web Developer</h4>
-                        <span className="text-sm text-gray-500">Aug 2020 - May 2021</span>
+                        <h4 className="font-medium text-gray-900">Human Resources Manager</h4>
+                        <span className="text-sm text-gray-500">Nov 2020 - Aug 2021</span>
                       </div>
-                      <p className="text-sm text-gray-600">Digital Innovators Ltd</p>
+                      <p className="text-sm text-gray-600">Prateek Powerindustries, Udaipur</p>
                       <ul className="mt-2 list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>Built and maintained websites for small business clients</li>
-                        <li>Implemented responsive designs and cross-browser compatibility</li>
-                        <li>Assisted senior developers with code debugging and testing</li>
+                        <li>Coordinated project tasks, ensuring adherence to engineering standards and regulations</li>
+                        <li>Conducted comprehensive project analyses, identifying and rectifying discrepancies in engineering designs</li>
+                        <li>Managed HR functions including recruitment and team coordination</li>
                       </ul>
                     </div>
                   </div>
@@ -161,23 +162,23 @@ const Resume: React.FC = () => {
                   <div className="border-l-2 border-primary/30 pl-4 space-y-6">
                     <div>
                       <div className="flex justify-between items-start">
-                        <h4 className="font-medium text-gray-900">MSc Big Data Analytics</h4>
-                        <span className="text-sm text-gray-500">2022 - 2024</span>
+                        <h4 className="font-medium text-gray-900">Masters in Big Data Analytics</h4>
+                        <span className="text-sm text-gray-500">Jul 2024 - Apr 2026</span>
                       </div>
-                      <p className="text-sm text-gray-600">University of Modern Technology</p>
+                      <p className="text-sm text-gray-600">University of Mumbai</p>
                       <p className="mt-1 text-sm text-gray-600">
-                        Focused on advanced data processing techniques, machine learning algorithms, and data visualization methodologies.
+                        Specialization in Data Analytics & Machine Learning.
                       </p>
                     </div>
                     
                     <div>
                       <div className="flex justify-between items-start">
-                        <h4 className="font-medium text-gray-900">BSc Computer Science</h4>
-                        <span className="text-sm text-gray-500">2018 - 2022</span>
+                        <h4 className="font-medium text-gray-900">BSc Information Technology</h4>
+                        <span className="text-sm text-gray-500">Aug 2021 - Mar 2024</span>
                       </div>
-                      <p className="text-sm text-gray-600">State University</p>
+                      <p className="text-sm text-gray-600">KC College, HSNC University</p>
                       <p className="mt-1 text-sm text-gray-600">
-                        Completed with honors. Coursework included software engineering, database systems, algorithms, and web development.
+                        Relevant coursework in Software Development, Database Management, and Network Security.
                       </p>
                     </div>
                   </div>
@@ -193,23 +194,23 @@ const Resume: React.FC = () => {
                         Frontend
                       </h4>
                       <div className="space-y-3">
-                        <SkillBar name="React/Next.js" value={90} />
-                        <SkillBar name="JavaScript/TypeScript" value={85} />
-                        <SkillBar name="HTML/CSS/SCSS" value={95} />
-                        <SkillBar name="Tailwind CSS" value={88} />
+                        <SkillBar name="HTML/CSS/JavaScript" value={90} />
+                        <SkillBar name="React/Next.js" value={80} />
+                        <SkillBar name="WordPress" value={85} />
+                        <SkillBar name="Tailwind CSS" value={78} />
                       </div>
                     </div>
                     
                     <div>
                       <h4 className="font-medium text-gray-900 mb-3 flex items-center">
                         <Code size={16} className="mr-2 text-primary" />
-                        Backend
+                        Backend & Mobile
                       </h4>
                       <div className="space-y-3">
-                        <SkillBar name="Node.js" value={80} />
-                        <SkillBar name="Express" value={75} />
-                        <SkillBar name="Python" value={70} />
-                        <SkillBar name="REST API Design" value={85} />
+                        <SkillBar name="Node.js" value={75} />
+                        <SkillBar name="Python" value={82} />
+                        <SkillBar name="Flutter" value={70} />
+                        <SkillBar name="Android Development" value={72} />
                       </div>
                     </div>
                     
@@ -219,10 +220,10 @@ const Resume: React.FC = () => {
                         Databases
                       </h4>
                       <div className="space-y-3">
-                        <SkillBar name="MongoDB" value={85} />
-                        <SkillBar name="PostgreSQL" value={75} />
+                        <SkillBar name="MySQL" value={85} />
+                        <SkillBar name="MongoDB" value={75} />
                         <SkillBar name="Firebase" value={80} />
-                        <SkillBar name="MySQL" value={78} />
+                        <SkillBar name="SQL" value={82} />
                       </div>
                     </div>
                     
@@ -232,10 +233,10 @@ const Resume: React.FC = () => {
                         Other
                       </h4>
                       <div className="space-y-3">
-                        <SkillBar name="Git/GitHub" value={90} />
-                        <SkillBar name="Docker" value={75} />
-                        <SkillBar name="AWS" value={70} />
-                        <SkillBar name="CI/CD" value={68} />
+                        <SkillBar name="Project Management" value={85} />
+                        <SkillBar name="App Development" value={75} />
+                        <SkillBar name="Cloud Computing" value={70} />
+                        <SkillBar name="Editing" value={80} />
                       </div>
                     </div>
                   </div>
@@ -263,9 +264,9 @@ const Resume: React.FC = () => {
                           <Award size={18} />
                         </div>
                         <div>
-                          <h4 className="font-medium text-gray-900">AWS Certified Developer</h4>
-                          <p className="text-sm text-gray-600">Amazon Web Services</p>
-                          <p className="text-xs text-gray-500 mt-1">Issued Jan 2023</p>
+                          <h4 className="font-medium text-gray-900">Python Certificate</h4>
+                          <p className="text-sm text-gray-600">HackerRank</p>
+                          <p className="text-xs text-gray-500 mt-1">Credential ID: 8CADOBDED1F9</p>
                         </div>
                       </div>
                     </div>
@@ -276,9 +277,9 @@ const Resume: React.FC = () => {
                           <Award size={18} />
                         </div>
                         <div>
-                          <h4 className="font-medium text-gray-900">MongoDB Developer Certification</h4>
-                          <p className="text-sm text-gray-600">MongoDB University</p>
-                          <p className="text-xs text-gray-500 mt-1">Issued Mar 2022</p>
+                          <h4 className="font-medium text-gray-900">JavaScript Algorithms and Data Structures</h4>
+                          <p className="text-sm text-gray-600">freeCodeCamp</p>
+                          <p className="text-xs text-gray-500 mt-1">Legacy Certificate</p>
                         </div>
                       </div>
                     </div>
@@ -289,9 +290,9 @@ const Resume: React.FC = () => {
                           <Award size={18} />
                         </div>
                         <div>
-                          <h4 className="font-medium text-gray-900">React Developer</h4>
-                          <p className="text-sm text-gray-600">Meta</p>
-                          <p className="text-xs text-gray-500 mt-1">Issued Nov 2021</p>
+                          <h4 className="font-medium text-gray-900">Google Analytics Certification</h4>
+                          <p className="text-sm text-gray-600">Google</p>
+                          <p className="text-xs text-gray-500 mt-1">Certified Analyst</p>
                         </div>
                       </div>
                     </div>
@@ -302,9 +303,35 @@ const Resume: React.FC = () => {
                           <Award size={18} />
                         </div>
                         <div>
-                          <h4 className="font-medium text-gray-900">Professional Scrum Master I</h4>
-                          <p className="text-sm text-gray-600">Scrum.org</p>
-                          <p className="text-xs text-gray-500 mt-1">Issued Aug 2021</p>
+                          <h4 className="font-medium text-gray-900">AI Powered Shopping Ads Certification</h4>
+                          <p className="text-sm text-gray-600">Google</p>
+                          <p className="text-xs text-gray-500 mt-1">Digital Marketing</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex items-start">
+                        <div className="mr-3 mt-1 text-primary">
+                          <Award size={18} />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Tally Ace</h4>
+                          <p className="text-sm text-gray-600">Tally Solutions</p>
+                          <p className="text-xs text-gray-500 mt-1">Financial Software</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex items-start">
+                        <div className="mr-3 mt-1 text-primary">
+                          <Award size={18} />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Software Engineer Intern</h4>
+                          <p className="text-sm text-gray-600">HackerRank</p>
+                          <p className="text-xs text-gray-500 mt-1">Credential ID: E98389E5822B</p>
                         </div>
                       </div>
                     </div>
@@ -318,12 +345,12 @@ const Resume: React.FC = () => {
                   Interests
                 </h2>
                 <div className="flex flex-wrap gap-3">
-                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">Open Source</Badge>
-                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">Web3 Technologies</Badge>
-                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">AI/ML</Badge>
-                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">Mobile Development</Badge>
+                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">Web Development</Badge>
+                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">App Development</Badge>
+                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">Data Analytics</Badge>
+                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">Machine Learning</Badge>
                   <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">UI/UX Design</Badge>
-                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">Technical Writing</Badge>
+                  <Badge className="bg-primary/10 text-primary border-0 px-3 py-1">Cloud Computing</Badge>
                 </div>
               </div>
               
@@ -350,10 +377,26 @@ const Resume: React.FC = () => {
                     </div>
                   </div>
                   <div>
+                    <p className="font-medium text-gray-700">Marathi</p>
+                    <div className="flex mt-1">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} size={16} className={i <= 4 ? "text-yellow-400 fill-yellow-400" : "text-gray-300"} />
+                      ))}
+                    </div>
+                  </div>
+                  <div>
                     <p className="font-medium text-gray-700">Gujarati</p>
                     <div className="flex mt-1">
                       {[1, 2, 3, 4, 5].map((i) => (
                         <Star key={i} size={16} className={i <= 4 ? "text-yellow-400 fill-yellow-400" : "text-gray-300"} />
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-700">Marwadi</p>
+                    <div className="flex mt-1">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} size={16} className={i <= 3 ? "text-yellow-400 fill-yellow-400" : "text-gray-300"} />
                       ))}
                     </div>
                   </div>
@@ -370,7 +413,7 @@ const Resume: React.FC = () => {
                   <span>|</span>
                   <span>+91 7977282697</span>
                   <span>|</span>
-                  <span>github.com/visheshsanghvi</span>
+                  <span>github.com/visheshsanghvi112</span>
                 </div>
               </header>
               
@@ -378,7 +421,7 @@ const Resume: React.FC = () => {
                 <section>
                   <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Professional Summary</h2>
                   <p className="text-gray-700">
-                    Results-driven full-stack developer with expertise in building responsive web applications and managing databases. Passionate about creating exceptional digital experiences with attention to detail and scalability. Currently focused on database management and big data analytics with expertise in creating enterprise web solutions.
+                    Highly motivated web developer currently pursuing a Master's degree in Big Data Analytics with a proven track record in creating dynamic and user-friendly websites and mobile applications. Proficient in database management with SQL, Firebase, and MongoDB. Skilled in Android app development and Flutter for cross-platform app creation.
                   </p>
                 </section>
                 
@@ -388,40 +431,40 @@ const Resume: React.FC = () => {
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-bold text-gray-900">Senior Software Developer</h3>
-                        <span className="text-gray-600">Jan 2023 - Present</span>
+                        <h3 className="font-bold text-gray-900">Software Developer</h3>
+                        <span className="text-gray-600">May 2024 - Present</span>
                       </div>
-                      <p className="text-gray-700 italic mb-2">TechSolutions Inc.</p>
+                      <p className="text-gray-700 italic mb-2">JohnLee Pharmaceuticals, GenericPlus, Ambica Pharma</p>
                       <ul className="list-disc list-inside text-gray-700 space-y-1">
-                        <li>Led the development of a high-traffic e-commerce platform using React and Node.js</li>
-                        <li>Implemented CI/CD pipelines resulting in 40% faster deployment times</li>
-                        <li>Mentored junior developers and conducted code reviews</li>
+                        <li>Created WordPress websites for JohnLee Pharmaceuticals and Ambica Pharma, enhancing their digital presence</li>
+                        <li>Developed Tally-like software for GenericPlus, optimizing their financial management</li>
+                        <li>Implemented responsive designs and user-friendly interfaces across multiple platforms</li>
                       </ul>
                     </div>
                     
                     <div>
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-bold text-gray-900">Frontend Developer</h3>
-                        <span className="text-gray-600">May 2021 - Dec 2022</span>
+                        <h3 className="font-bold text-gray-900">Freelance Web Developer</h3>
+                        <span className="text-gray-600">Sep 2021 - Jul 2022</span>
                       </div>
-                      <p className="text-gray-700 italic mb-2">WebCraft Studios</p>
+                      <p className="text-gray-700 italic mb-2">Self-employed</p>
                       <ul className="list-disc list-inside text-gray-700 space-y-1">
-                        <li>Developed responsive user interfaces for 12+ client projects</li>
-                        <li>Optimized application performance resulting in 30% faster load times</li>
-                        <li>Collaborated with designers to implement pixel-perfect UI components</li>
+                        <li>Spearheaded the development of a dynamic website specializing in 2-wheeler accessories</li>
+                        <li>Created a user-friendly platform for motorcycle enthusiasts to explore and purchase high-quality accessories</li>
+                        <li>Focused on bike accessories such as mudguards and protective gear to enhance riding experience</li>
                       </ul>
                     </div>
                     
                     <div>
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-bold text-gray-900">Junior Web Developer</h3>
-                        <span className="text-gray-600">Aug 2020 - May 2021</span>
+                        <h3 className="font-bold text-gray-900">Human Resources Manager</h3>
+                        <span className="text-gray-600">Nov 2020 - Aug 2021</span>
                       </div>
-                      <p className="text-gray-700 italic mb-2">Digital Innovators Ltd</p>
+                      <p className="text-gray-700 italic mb-2">Prateek Powerindustries, Udaipur</p>
                       <ul className="list-disc list-inside text-gray-700 space-y-1">
-                        <li>Built and maintained websites for small business clients</li>
-                        <li>Implemented responsive designs and cross-browser compatibility</li>
-                        <li>Assisted senior developers with code debugging and testing</li>
+                        <li>Coordinated project tasks, ensuring adherence to engineering standards and regulations</li>
+                        <li>Conducted comprehensive project analyses, identifying and rectifying discrepancies in engineering designs</li>
+                        <li>Managed HR functions including recruitment and team coordination</li>
                       </ul>
                     </div>
                   </div>
@@ -433,23 +476,23 @@ const Resume: React.FC = () => {
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-bold text-gray-900">MSc Big Data Analytics</h3>
-                        <span className="text-gray-600">2022 - 2024</span>
+                        <h3 className="font-bold text-gray-900">Masters in Big Data Analytics</h3>
+                        <span className="text-gray-600">Jul 2024 - Apr 2026</span>
                       </div>
-                      <p className="text-gray-700 italic mb-2">University of Modern Technology</p>
+                      <p className="text-gray-700 italic mb-2">University of Mumbai</p>
                       <p className="text-gray-700">
-                        Focused on advanced data processing techniques, machine learning algorithms, and data visualization methodologies.
+                        Specialization in Data Analytics & Machine Learning.
                       </p>
                     </div>
                     
                     <div>
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-bold text-gray-900">BSc Computer Science</h3>
-                        <span className="text-gray-600">2018 - 2022</span>
+                        <h3 className="font-bold text-gray-900">BSc Information Technology</h3>
+                        <span className="text-gray-600">Aug 2021 - Mar 2024</span>
                       </div>
-                      <p className="text-gray-700 italic mb-2">State University</p>
+                      <p className="text-gray-700 italic mb-2">KC College, HSNC University</p>
                       <p className="text-gray-700">
-                        Completed with honors. Coursework included software engineering, database systems, algorithms, and web development.
+                        Relevant coursework in Software Development, Database Management, and Network Security.
                       </p>
                     </div>
                   </div>
@@ -460,28 +503,28 @@ const Resume: React.FC = () => {
                   
                   <div className="space-y-3">
                     <div>
-                      <p className="font-bold text-gray-800">Frontend:</p>
-                      <p className="text-gray-700">React/Next.js, JavaScript/TypeScript, HTML/CSS/SCSS, Tailwind CSS</p>
+                      <p className="font-bold text-gray-800">Technical Skills:</p>
+                      <p className="text-gray-700">Project Management, App Development, Web Development, Full Stack, Editing, Cloud Computing</p>
                     </div>
                     
                     <div>
-                      <p className="font-bold text-gray-800">Backend:</p>
-                      <p className="text-gray-700">Node.js, Express, Python, REST API Design</p>
+                      <p className="font-bold text-gray-800">Web Development:</p>
+                      <p className="text-gray-700">HTML, CSS, JavaScript, React, WordPress, PHP, Node.js</p>
+                    </div>
+                    
+                    <div>
+                      <p className="font-bold text-gray-800">Mobile Development:</p>
+                      <p className="text-gray-700">Flutter, Android Development</p>
                     </div>
                     
                     <div>
                       <p className="font-bold text-gray-800">Databases:</p>
-                      <p className="text-gray-700">MongoDB, PostgreSQL, Firebase, MySQL</p>
+                      <p className="text-gray-700">MySQL, MongoDB, Firebase, SQL</p>
                     </div>
                     
                     <div>
-                      <p className="font-bold text-gray-800">Tools & Others:</p>
-                      <p className="text-gray-700">Git/GitHub, Docker, AWS, CI/CD, Agile/Scrum</p>
-                    </div>
-                    
-                    <div>
-                      <p className="font-bold text-gray-800">Soft Skills:</p>
-                      <p className="text-gray-700">Team Collaboration, Problem Solving, Communication, Time Management, Project Planning</p>
+                      <p className="font-bold text-gray-800">Languages:</p>
+                      <p className="text-gray-700">English, Hindi, Marathi, Gujarati, Marwadi</p>
                     </div>
                   </div>
                 </section>
@@ -491,36 +534,34 @@ const Resume: React.FC = () => {
                   
                   <div className="grid grid-cols-2 gap-y-2">
                     <div>
-                      <p className="font-bold text-gray-800">AWS Certified Developer</p>
-                      <p className="text-sm text-gray-600">Amazon Web Services, Jan 2023</p>
+                      <p className="font-bold text-gray-800">Python Certificate</p>
+                      <p className="text-sm text-gray-600">HackerRank</p>
                     </div>
                     
                     <div>
-                      <p className="font-bold text-gray-800">MongoDB Developer Certification</p>
-                      <p className="text-sm text-gray-600">MongoDB University, Mar 2022</p>
+                      <p className="font-bold text-gray-800">JavaScript Algorithms and Data Structures</p>
+                      <p className="text-sm text-gray-600">freeCodeCamp</p>
                     </div>
                     
                     <div>
-                      <p className="font-bold text-gray-800">React Developer</p>
-                      <p className="text-sm text-gray-600">Meta, Nov 2021</p>
+                      <p className="font-bold text-gray-800">Google Analytics Certification</p>
+                      <p className="text-sm text-gray-600">Google</p>
                     </div>
                     
                     <div>
-                      <p className="font-bold text-gray-800">Professional Scrum Master I</p>
-                      <p className="text-sm text-gray-600">Scrum.org, Aug 2021</p>
+                      <p className="font-bold text-gray-800">AI Powered Shopping Ads Certification</p>
+                      <p className="text-sm text-gray-600">Google</p>
                     </div>
-                  </div>
-                </section>
-                
-                <section className="grid grid-cols-2 gap-x-8">
-                  <div>
-                    <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Languages</h2>
-                    <p className="text-gray-700">English (Native), Hindi (Native), Gujarati (Fluent)</p>
-                  </div>
-                  
-                  <div>
-                    <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Interests</h2>
-                    <p className="text-gray-700">Open Source, Web3 Technologies, AI/ML, Mobile Development, UI/UX Design</p>
+                    
+                    <div>
+                      <p className="font-bold text-gray-800">Tally Ace</p>
+                      <p className="text-sm text-gray-600">Tally Solutions</p>
+                    </div>
+                    
+                    <div>
+                      <p className="font-bold text-gray-800">Software Engineer Intern</p>
+                      <p className="text-sm text-gray-600">HackerRank</p>
+                    </div>
                   </div>
                 </section>
               </div>

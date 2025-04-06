@@ -11,23 +11,26 @@ interface EducationProps {
   period: string;
   grade?: string;
   location: string;
+  details?: string;
 }
 
 const educations: EducationProps[] = [
   {
-    institution: "Jai Hind College",
+    institution: "University of Mumbai",
     degree: "Master's",
     field: "Big Data Analytics",
     period: "2024 - 2026",
-    location: "Mumbai"
+    location: "Mumbai",
+    details: "Specialization in Data Analytics & Machine Learning"
   },
   {
-    institution: "KC College",
+    institution: "KC College, HSNC University",
     degree: "BSC IT",
     field: "Information Technology",
     period: "2021 - 2024",
     grade: "A+",
-    location: "Mumbai"
+    location: "Mumbai",
+    details: "Coursework in Software Development, Database Management, and Network Security"
   }
 ];
 
@@ -64,6 +67,10 @@ const EducationSection: React.FC = () => {
                   <span>{education.period}</span>
                 </div>
               </div>
+              
+              {education.details && (
+                <p className="text-sm text-foreground/80 mb-2">{education.details}</p>
+              )}
               
               {education.grade && (
                 <div className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary mt-2">
