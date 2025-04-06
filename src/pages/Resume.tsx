@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -29,7 +28,6 @@ const Resume: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-        {/* Header/Navigation */}
         <header className="flex flex-col sm:flex-row items-center justify-between mb-12 gap-4">
           <div className="flex items-center">
             <Link to="/" className="flex items-center text-primary hover:text-primary/80 transition-colors mr-4">
@@ -60,11 +58,9 @@ const Resume: React.FC = () => {
           </div>
         </header>
         
-        {/* Resume Content */}
         <div ref={printRef} className={`resume-container bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden print:shadow-none print:rounded-none print:max-w-full ${viewMode === 'classic' ? 'classic-resume' : 'modern-resume'}`}>
           {viewMode === 'modern' ? (
             <div className="p-8 print:p-6">
-              {/* Header */}
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 border-b border-gray-200 pb-6">
                 <div>
                   <h1 className="text-3xl font-bold text-gray-900">Vishesh Sanghvi</h1>
@@ -84,7 +80,6 @@ const Resume: React.FC = () => {
                 </div>
               </div>
               
-              {/* Profile Summary */}
               <div className="mb-8">
                 <h2 className="text-xl font-semibold text-gray-800 mb-3 flex items-center">
                   <User size={18} className="mr-2 text-primary" />
@@ -95,7 +90,6 @@ const Resume: React.FC = () => {
                 </p>
               </div>
               
-              {/* Tabbed Content */}
               <Tabs defaultValue="experience" className="w-full">
                 <TabsList className="grid grid-cols-4 w-full mb-6">
                   <TabsTrigger value="experience" className="text-sm">
@@ -318,7 +312,6 @@ const Resume: React.FC = () => {
                 </TabsContent>
               </Tabs>
               
-              {/* Interests */}
               <div className="mt-10">
                 <h2 className="text-xl font-semibold text-gray-800 mb-3 flex items-center">
                   <Coffee size={18} className="mr-2 text-primary" />
@@ -334,7 +327,6 @@ const Resume: React.FC = () => {
                 </div>
               </div>
               
-              {/* Languages */}
               <div className="mt-10">
                 <h2 className="text-xl font-semibold text-gray-800 mb-3 flex items-center">
                   <BookOpen size={18} className="mr-2 text-primary" />
@@ -370,7 +362,6 @@ const Resume: React.FC = () => {
             </div>
           ) : (
             <div className="p-8 print:p-6 classic-view">
-              {/* Classic resume view */}
               <header className="text-center mb-8 border-b border-gray-300 pb-4">
                 <h1 className="text-3xl font-bold uppercase text-gray-900 tracking-wider">Vishesh Sanghvi</h1>
                 <p className="text-lg text-gray-600 mt-1">Full-stack Developer</p>
@@ -384,7 +375,6 @@ const Resume: React.FC = () => {
               </header>
               
               <div className="grid grid-cols-1 gap-8">
-                {/* Summary */}
                 <section>
                   <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Professional Summary</h2>
                   <p className="text-gray-700">
@@ -392,7 +382,6 @@ const Resume: React.FC = () => {
                   </p>
                 </section>
                 
-                {/* Experience */}
                 <section>
                   <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Professional Experience</h2>
                   
@@ -438,7 +427,6 @@ const Resume: React.FC = () => {
                   </div>
                 </section>
                 
-                {/* Education */}
                 <section>
                   <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Education</h2>
                   
@@ -467,7 +455,6 @@ const Resume: React.FC = () => {
                   </div>
                 </section>
                 
-                {/* Skills */}
                 <section>
                   <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Skills</h2>
                   
@@ -499,7 +486,6 @@ const Resume: React.FC = () => {
                   </div>
                 </section>
                 
-                {/* Certifications */}
                 <section>
                   <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Certifications</h2>
                   
@@ -526,7 +512,6 @@ const Resume: React.FC = () => {
                   </div>
                 </section>
                 
-                {/* Languages & Interests */}
                 <section className="grid grid-cols-2 gap-x-8">
                   <div>
                     <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Languages</h2>
@@ -544,8 +529,8 @@ const Resume: React.FC = () => {
         </div>
       </div>
       
-      {/* Print styles */}
-      <style jsx="true">{`
+      <style>
+        {`
         @media print {
           body * {
             visibility: hidden;
@@ -560,24 +545,22 @@ const Resume: React.FC = () => {
             width: 100%;
           }
           
-          /* Hide tabs when printing */
           .TabsList, button {
             display: none !important;
           }
           
-          /* Show all tab content when printing */
           .TabsContent {
             display: block !important;
             visibility: visible !important;
             margin-bottom: 1rem !important;
           }
         }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 };
 
-// Skill Bar Component
 const SkillBar: React.FC<{ name: string; value: number }> = ({ name, value }) => {
   return (
     <div>
@@ -590,7 +573,6 @@ const SkillBar: React.FC<{ name: string; value: number }> = ({ name, value }) =>
   );
 };
 
-// Import missing icons
 const Linkedin = (props: any) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
 );

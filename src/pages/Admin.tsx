@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, ExternalLink, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 interface ContactSubmission {
   id: number;
@@ -50,7 +50,7 @@ const Admin: React.FC = () => {
       const { error } = await supabase
         .from('contact_submissions')
         .delete()
-        .eq('id', id);
+        .eq('id', id.toString()); // Convert number to string
 
       if (error) throw error;
       

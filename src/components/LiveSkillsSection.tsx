@@ -150,8 +150,8 @@ const LiveSkillsSection: React.FC = () => {
         }
 
         // Create a sphere for each skill
-        const radius = (skill.level / 90) * 2; // Size based on skill level
-        const geometry = new THREE.SphereGeometry(radius, 32, 32);
+        const sphereRadius = (skill.level / 90) * 2; // Size based on skill level
+        const geometry = new THREE.SphereGeometry(sphereRadius, 32, 32);
         
         // Create material with skill color
         const material = new THREE.MeshPhysicalMaterial({ 
@@ -168,11 +168,11 @@ const LiveSkillsSection: React.FC = () => {
         
         // Position in a spiral
         const angle = index * 0.6;
-        const radius = 15;
+        const spiralRadius = 15;
         mesh.position.set(
-          Math.sin(angle) * radius, 
+          Math.sin(angle) * spiralRadius, 
           (Math.random() - 0.5) * 10,
-          Math.cos(angle) * radius
+          Math.cos(angle) * spiralRadius
         );
         
         // Store skill data with the mesh
