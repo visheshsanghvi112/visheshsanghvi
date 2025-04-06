@@ -24,7 +24,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"SF Pro Display"', '"SF Pro Text"', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Poppins', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['SF Mono', 'monospace'],
       },
       colors: {
@@ -106,11 +106,23 @@ export default {
           '0%': { transform: 'translateX(20px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' }
         },
+        'slide-out-right': {
+          '0%': { transform: 'translateX(0)', opacity: '1' },
+          '100%': { transform: 'translateX(20px)', opacity: '0' }
+        },
         'blob': {
           '0%': { transform: 'scale(1)' },
           '33%': { transform: 'scale(1.1)' },
           '66%': { transform: 'scale(0.9)' },
           '100%': { transform: 'scale(1)' }
+        },
+        'pulse-slow': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.7' }
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
         }
       },
       animation: {
@@ -121,7 +133,10 @@ export default {
         'slide-up': 'slide-up 0.5s ease-out forwards',
         'slide-down': 'slide-down 0.5s ease-out forwards',
         'slide-in-right': 'slide-in-right 0.5s ease-out forwards',
-        'blob': 'blob 7s infinite'
+        'slide-out-right': 'slide-out-right 0.5s ease-out forwards',
+        'blob': 'blob 7s infinite',
+        'pulse-slow': 'pulse-slow 3s infinite',
+        'float': 'float 6s ease-in-out infinite'
       },
       backdropBlur: {
         xs: '2px',
@@ -129,7 +144,13 @@ export default {
       transitionDelay: {
         '0': '0ms',
         '2000': '2000ms',
-      }
+      },
+      boxShadow: {
+        'subtle': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+        'card': '0 7px 14px 0 rgba(0, 0, 0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07)',
+        'soft': '0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1)',
+        'hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05)',
+      },
     }
   },
   plugins: [require("tailwindcss-animate")],
