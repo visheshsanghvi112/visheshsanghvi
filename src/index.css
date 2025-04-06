@@ -216,6 +216,40 @@
   .project-card {
     @apply block w-full overflow-hidden rounded-lg shadow-md mb-6;
   }
+  
+  /* Resume styles */
+  .modern-resume {
+    @apply bg-white text-black rounded-lg shadow-xl max-w-5xl mx-auto;
+  }
+  
+  .classic-resume {
+    @apply font-serif bg-white text-black rounded-lg shadow-xl max-w-5xl mx-auto;
+  }
+  
+  .classic-view h2 {
+    @apply mb-4 uppercase;
+  }
+  
+  /* Print styles for resume */
+  @media print {
+    @page {
+      size: A4;
+      margin: 0.5cm;
+    }
+    
+    body {
+      background: white;
+    }
+    
+    .resume-container {
+      width: 100%;
+      max-width: 100%;
+      box-shadow: none;
+      background: white;
+      color: black;
+      padding: 1cm;
+    }
+  }
 }
 
 @layer utilities {
