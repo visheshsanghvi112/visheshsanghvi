@@ -44,12 +44,12 @@ const HeroSection: React.FC = () => {
             Vishesh Sanghvi
           </h1>
           <div className="chip bg-secondary/50 backdrop-blur-sm text-foreground/80 text-sm sm:text-base px-4 py-2 rounded-full inline-block mb-6 animate-slide-down">
-            BDA Student | Full Stack Developer
+            BDA Student | Full-Stack Alchemist | React, PHP, Python
           </div>
           <div className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed animate-slide-up">
             <span className="text-balance">{typedText}</span>
             <span className="animate-pulse">|</span>
-            <p className="mt-3 text-foreground/70">Currently focused on database management and big data analytics, with expertise in creating scalable web applications and solutions.</p>
+            <p className="mt-3 text-foreground/70">Turning code into impact—crafting sleek frontends with React & Flutter, powering backends with PHP, and decoding data with Python. From servers to scrapers, I build, break, migrate, and scale—end to end.</p>
           </div>
           
           {/* Stats cards - new feature */}
@@ -59,11 +59,11 @@ const HeroSection: React.FC = () => {
               <p className="text-xs sm:text-sm text-foreground/70">Years Experience</p>
             </div>
             <div className="glass-panel p-3 sm:p-4 rounded-lg backdrop-blur-sm">
-              <p className="text-xl sm:text-2xl font-bold text-primary">25+</p>
+              <p className="text-xl sm:text-2xl font-bold text-primary">30+</p>
               <p className="text-xs sm:text-sm text-foreground/70">Projects</p>
             </div>
             <div className="glass-panel p-3 sm:p-4 rounded-lg backdrop-blur-sm">
-              <p className="text-xl sm:text-2xl font-bold text-primary">6+</p>
+              <p className="text-xl sm:text-2xl font-bold text-primary">50+</p>
               <p className="text-xs sm:text-sm text-foreground/70">Certifications</p>
             </div>
           </div>
