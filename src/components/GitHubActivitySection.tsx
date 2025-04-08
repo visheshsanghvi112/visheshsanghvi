@@ -25,7 +25,7 @@ interface GitHubEvent {
   payload?: any;
 }
 
-const username = 'visheshsanghvi'; // Your GitHub username
+const username = 'visheshsanghvi112'; // Your GitHub username
 
 const GitHubActivitySection: React.FC = () => {
   const [repositories, setRepositories] = useState<Repository[]>([]);
