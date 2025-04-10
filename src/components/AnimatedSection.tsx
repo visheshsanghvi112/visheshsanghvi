@@ -8,7 +8,11 @@ interface AnimatedSectionProps {
   delay?: number;
   threshold?: number;
   id?: string;
-  animation?: 'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom' | 'rotate' | 'bounce' | 'flip';
+  animation?: 'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom' | 'rotate' | 'bounce' | 'flip' | 'scale' | 'float';
+  duration?: number;
+  once?: boolean;
+  staggered?: boolean;
+  staggerChildren?: boolean;
 }
 
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
@@ -18,6 +22,10 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   threshold = 0.2,
   id,
   animation = 'fade',
+  duration = 1000,
+  once = true,
+  staggered = false,
+  staggerChildren = false,
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -41,6 +49,10 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         return 'opacity-0 transform -translate-y-4';
       case 'flip':
         return 'opacity-0 transform rotateX-90';
+      case 'scale':
+        return 'opacity-0 transform scale-95';
+      case 'float':
+        return 'opacity-0';
       case 'fade':
       default:
         return 'opacity-0';
@@ -56,6 +68,8 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         return 'opacity-100 transform-none rotate-0';
       case 'flip':
         return 'opacity-100 transform-none rotateX-0';
+      case 'float':
+        return 'opacity-100 animate-[floatAnimation_6s_ease-in-out_infinite]';
       default:
         return 'opacity-100 transform-none';
     }
@@ -65,27 +79,33 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     const currentRef = sectionRef.current;
     if (!currentRef) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true);
-          }, delay);
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries;
+      
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          setIsVisible(true);
+        }, delay);
+        
+        if (once) {
           observer.unobserve(currentRef);
         }
-      },
-      {
-        threshold,
-        rootMargin: '0px 0px -100px 0px',
+      } else if (!once) {
+        setIsVisible(false);
       }
-    );
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold,
+      rootMargin: '0px 0px -100px 0px',
+    });
 
     observer.observe(currentRef);
 
     return () => {
       if (currentRef) observer.unobserve(currentRef);
     };
-  }, [delay, threshold]);
+  }, [delay, threshold, once]);
 
   return (
     <section
@@ -93,12 +113,23 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       id={id}
       className={cn(
         getAnimationClasses(),
-        'transition-all duration-1000 ease-out',
+        `transition-all duration-${duration} ease-out`,
         isVisible && getVisibleClasses(),
+        staggerChildren && 'stagger-children',
         className
       )}
+      style={{ 
+        transitionDelay: `${delay}ms`,
+        transitionDuration: `${duration}ms`
+      }}
     >
-      {children}
+      {staggered ? (
+        <div className="stagger-children">
+          {children}
+        </div>
+      ) : (
+        children
+      )}
     </section>
   );
 };
