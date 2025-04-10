@@ -164,7 +164,8 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       style={{ 
         transitionDelay: `${delay}ms`,
         transitionDuration: `${duration}ms`,
-        '--stagger-delay': `${staggerDelay}ms`
+        // Fix the TypeScript error by adding the property with correct typing
+        [`--stagger-delay` as string]: `${staggerDelay}ms` 
       }}
     >
       {staggered ? (
