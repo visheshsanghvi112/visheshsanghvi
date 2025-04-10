@@ -12,9 +12,11 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import FloatingNavDots from '../components/FloatingNavDots';
 import LiveSkillsSection from '../components/LiveSkillsSection';
 import GitHubActivitySection from '../components/GitHubActivitySection';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Book, FileCode2, Settings, BookOpen, ExternalLink } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import AnimatedSection from '@/components/AnimatedSection';
 
 const Index: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -72,10 +74,48 @@ const Index: React.FC = () => {
     // Trigger once on load
     revealOnScroll();
     
+    // Add keyboard navigation
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Arrow up/down for section navigation
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        navigateToNextSection('down');
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        navigateToNextSection('up');
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    
     return () => {
       window.removeEventListener('scroll', revealOnScroll);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isMobile]);
+  }, [isMobile, activeSection]);
+  
+  // Function to navigate to next/previous section
+  const navigateToNextSection = (direction: 'up' | 'down') => {
+    const sections = isMobile 
+      ? ['hero', 'experience', 'education', 'projects', 'interactive-skills', 'github-activity', 'certifications', 'testimonials', 'contact'] 
+      : ['hero', 'experience', 'education', 'skills', 'interactive-skills', 'projects', 'github-activity', 'certifications', 'testimonials', 'contact'];
+    
+    const currentIndex = sections.indexOf(activeSection);
+    let targetIndex;
+    
+    if (direction === 'down') {
+      targetIndex = Math.min(currentIndex + 1, sections.length - 1);
+    } else {
+      targetIndex = Math.max(currentIndex - 1, 0);
+    }
+    
+    if (targetIndex !== currentIndex) {
+      const targetSection = document.getElementById(sections[targetIndex]);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   
   const scrollToTop = () => {
     window.scrollTo({
@@ -89,7 +129,7 @@ const Index: React.FC = () => {
       <NavBar activeSection={activeSection} />
       <FloatingNavDots activeSection={activeSection} />
       
-      <main className="pt-16 md:pt-20">
+      <main className="pt-16 md:pt-20 relative">
         <HeroSection />
         <ExperienceSection />
         <EducationSection />
@@ -100,18 +140,111 @@ const Index: React.FC = () => {
         <CertificationsSection />
         <TestimonialsSection />
         <ContactSection />
+        
+        {/* Featured Pages Section */}
+        <AnimatedSection 
+          id="featured-pages" 
+          className="section-container py-20 bg-gradient-to-b from-background to-secondary/10"
+          animation="fade"
+        >
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+                Explore More
+              </span>
+            </h2>
+            <p className="text-foreground/70 mb-6">
+              Discover additional content and resources to learn more about my work, thoughts, and tools.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Blog Card */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/20 transition-all duration-300 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative p-6 flex flex-col h-full">
+                <div className="mb-4 w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                  <BookOpen size={24} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">Blog & Insights</h3>
+                <p className="text-foreground/70 text-sm mb-4 flex-grow">
+                  Thoughts, tutorials, and insights on web development and technology.
+                </p>
+                <Link to="/blog" className="inline-flex items-center text-primary hover:text-primary/80 text-sm font-medium">
+                  Read Articles
+                  <ExternalLink size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Case Studies Card */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/20 transition-all duration-300 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative p-6 flex flex-col h-full">
+                <div className="mb-4 w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                  <Book size={24} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">Case Studies</h3>
+                <p className="text-foreground/70 text-sm mb-4 flex-grow">
+                  Detailed breakdowns of projects, challenges, and solutions.
+                </p>
+                <Link to="/case-studies" className="inline-flex items-center text-primary hover:text-primary/80 text-sm font-medium">
+                  View Case Studies
+                  <ExternalLink size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Setup Card */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/20 transition-all duration-300 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative p-6 flex flex-col h-full">
+                <div className="mb-4 w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+                  <Settings size={24} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">My Setup</h3>
+                <p className="text-foreground/70 text-sm mb-4 flex-grow">
+                  The hardware, software, and workflow I use for development.
+                </p>
+                <Link to="/setup" className="inline-flex items-center text-primary hover:text-primary/80 text-sm font-medium">
+                  Explore Setup
+                  <ExternalLink size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Code Demos Card */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/20 transition-all duration-300 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative p-6 flex flex-col h-full">
+                <div className="mb-4 w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                  <FileCode2 size={24} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">Code Demos</h3>
+                <p className="text-foreground/70 text-sm mb-4 flex-grow">
+                  Interactive code examples to explore concepts and techniques.
+                </p>
+                <Link to="/code-demo" className="inline-flex items-center text-primary hover:text-primary/80 text-sm font-medium">
+                  Try Demos
+                  <ExternalLink size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
       </main>
       
       {/* Scroll to top button */}
-      <button 
+      <Button 
         onClick={scrollToTop} 
         className={`fixed bottom-6 right-6 p-3 rounded-full bg-primary text-white shadow-lg z-50 transition-all duration-300 ${
           showScrollTop ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
         }`}
         aria-label="Scroll to top"
+        size="icon"
       >
         <ArrowUp size={20} />
-      </button>
+      </Button>
       
       <footer className="py-8 border-t border-border/60 bg-gradient-to-t from-background to-background/50">
         <div className="container max-w-7xl mx-auto px-6 text-center">
@@ -168,10 +301,22 @@ const Index: React.FC = () => {
             </Link>
           </div>
           
-          <div className="mt-4 text-xs text-foreground/40">
-            Built with React, TypeScript & Tailwind CSS
-            <div className="mt-1">
-              <span className="bg-primary/10 text-primary/80 px-2 py-1 rounded text-xs font-mono">Last updated: April 2025</span>
+          <div className="mt-4 space-y-2">
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link to="/blog" className="text-xs text-foreground/60 hover:text-primary transition-colors">Blog</Link>
+              <span className="text-foreground/40">•</span>
+              <Link to="/case-studies" className="text-xs text-foreground/60 hover:text-primary transition-colors">Case Studies</Link>
+              <span className="text-foreground/40">•</span>
+              <Link to="/setup" className="text-xs text-foreground/60 hover:text-primary transition-colors">My Setup</Link>
+              <span className="text-foreground/40">•</span>
+              <Link to="/code-demo" className="text-xs text-foreground/60 hover:text-primary transition-colors">Code Demos</Link>
+            </div>
+            
+            <div className="text-xs text-foreground/40">
+              Built with React, TypeScript & Tailwind CSS
+              <div className="mt-1">
+                <span className="bg-primary/10 text-primary/80 px-2 py-1 rounded text-xs font-mono">Last updated: April 2025</span>
+              </div>
             </div>
           </div>
         </div>

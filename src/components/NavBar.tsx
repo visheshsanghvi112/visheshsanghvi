@@ -1,10 +1,17 @@
 
 import React, { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Menu, X, BookOpen, LayoutDashboard, Settings, Code } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import ThemeToggle from './ThemeToggle';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 
 interface NavBarProps {
   activeSection?: string;
@@ -14,6 +21,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   // Handle scroll event
   useEffect(() => {
@@ -43,38 +52,50 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
     setIsMobileMenuOpen(false);
     // Re-enable scrolling when closing the menu
     document.body.style.overflow = '';
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    
+    if (isHomePage) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
   const getNavLinks = () => {
     const baseLinks = [
-      { label: 'Home', sectionId: 'hero' },
-      { label: 'Experience', sectionId: 'experience' },
-      { label: 'Education', sectionId: 'education' },
-      { label: 'Projects', sectionId: 'projects' },
-      { label: 'GitHub', sectionId: 'github-activity' },
-      { label: 'Certifications', sectionId: 'certifications' },
-      { label: 'Testimonials', sectionId: 'testimonials' },
-      { label: 'Contact', sectionId: 'contact' },
+      { label: 'Home', sectionId: 'hero', path: '/' },
+      { label: 'Experience', sectionId: 'experience', path: '/#experience' },
+      { label: 'Education', sectionId: 'education', path: '/#education' },
+      { label: 'Projects', sectionId: 'projects', path: '/#projects' },
+      { label: 'GitHub', sectionId: 'github-activity', path: '/#github-activity' },
+      { label: 'Certifications', sectionId: 'certifications', path: '/#certifications' },
+      { label: 'Testimonials', sectionId: 'testimonials', path: '/#testimonials' },
+      { label: 'Contact', sectionId: 'contact', path: '/#contact' },
     ];
 
     // Only show Skills section in desktop view
     if (!isMobile) {
-      baseLinks.splice(3, 0, { label: 'Skills', sectionId: 'skills' });
+      baseLinks.splice(3, 0, { label: 'Skills', sectionId: 'skills', path: '/#skills' });
       // Add Interactive Skills after regular Skills
-      baseLinks.splice(4, 0, { label: 'Interactive Skills', sectionId: 'interactive-skills' });
+      baseLinks.splice(4, 0, { label: 'Interactive Skills', sectionId: 'interactive-skills', path: '/#interactive-skills' });
     } else {
       // On mobile, still add Interactive Skills but in a different position
-      baseLinks.splice(4, 0, { label: 'Interactive Skills', sectionId: 'interactive-skills' });
+      baseLinks.splice(4, 0, { label: 'Interactive Skills', sectionId: 'interactive-skills', path: '/#interactive-skills' });
     }
 
     return baseLinks;
   };
 
   const navLinks = getNavLinks();
+
+  // Additional pages links
+  const additionalPages = [
+    { label: 'Resume', path: '/resume', icon: LayoutDashboard },
+    { label: 'Blog', path: '/blog', icon: BookOpen },
+    { label: 'Case Studies', path: '/case-studies', icon: LayoutDashboard },
+    { label: 'My Setup', path: '/setup', icon: Settings },
+    { label: 'Code Demos', path: '/code-demo', icon: Code }
+  ];
 
   return (
     <header
@@ -94,37 +115,65 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
             <span className="text-primary">V</span>S
           </Link>
           
-          {/* Additional navigation items */}
-          <div className="hidden md:flex ml-6 space-x-4">
-            <Link
-              to="/resume"
-              className="text-sm font-medium transition-colors text-foreground/80 hover:text-primary"
-            >
-              Resume
-            </Link>
+          {/* Additional navigation items - Pages dropdown */}
+          <div className="hidden md:flex ml-6">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className="text-sm font-medium transition-colors text-foreground/80 hover:text-primary"
+                >
+                  Pages
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-48 bg-background/95 backdrop-blur-md border-border/50">
+                {additionalPages.map((page) => (
+                  <DropdownMenuItem key={page.path} asChild>
+                    <Link 
+                      to={page.path}
+                      className="flex items-center gap-2 cursor-pointer"
+                    >
+                      <page.icon size={16} />
+                      {page.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.sectionId}
-              href={`#${link.sectionId}`}
-              className={cn(
-                "text-sm font-medium transition-colors interactive-link",
-                activeSection === link.sectionId 
-                  ? "text-primary font-semibold"
-                  : "text-foreground/80 hover:text-foreground"
-              )}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick(link.sectionId);
-              }}
+          {isHomePage ? (
+            // Show section links on homepage
+            navLinks.map((link) => (
+              <a
+                key={link.sectionId}
+                href={`#${link.sectionId}`}
+                className={cn(
+                  "text-sm font-medium transition-colors interactive-link",
+                  activeSection === link.sectionId 
+                    ? "text-primary font-semibold"
+                    : "text-foreground/80 hover:text-foreground"
+                )}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavLinkClick(link.sectionId);
+                }}
+              >
+                {link.label}
+              </a>
+            ))
+          ) : (
+            // Show only Home link on other pages
+            <Link
+              to="/"
+              className="text-sm font-medium transition-colors text-foreground/80 hover:text-primary"
             >
-              {link.label}
-            </a>
-          ))}
+              Home
+            </Link>
+          )}
         </nav>
 
         <div className="flex items-center ml-6">
@@ -150,38 +199,57 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
         style={{ top: 0, height: '100vh' }} // Explicitly set top:0 and full viewport height
       >
         <div className="flex flex-col items-center justify-center h-full space-y-6 p-8 pt-20">
-          {navLinks.map((link) => (
-            <a
-              key={link.sectionId}
-              href={`#${link.sectionId}`}
-              className={cn(
-                "text-lg font-medium transition-colors",
-                activeSection === link.sectionId 
-                  ? "text-primary font-semibold"
-                  : "text-foreground/80 hover:text-foreground"
-              )}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick(link.sectionId);
+          {isHomePage ? (
+            // Show section links on homepage for mobile
+            navLinks.map((link) => (
+              <a
+                key={link.sectionId}
+                href={`#${link.sectionId}`}
+                className={cn(
+                  "text-lg font-medium transition-colors",
+                  activeSection === link.sectionId 
+                    ? "text-primary font-semibold"
+                    : "text-foreground/80 hover:text-foreground"
+                )}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavLinkClick(link.sectionId);
+                }}
+              >
+                {link.label}
+              </a>
+            ))
+          ) : (
+            // Show Home link on other pages for mobile
+            <Link
+              to="/"
+              className="text-lg font-medium transition-colors text-foreground/80 hover:text-primary"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.body.style.overflow = '';
               }}
             >
-              {link.label}
-            </a>
-          ))}
+              Home
+            </Link>
+          )}
           
           <hr className="w-24 border-t border-border/30 my-4" />
           
-          {/* Additional navigation items for mobile */}
-          <Link
-            to="/resume"
-            className="text-lg font-medium transition-colors text-foreground/80 hover:text-primary"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Resume
-          </Link>
+          {/* Additional pages navigation for mobile */}
+          {additionalPages.map((page) => (
+            <Link
+              key={page.path}
+              to={page.path}
+              className="text-lg font-medium transition-colors text-foreground/80 hover:text-primary flex items-center gap-2"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.body.style.overflow = '';
+              }}
+            >
+              <page.icon size={18} />
+              {page.label}
+            </Link>
+          ))}
           
           <ThemeToggle className="mt-6" />
         </div>

@@ -8,11 +8,15 @@ interface AnimatedSectionProps {
   delay?: number;
   threshold?: number;
   id?: string;
-  animation?: 'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom' | 'rotate' | 'bounce' | 'flip' | 'scale' | 'float';
+  animation?: 'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom' | 'rotate' | 'bounce' | 'flip' | 'scale' | 'float' | 'glitch' | 'blur' | 'swing' | 'pulse';
   duration?: number;
   once?: boolean;
   staggered?: boolean;
   staggerChildren?: boolean;
+  staggerDelay?: number;
+  easing?: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out';
+  withBackground?: boolean;
+  backgroundAnimation?: 'pulse' | 'gradient' | 'sparkle' | 'glow' | 'none';
 }
 
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
@@ -26,6 +30,10 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   once = true,
   staggered = false,
   staggerChildren = false,
+  staggerDelay = 100,
+  easing = 'ease-out',
+  withBackground = false,
+  backgroundAnimation = 'none',
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -53,6 +61,14 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         return 'opacity-0 transform scale-95';
       case 'float':
         return 'opacity-0';
+      case 'glitch':
+        return 'opacity-0 glitch-effect';
+      case 'blur':
+        return 'opacity-0 blur-sm';
+      case 'swing':
+        return 'opacity-0 origin-top';
+      case 'pulse':
+        return 'opacity-0 scale-95';
       case 'fade':
       default:
         return 'opacity-0';
@@ -70,8 +86,34 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         return 'opacity-100 transform-none rotateX-0';
       case 'float':
         return 'opacity-100 animate-[floatAnimation_6s_ease-in-out_infinite]';
+      case 'glitch':
+        return 'opacity-100 animate-[glitch_0.8s_ease-in-out]';
+      case 'blur':
+        return 'opacity-100 blur-0';
+      case 'swing':
+        return 'opacity-100 animate-[swing_1.5s_ease-in-out]';
+      case 'pulse':
+        return 'opacity-100 scale-100 animate-[pulse_1.5s_ease-in-out_infinite]';
       default:
         return 'opacity-100 transform-none';
+    }
+  };
+
+  // Get background animation classes
+  const getBackgroundClasses = () => {
+    if (!withBackground) return '';
+    
+    switch (backgroundAnimation) {
+      case 'pulse':
+        return 'before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/20 before:via-secondary/20 before:to-primary/20 before:animate-pulse before:-z-10 before:rounded-xl';
+      case 'gradient':
+        return 'before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/10 before:via-secondary/10 before:to-primary/10 before:animate-gradient-x before:-z-10 before:rounded-xl';
+      case 'sparkle':
+        return 'sparkle-bg';
+      case 'glow':
+        return 'glow-effect';
+      default:
+        return '';
     }
   };
 
@@ -113,14 +155,16 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       id={id}
       className={cn(
         getAnimationClasses(),
-        `transition-all duration-${duration} ease-out`,
+        getBackgroundClasses(),
+        `transition-all ease-${easing}`,
         isVisible && getVisibleClasses(),
         staggerChildren && 'stagger-children',
         className
       )}
       style={{ 
         transitionDelay: `${delay}ms`,
-        transitionDuration: `${duration}ms`
+        transitionDuration: `${duration}ms`,
+        '--stagger-delay': `${staggerDelay}ms`
       }}
     >
       {staggered ? (
