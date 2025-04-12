@@ -6,6 +6,7 @@ import { Shield, Award, Brain, Code, Activity } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
 interface LeetCodeProfile {
   username: string;
@@ -136,7 +137,10 @@ const LeetCodeStats: React.FC = () => {
                     {leetcodeProfile.easySolved} / {leetcodeProfile.totalEasy}
                   </span>
                 </div>
-                <Progress value={easyProgress} className="h-2 bg-secondary/30" indicatorClassName="bg-green-500" />
+                <Progress value={easyProgress} className={cn("h-2 bg-secondary/30")} />
+                <div className="h-2 -mt-2 bg-transparent">
+                  <div className="h-full bg-green-500" style={{ width: `${easyProgress}%` }} />
+                </div>
               </div>
               
               <div>
@@ -146,7 +150,10 @@ const LeetCodeStats: React.FC = () => {
                     {leetcodeProfile.mediumSolved} / {leetcodeProfile.totalMedium}
                   </span>
                 </div>
-                <Progress value={mediumProgress} className="h-2 bg-secondary/30" indicatorClassName="bg-yellow-500" />
+                <Progress value={mediumProgress} className={cn("h-2 bg-secondary/30")} />
+                <div className="h-2 -mt-2 bg-transparent">
+                  <div className="h-full bg-yellow-500" style={{ width: `${mediumProgress}%` }} />
+                </div>
               </div>
               
               <div>
@@ -156,7 +163,10 @@ const LeetCodeStats: React.FC = () => {
                     {leetcodeProfile.hardSolved} / {leetcodeProfile.totalHard}
                   </span>
                 </div>
-                <Progress value={hardProgress} className="h-2 bg-secondary/30" indicatorClassName="bg-red-500" />
+                <Progress value={hardProgress} className={cn("h-2 bg-secondary/30")} />
+                <div className="h-2 -mt-2 bg-transparent">
+                  <div className="h-full bg-red-500" style={{ width: `${hardProgress}%` }} />
+                </div>
               </div>
             </div>
           </div>
