@@ -1,264 +1,158 @@
-
-import React, { useEffect, useState } from 'react';
-import { Menu, X, BookOpen, LayoutDashboard, Settings, Code } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
-import { cn } from '@/lib/utils';
-import ThemeToggle from './ThemeToggle';
-import LanguageSwitcher from './LanguageSwitcher';
-import { useIsMobile } from '@/hooks/use-mobile';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
-} from '@/components/ui/dropdown-menu';
+import { Menu, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
+import LanguageSwitcher from './LanguageSwitcher';
+import ThemeToggle from './ThemeToggle';
+import Logo from './Logo';
 
-interface NavBarProps {
-  activeSection?: string;
-}
-
-const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isMobile = useIsMobile();
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
+const NavBar = () => {
   const { t } = useTranslation();
 
-  // Handle scroll event
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    // When opening the mobile menu, prevent body scrolling
-    if (!isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  };
-
-  const handleNavLinkClick = (sectionId: string) => {
-    setIsMobileMenuOpen(false);
-    // Re-enable scrolling when closing the menu
-    document.body.style.overflow = '';
-    
-    if (isHomePage) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
-  const getNavLinks = () => {
-    const baseLinks = [
-      { label: t('navigation.home'), sectionId: 'hero', path: '/' },
-      { label: t('navigation.experience'), sectionId: 'experience', path: '/#experience' },
-      { label: t('navigation.education'), sectionId: 'education', path: '/#education' },
-      { label: t('navigation.projects'), sectionId: 'projects', path: '/#projects' },
-      { label: t('navigation.github'), sectionId: 'github-activity', path: '/#github-activity' },
-      { label: t('navigation.certifications'), sectionId: 'certifications', path: '/#certifications' },
-      { label: t('navigation.testimonials'), sectionId: 'testimonials', path: '/#testimonials' },
-      { label: t('navigation.contact'), sectionId: 'contact', path: '/#contact' },
-    ];
-
-    // Only show Skills section in desktop view
-    if (!isMobile) {
-      baseLinks.splice(3, 0, { label: t('navigation.skills'), sectionId: 'skills', path: '/#skills' });
-      // Add Interactive Skills after regular Skills
-      baseLinks.splice(4, 0, { label: t('navigation.interactiveSkills'), sectionId: 'interactive-skills', path: '/#interactive-skills' });
-    } else {
-      // On mobile, still add Interactive Skills but in a different position
-      baseLinks.splice(4, 0, { label: t('navigation.interactiveSkills'), sectionId: 'interactive-skills', path: '/#interactive-skills' });
-    }
-
-    return baseLinks;
-  };
-
-  const navLinks = getNavLinks();
-
-  // Additional pages links
-  const additionalPages = [
-    { label: t('navigation.resume'), path: '/resume', icon: LayoutDashboard },
-    { label: t('navigation.blog'), path: '/blog', icon: BookOpen },
-    { label: t('navigation.caseStudies'), path: '/case-studies', icon: LayoutDashboard },
-    { label: t('navigation.setup'), path: '/setup', icon: Settings },
-    { label: t('navigation.codeDemos'), path: '/code-demo', icon: Code }
-  ];
-
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-        isScrolled
-          ? 'bg-white/80 dark:bg-black/80 backdrop-blur-lg shadow-sm'
-          : 'bg-transparent'
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between h-16 md:h-20">
-        <div className="flex-1 flex items-center">
-          <Link
-            to="/"
-            className="text-xl font-bold text-foreground tracking-tight"
-          >
-            <span className="text-primary">V</span>S
+    <header className="fixed top-0 left-0 right-0 z-50 py-4 backdrop-blur-lg bg-background/60 border-b border-border/40">
+      <div className="container mx-auto px-6 flex justify-between items-center">
+        <div className="flex items-center space-x-1">
+          <Link to="/" className="flex items-center space-x-2">
+            <Logo />
           </Link>
-          
-          {/* Additional navigation items - Pages dropdown */}
-          <div className="hidden md:flex ml-6">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  className="text-sm font-medium transition-colors text-foreground/80 hover:text-primary"
-                >
-                  {t('navigation.pages')}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48 bg-background/95 backdrop-blur-md border-border/50">
-                {additionalPages.map((page) => (
-                  <DropdownMenuItem key={page.path} asChild>
-                    <Link 
-                      to={page.path}
-                      className="flex items-center gap-2 cursor-pointer"
-                    >
-                      <page.icon size={16} />
-                      {page.label}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
         </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
-          {isHomePage ? (
-            // Show section links on homepage
-            navLinks.map((link) => (
-              <a
-                key={link.sectionId}
-                href={`#${link.sectionId}`}
-                className={cn(
-                  "text-sm font-medium transition-colors interactive-link",
-                  activeSection === link.sectionId 
-                    ? "text-primary font-semibold"
-                    : "text-foreground/80 hover:text-foreground"
-                )}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavLinkClick(link.sectionId);
-                }}
-              >
-                {link.label}
-              </a>
-            ))
-          ) : (
-            // Show only Home link on other pages
-            <Link
-              to="/"
-              className="text-sm font-medium transition-colors text-foreground/80 hover:text-primary"
-            >
-              {t('navigation.home')}
-            </Link>
-          )}
-        </nav>
-
-        <div className="flex items-center ml-6">
+        
+        <div className="hidden md:flex items-center space-x-1">
+          <Link to="/" className="nav-link">
+            {t('navigation.home')}
+          </Link>
+          <a href="#experience" className="nav-link">
+            {t('navigation.experience')}
+          </a>
+          <a href="#skills" className="nav-link">
+            {t('navigation.skills')}
+          </a>
+          <a href="#projects" className="nav-link">
+            {t('navigation.projects')}
+          </a>
+          <a href="#contact" className="nav-link">
+            {t('navigation.contact')}
+          </a>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="nav-link" size="sm">
+                {t('navigation.pages')} <ChevronDown className="h-4 w-4 ml-1" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48">
+              <DropdownMenuItem asChild>
+                <Link to="/resume" className="w-full cursor-pointer">
+                  {t('navigation.resume')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/blog" className="w-full cursor-pointer">
+                  {t('navigation.blog')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/case-studies" className="w-full cursor-pointer">
+                  {t('navigation.caseStudies')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/setup" className="w-full cursor-pointer">
+                  {t('navigation.setup')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/code-demo" className="w-full cursor-pointer">
+                  {t('navigation.codeDemos')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="#leetcode" className="w-full cursor-pointer">
+                  {t('navigation.leetcode')}
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        
+        <div className="flex items-center space-x-1">
           <LanguageSwitcher />
           <ThemeToggle />
-
-          {/* Mobile menu button */}
-          <button
-            onClick={toggleMobileMenu}
-            className="ml-4 md:hidden w-10 h-10 rounded-full flex items-center justify-center text-foreground/80 hover:text-foreground transition-colors hover:bg-muted"
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div
-        className={cn(
-          'md:hidden fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transition-transform duration-300 ease-in-out overflow-auto',
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        )}
-        style={{ top: 0, height: '100vh' }} // Explicitly set top:0 and full viewport height
-      >
-        <div className="flex flex-col items-center justify-center h-full space-y-6 p-8 pt-20">
-          {isHomePage ? (
-            // Show section links on homepage for mobile
-            navLinks.map((link) => (
-              <a
-                key={link.sectionId}
-                href={`#${link.sectionId}`}
-                className={cn(
-                  "text-lg font-medium transition-colors",
-                  activeSection === link.sectionId 
-                    ? "text-primary font-semibold"
-                    : "text-foreground/80 hover:text-foreground"
-                )}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavLinkClick(link.sectionId);
-                }}
-              >
-                {link.label}
-              </a>
-            ))
-          ) : (
-            // Show Home link on other pages for mobile
-            <Link
-              to="/"
-              className="text-lg font-medium transition-colors text-foreground/80 hover:text-primary"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              {t('navigation.home')}
-            </Link>
-          )}
           
-          <hr className="w-24 border-t border-border/30 my-4" />
-          
-          {/* Additional pages navigation for mobile */}
-          {additionalPages.map((page) => (
-            <Link
-              key={page.path}
-              to={page.path}
-              className="text-lg font-medium transition-colors text-foreground/80 hover:text-primary flex items-center gap-2"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              <page.icon size={18} />
-              {page.label}
-            </Link>
-          ))}
-          
-          <div className="flex items-center gap-4 mt-6">
-            <LanguageSwitcher />
-            <ThemeToggle />
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48 md:hidden">
+              <DropdownMenuItem asChild>
+                <Link to="/" className="w-full cursor-pointer">
+                  {t('navigation.home')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <a href="#experience" className="w-full">
+                  {t('navigation.experience')}
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <a href="#skills" className="w-full">
+                  {t('navigation.skills')}
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <a href="#projects" className="w-full">
+                  {t('navigation.projects')}
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <a href="#contact" className="w-full">
+                  {t('navigation.contact')}
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/resume" className="w-full cursor-pointer">
+                  {t('navigation.resume')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/blog" className="w-full cursor-pointer">
+                  {t('navigation.blog')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/case-studies" className="w-full cursor-pointer">
+                  {t('navigation.caseStudies')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/setup" className="w-full cursor-pointer">
+                  {t('navigation.setup')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/code-demo" className="w-full cursor-pointer">
+                  {t('navigation.codeDemos')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="#leetcode" className="w-full cursor-pointer">
+                  {t('navigation.leetcode')}
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>

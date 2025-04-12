@@ -20,7 +20,8 @@
     "blog": "Blog",
     "caseStudies": "Casos de Estudio",
     "setup": "Mi Configuración",
-    "codeDemos": "Demos de Código"
+    "codeDemos": "Demos de Código",
+    "leetcode": "Estadísticas de LeetCode"
   },
   "hero": {
     "greeting": "Hola, soy",
@@ -63,6 +64,39 @@
       "send": "Enviar Mensaje",
       "success": "¡Mensaje enviado con éxito!",
       "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
+    },
+    "setup": {
+      "title": "Mi Configuración de Desarrollo",
+      "subtitle": "Un recorrido por las herramientas de hardware y software que uso para el desarrollo, diseño y productividad",
+      "workspace": "Mi Espacio de Trabajo",
+      "workspaceDescription": "Aquí es donde ocurre la magia. He diseñado mi espacio de trabajo para maximizar la productividad y la comodidad durante esas largas sesiones de programación. Una buena ergonomía, iluminación adecuada y un entorno sin distracciones me ayudan a mantenerme en estado de flujo.",
+      "hardware": "Hardware",
+      "hardwareSubtitle": "Las herramientas físicas que impulsan mi flujo de trabajo de desarrollo.",
+      "software": "Software",
+      "softwareSubtitle": "Las aplicaciones y servicios que me ayudan a construir mejores productos.",
+      "productivity": "Productividad",
+      "productivitySubtitle": "Cómo me mantengo organizado y enfocado durante todo el día.",
+      "dailyRoutine": "Rutina Diaria",
+      "productivityTechniques": "Técnicas de Productividad",
+      "questions": "¿Tienes alguna pregunta sobre mi configuración?",
+      "questionsSubtitle": "No dudes en contactarme si tienes alguna pregunta sobre mis herramientas o flujo de trabajo. Siempre estoy feliz de compartir consejos y recomendaciones.",
+      "getInTouch": "Ponerse en Contacto",
+      "viewDetails": "Ver Detalles",
+      "backToHome": "Volver al Inicio",
+      "category": "Categoría",
+      "primaryDevice": "Dispositivo Principal",
+      "secondaryDevice": "Dispositivo Secundario",
+      "display": "Pantalla",
+      "server": "Servidor",
+      "storage": "Almacenamiento",
+      "audio": "Audio",
+      "input": "Entrada",
+      "mobile": "Móvil",
+      "prototyping": "Prototipado",
+      "entertainment": "Entretenimiento",
+      "development": "Desarrollo",
+      "design": "Diseño", 
+      "productivity": "Productividad"
     }
   },
   "components": {
@@ -75,6 +109,22 @@
       "light": "Claro",
       "dark": "Oscuro",
       "system": "Sistema"
+    },
+    "leetcode": {
+      "title": "Estadísticas de LeetCode",
+      "error": "Error al cargar el perfil de LeetCode",
+      "rank": "Rango",
+      "problemsSolved": "Problemas Resueltos",
+      "total": "Total",
+      "easy": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil",
+      "stats": "Estadísticas",
+      "acceptanceRate": "Tasa de Aceptación",
+      "contributions": "Contribuciones",
+      "streakDays": "Días Activos",
+      "reputation": "Reputación",
+      "viewProfile": "Ver Perfil Completo"
     }
   }
 }

@@ -20,7 +20,8 @@
     "blog": "Blog",
     "caseStudies": "Case Studies",
     "setup": "My Setup",
-    "codeDemos": "Code Demos"
+    "codeDemos": "Code Demos",
+    "leetcode": "LeetCode Stats"
   },
   "hero": {
     "greeting": "Hi, I'm",
@@ -63,6 +64,39 @@
       "send": "Send Message",
       "success": "Message sent successfully!",
       "error": "Error sending message. Please try again."
+    },
+    "setup": {
+      "title": "My Development Setup",
+      "subtitle": "A tour of the hardware and software tools I use for development, design, and productivity",
+      "workspace": "My Workspace",
+      "workspaceDescription": "This is where the magic happens. I've designed my workspace to maximize productivity and comfort during those long coding sessions. Good ergonomics, proper lighting, and a distraction-free environment help me stay in the flow state.",
+      "hardware": "Hardware",
+      "hardwareSubtitle": "The physical tools that power my development workflow.",
+      "software": "Software",
+      "softwareSubtitle": "The applications and services that help me build better products.",
+      "productivity": "Productivity",
+      "productivitySubtitle": "How I stay organized and focused throughout the day.",
+      "dailyRoutine": "Daily Routine",
+      "productivityTechniques": "Productivity Techniques",
+      "questions": "Have a question about my setup?",
+      "questionsSubtitle": "Feel free to reach out if you have any questions about my tools or workflow. I'm always happy to share tips and recommendations.",
+      "getInTouch": "Get in Touch",
+      "viewDetails": "View Details",
+      "backToHome": "Back to Home",
+      "category": "Category",
+      "primaryDevice": "Primary Device",
+      "secondaryDevice": "Secondary Device",
+      "display": "Display",
+      "server": "Server",
+      "storage": "Storage",
+      "audio": "Audio",
+      "input": "Input",
+      "mobile": "Mobile",
+      "prototyping": "Prototyping",
+      "entertainment": "Entertainment",
+      "development": "Development",
+      "design": "Design", 
+      "productivity": "Productivity"
     }
   },
   "components": {
@@ -75,6 +109,22 @@
       "light": "Light",
       "dark": "Dark",
       "system": "System"
+    },
+    "leetcode": {
+      "title": "LeetCode Stats",
+      "error": "Failed to load LeetCode profile",
+      "rank": "Rank",
+      "problemsSolved": "Problems Solved",
+      "total": "Total",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "stats": "Statistics",
+      "acceptanceRate": "Acceptance Rate",
+      "contributions": "Contributions",
+      "streakDays": "Active Days",
+      "reputation": "Reputation",
+      "viewProfile": "View Full Profile"
     }
   }
 }

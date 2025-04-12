@@ -1,8 +1,10 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import NavBar from '../components/NavBar';
 import AnimatedSection from '../components/AnimatedSection';
+import LeetCodeStats from '../components/LeetCodeStats';
 import { Button } from '@/components/ui/button';
 import { 
   ArrowLeft, Laptop, Monitor, Cpu, HardDrive, Speaker, Keyboard, 
@@ -25,6 +27,8 @@ const SetupItem = ({
   link?: string,
   category: string 
 }) => {
+  const { t } = useTranslation();
+  
   return (
     <Card className="setup-item group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card/50 backdrop-blur-sm">
       <CardContent className="p-6">
@@ -46,7 +50,7 @@ const SetupItem = ({
                 rel="noopener noreferrer" 
                 className="text-xs text-primary inline-flex items-center mt-2 hover:underline"
               >
-                View Details
+                {t('sections.setup.viewDetails')}
                 <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
@@ -55,7 +59,7 @@ const SetupItem = ({
             
             <div className="mt-3">
               <span className="text-xs bg-secondary/30 px-2 py-1 rounded text-foreground/60">
-                {category}
+                {t(`sections.setup.${category.toLowerCase().replace(' ', '')}`)}
               </span>
             </div>
           </div>
@@ -89,6 +93,7 @@ const SetupSection = ({ title, subtitle, items }: { title: string, subtitle: str
 
 const Setup = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   // Setup data
   const hardwareItems = [
@@ -260,18 +265,23 @@ const Setup = () => {
             onClick={() => navigate('/')}
           >
             <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-            Back to Home
+            {t('sections.setup.backToHome')}
           </Button>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-              My Development Setup
+              {t('sections.setup.title')}
             </span>
           </h1>
           
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-10">
-            A tour of the hardware and software tools I use for development, design, and productivity.
+            {t('sections.setup.subtitle')}
           </p>
+        </AnimatedSection>
+        
+        {/* LeetCode Stats */}
+        <AnimatedSection className="section-container pb-10" animation="slide-up" delay={100}>
+          <LeetCodeStats />
         </AnimatedSection>
         
         {/* Workspace Tour */}
@@ -286,9 +296,9 @@ const Setup = () => {
             </div>
             
             <div className="p-8">
-              <h2 className="text-2xl font-bold mb-4">My Workspace</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('sections.setup.workspace')}</h2>
               <p className="text-foreground/70">
-                This is where the magic happens. I've designed my workspace to maximize productivity and comfort during those long coding sessions. Good ergonomics, proper lighting, and a distraction-free environment help me stay in the flow state.
+                {t('sections.setup.workspaceDescription')}
               </p>
             </div>
           </div>
@@ -298,35 +308,35 @@ const Setup = () => {
         <AnimatedSection className="section-container pb-20" animation="fade" delay={300}>
           <Tabs defaultValue="hardware" className="mb-10">
             <TabsList className="mb-8 w-full justify-start overflow-x-auto">
-              <TabsTrigger value="hardware">Hardware</TabsTrigger>
-              <TabsTrigger value="software">Software</TabsTrigger>
-              <TabsTrigger value="productivity">Productivity</TabsTrigger>
+              <TabsTrigger value="hardware">{t('sections.setup.hardware')}</TabsTrigger>
+              <TabsTrigger value="software">{t('sections.setup.software')}</TabsTrigger>
+              <TabsTrigger value="productivity">{t('sections.setup.productivity')}</TabsTrigger>
             </TabsList>
             
             <TabsContent value="hardware">
               <SetupSection 
-                title="Hardware & Peripherals" 
-                subtitle="The physical tools that power my development workflow."
+                title={t('sections.setup.hardware')}
+                subtitle={t('sections.setup.hardwareSubtitle')}
                 items={hardwareItems}
               />
             </TabsContent>
             
             <TabsContent value="software">
               <SetupSection 
-                title="Software Tools" 
-                subtitle="The applications and services that help me build better products."
+                title={t('sections.setup.software')}
+                subtitle={t('sections.setup.softwareSubtitle')}
                 items={softwareItems}
               />
             </TabsContent>
             
             <TabsContent value="productivity">
               <div className="mb-16">
-                <h2 className="text-2xl font-bold mb-2">My Productivity System</h2>
-                <p className="text-foreground/70 mb-8">How I stay organized and focused throughout the day.</p>
+                <h2 className="text-2xl font-bold mb-2">{t('sections.setup.productivitySubtitle')}</h2>
+                <p className="text-foreground/70 mb-8">{t('sections.setup.productivitySubtitle')}</p>
                 
                 <div className="space-y-8">
                   <div className="bg-card/50 border border-border/40 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold mb-4">Daily Routine</h3>
+                    <h3 className="text-xl font-semibold mb-4">{t('sections.setup.dailyRoutine')}</h3>
                     <ol className="space-y-4">
                       <li className="flex gap-4">
                         <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
@@ -377,7 +387,7 @@ const Setup = () => {
                   </div>
                   
                   <div className="bg-card/50 border border-border/40 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold mb-4">Productivity Techniques</h3>
+                    <h3 className="text-xl font-semibold mb-4">{t('sections.setup.productivityTechniques')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-medium mb-2">Pomodoro Technique</h4>
@@ -411,12 +421,12 @@ const Setup = () => {
           </Tabs>
           
           <div className="border-t border-border/30 pt-10 text-center">
-            <h3 className="text-xl font-semibold mb-3">Have a question about my setup?</h3>
+            <h3 className="text-xl font-semibold mb-3">{t('sections.setup.questions')}</h3>
             <p className="text-foreground/70 mb-6 max-w-lg mx-auto">
-              Feel free to reach out if you have any questions about my tools or workflow. I'm always happy to share tips and recommendations.
+              {t('sections.setup.questionsSubtitle')}
             </p>
             <Button onClick={() => navigate('/contact')} className="px-6">
-              Get in Touch
+              {t('sections.setup.getInTouch')}
             </Button>
           </div>
         </AnimatedSection>
