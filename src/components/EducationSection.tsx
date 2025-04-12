@@ -3,6 +3,7 @@ import React from 'react';
 import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface EducationProps {
   institution: string;
@@ -44,14 +45,18 @@ const educations: EducationProps[] = [
 ];
 
 const EducationSection: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <AnimatedSection id="education" className="section-container bg-secondary/30" animation="slide-up" threshold={0.1}>
       <div className="max-w-6xl mx-auto">
         <h2 className="section-heading">
-          <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">Learning Journey</span>
+          <span className="chip bg-secondary/70 mb-3 backdrop-blur-sm text-foreground/90 text-xs uppercase tracking-wider px-3 py-1">
+            {t('sections.education.learningJourney')}
+          </span>
           <br />
           <span className="bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent">
-            Education
+            {t('sections.education.title')}
           </span>
         </h2>
 
@@ -106,7 +111,7 @@ const EducationSection: React.FC = () => {
                 
                 {education.grade && (
                   <div className="inline-block px-3 py-1 mt-3 rounded-full text-xs font-medium bg-primary/20 text-primary hover:bg-primary/30 transition-colors">
-                    Grade: {education.grade}
+                    {t('sections.education.grade')}: {education.grade}
                   </div>
                 )}
               </div>

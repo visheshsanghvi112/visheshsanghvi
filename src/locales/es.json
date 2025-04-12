@@ -1,0 +1,80 @@
+
+{
+  "common": {
+    "language": "Spanish",
+    "languageNative": "Español"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "skills": "Habilidades",
+    "interactiveSkills": "Habilidades Interactivas",
+    "projects": "Proyectos",
+    "github": "GitHub",
+    "certifications": "Certificaciones",
+    "testimonials": "Testimonios",
+    "contact": "Contacto",
+    "pages": "Páginas",
+    "resume": "Currículum",
+    "blog": "Blog",
+    "caseStudies": "Casos de Estudio",
+    "setup": "Mi Configuración",
+    "codeDemos": "Demos de Código"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "occupation": "Desarrollador Full Stack",
+    "tagline": "Construyendo aplicaciones hermosas y funcionales con tecnologías modernas"
+  },
+  "sections": {
+    "experience": {
+      "title": "Experiencia Profesional",
+      "careerPath": "Trayectoria Profesional",
+      "current": "Posición Actual",
+      "remote": "Remoto",
+      "onsite": "Presencial",
+      "certificate": "Certificado",
+      "offerLetter": "Carta de Oferta"
+    },
+    "education": {
+      "title": "Educación",
+      "learningJourney": "Trayectoria de Aprendizaje",
+      "grade": "Calificación"
+    },
+    "skills": {
+      "title": "Habilidades y Experiencia",
+      "technicalSkills": "Habilidades Técnicas",
+      "frameworks": "Frameworks y Librerías",
+      "tools": "Herramientas y Plataformas",
+      "languages": "Lenguajes"
+    },
+    "projects": {
+      "title": "Proyectos Destacados",
+      "viewLive": "Ver en Vivo",
+      "viewCode": "Ver Código",
+      "details": "Detalles"
+    },
+    "contact": {
+      "title": "Contacto",
+      "name": "Nombre",
+      "email": "Correo",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje",
+      "success": "¡Mensaje enviado con éxito!",
+      "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
+    }
+  },
+  "components": {
+    "languageSwitcher": {
+      "title": "Cambiar Idioma",
+      "language": "Idioma"
+    },
+    "theme": {
+      "toggle": "Cambiar tema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    }
+  }
+}

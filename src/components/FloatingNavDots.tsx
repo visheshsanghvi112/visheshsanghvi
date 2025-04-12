@@ -1,28 +1,31 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface Section {
   id: string;
-  label: string;
+  labelKey: string;
 }
 
 interface FloatingNavDotsProps {
   activeSection?: string;
 }
 
-const sections: Section[] = [
-  { id: 'hero', label: 'Home' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'education', label: 'Education' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'testimonials', label: 'Testimonials' },
-  { id: 'contact', label: 'Contact' },
-];
-
 const FloatingNavDots: React.FC<FloatingNavDotsProps> = ({ activeSection = 'hero' }) => {
   const [isVisible, setIsVisible] = React.useState(false);
+  const { t } = useTranslation();
+
+  // Define sections with translation keys
+  const sections: Section[] = [
+    { id: 'hero', labelKey: 'navigation.home' },
+    { id: 'experience', labelKey: 'navigation.experience' },
+    { id: 'education', labelKey: 'navigation.education' },
+    { id: 'skills', labelKey: 'navigation.skills' },
+    { id: 'projects', labelKey: 'navigation.projects' },
+    { id: 'testimonials', labelKey: 'navigation.testimonials' },
+    { id: 'contact', labelKey: 'navigation.contact' },
+  ];
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -57,13 +60,13 @@ const FloatingNavDots: React.FC<FloatingNavDotsProps> = ({ activeSection = 'hero
         {sections.map((section) => (
           <button
             key={section.id}
-            aria-label={`Navigate to ${section.label} section`}
+            aria-label={`Navigate to ${t(section.labelKey)} section`}
             className="group relative"
             onClick={() => handleDotClick(section.id)}
           >
             {/* Tooltip */}
             <span className="absolute right-8 top-0 bg-background/80 text-foreground px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
-              {section.label}
+              {t(section.labelKey)}
             </span>
             
             {/* Dot */}

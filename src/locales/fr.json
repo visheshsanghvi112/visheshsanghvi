@@ -1,0 +1,80 @@
+
+{
+  "common": {
+    "language": "French",
+    "languageNative": "Français"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "experience": "Expérience",
+    "education": "Éducation",
+    "skills": "Compétences",
+    "interactiveSkills": "Compétences Interactives",
+    "projects": "Projets",
+    "github": "GitHub",
+    "certifications": "Certifications",
+    "testimonials": "Témoignages",
+    "contact": "Contact",
+    "pages": "Pages",
+    "resume": "CV",
+    "blog": "Blog",
+    "caseStudies": "Études de Cas",
+    "setup": "Mon Installation",
+    "codeDemos": "Démos de Code"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "occupation": "Développeur Full Stack",
+    "tagline": "Construire des applications belles et fonctionnelles avec des technologies modernes"
+  },
+  "sections": {
+    "experience": {
+      "title": "Expérience Professionnelle",
+      "careerPath": "Parcours Professionnel",
+      "current": "Poste Actuel",
+      "remote": "Télétravail",
+      "onsite": "Sur site",
+      "certificate": "Certificat",
+      "offerLetter": "Lettre d'Offre"
+    },
+    "education": {
+      "title": "Éducation",
+      "learningJourney": "Parcours d'Apprentissage",
+      "grade": "Note"
+    },
+    "skills": {
+      "title": "Compétences et Expertise",
+      "technicalSkills": "Compétences Techniques",
+      "frameworks": "Frameworks et Bibliothèques",
+      "tools": "Outils et Plateformes",
+      "languages": "Langages"
+    },
+    "projects": {
+      "title": "Projets en Vedette",
+      "viewLive": "Voir en Direct",
+      "viewCode": "Voir le Code",
+      "details": "Détails"
+    },
+    "contact": {
+      "title": "Contactez-moi",
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "send": "Envoyer le Message",
+      "success": "Message envoyé avec succès!",
+      "error": "Erreur lors de l'envoi du message. Veuillez réessayer."
+    }
+  },
+  "components": {
+    "languageSwitcher": {
+      "title": "Changer de Langue",
+      "language": "Langue"
+    },
+    "theme": {
+      "toggle": "Changer de thème",
+      "light": "Clair",
+      "dark": "Sombre",
+      "system": "Système"
+    }
+  }
+}

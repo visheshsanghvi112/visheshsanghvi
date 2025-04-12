@@ -1,0 +1,80 @@
+
+{
+  "common": {
+    "language": "English",
+    "languageNative": "English"
+  },
+  "navigation": {
+    "home": "Home",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "interactiveSkills": "Interactive Skills",
+    "projects": "Projects",
+    "github": "GitHub",
+    "certifications": "Certifications",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "pages": "Pages",
+    "resume": "Resume",
+    "blog": "Blog",
+    "caseStudies": "Case Studies",
+    "setup": "My Setup",
+    "codeDemos": "Code Demos"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "occupation": "Full Stack Developer",
+    "tagline": "Building beautiful, functional applications with modern technologies"
+  },
+  "sections": {
+    "experience": {
+      "title": "Professional Experience",
+      "careerPath": "Career Path",
+      "current": "Current Position",
+      "remote": "Remote",
+      "onsite": "On-site",
+      "certificate": "Certificate",
+      "offerLetter": "Offer Letter"
+    },
+    "education": {
+      "title": "Education",
+      "learningJourney": "Learning Journey",
+      "grade": "Grade"
+    },
+    "skills": {
+      "title": "Skills & Expertise",
+      "technicalSkills": "Technical Skills",
+      "frameworks": "Frameworks & Libraries",
+      "tools": "Tools & Platforms",
+      "languages": "Languages"
+    },
+    "projects": {
+      "title": "Featured Projects",
+      "viewLive": "View Live",
+      "viewCode": "View Code",
+      "details": "Details"
+    },
+    "contact": {
+      "title": "Get In Touch",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send Message",
+      "success": "Message sent successfully!",
+      "error": "Error sending message. Please try again."
+    }
+  },
+  "components": {
+    "languageSwitcher": {
+      "title": "Change Language",
+      "language": "Language"
+    },
+    "theme": {
+      "toggle": "Toggle theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
+  }
+}

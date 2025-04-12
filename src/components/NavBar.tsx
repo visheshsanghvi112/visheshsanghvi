@@ -4,7 +4,9 @@ import { Menu, X, BookOpen, LayoutDashboard, Settings, Code } from 'lucide-react
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useTranslation } from 'react-i18next';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -23,6 +25,7 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
   const isMobile = useIsMobile();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const { t } = useTranslation();
 
   // Handle scroll event
   useEffect(() => {
@@ -63,24 +66,24 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
 
   const getNavLinks = () => {
     const baseLinks = [
-      { label: 'Home', sectionId: 'hero', path: '/' },
-      { label: 'Experience', sectionId: 'experience', path: '/#experience' },
-      { label: 'Education', sectionId: 'education', path: '/#education' },
-      { label: 'Projects', sectionId: 'projects', path: '/#projects' },
-      { label: 'GitHub', sectionId: 'github-activity', path: '/#github-activity' },
-      { label: 'Certifications', sectionId: 'certifications', path: '/#certifications' },
-      { label: 'Testimonials', sectionId: 'testimonials', path: '/#testimonials' },
-      { label: 'Contact', sectionId: 'contact', path: '/#contact' },
+      { label: t('navigation.home'), sectionId: 'hero', path: '/' },
+      { label: t('navigation.experience'), sectionId: 'experience', path: '/#experience' },
+      { label: t('navigation.education'), sectionId: 'education', path: '/#education' },
+      { label: t('navigation.projects'), sectionId: 'projects', path: '/#projects' },
+      { label: t('navigation.github'), sectionId: 'github-activity', path: '/#github-activity' },
+      { label: t('navigation.certifications'), sectionId: 'certifications', path: '/#certifications' },
+      { label: t('navigation.testimonials'), sectionId: 'testimonials', path: '/#testimonials' },
+      { label: t('navigation.contact'), sectionId: 'contact', path: '/#contact' },
     ];
 
     // Only show Skills section in desktop view
     if (!isMobile) {
-      baseLinks.splice(3, 0, { label: 'Skills', sectionId: 'skills', path: '/#skills' });
+      baseLinks.splice(3, 0, { label: t('navigation.skills'), sectionId: 'skills', path: '/#skills' });
       // Add Interactive Skills after regular Skills
-      baseLinks.splice(4, 0, { label: 'Interactive Skills', sectionId: 'interactive-skills', path: '/#interactive-skills' });
+      baseLinks.splice(4, 0, { label: t('navigation.interactiveSkills'), sectionId: 'interactive-skills', path: '/#interactive-skills' });
     } else {
       // On mobile, still add Interactive Skills but in a different position
-      baseLinks.splice(4, 0, { label: 'Interactive Skills', sectionId: 'interactive-skills', path: '/#interactive-skills' });
+      baseLinks.splice(4, 0, { label: t('navigation.interactiveSkills'), sectionId: 'interactive-skills', path: '/#interactive-skills' });
     }
 
     return baseLinks;
@@ -90,11 +93,11 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
 
   // Additional pages links
   const additionalPages = [
-    { label: 'Resume', path: '/resume', icon: LayoutDashboard },
-    { label: 'Blog', path: '/blog', icon: BookOpen },
-    { label: 'Case Studies', path: '/case-studies', icon: LayoutDashboard },
-    { label: 'My Setup', path: '/setup', icon: Settings },
-    { label: 'Code Demos', path: '/code-demo', icon: Code }
+    { label: t('navigation.resume'), path: '/resume', icon: LayoutDashboard },
+    { label: t('navigation.blog'), path: '/blog', icon: BookOpen },
+    { label: t('navigation.caseStudies'), path: '/case-studies', icon: LayoutDashboard },
+    { label: t('navigation.setup'), path: '/setup', icon: Settings },
+    { label: t('navigation.codeDemos'), path: '/code-demo', icon: Code }
   ];
 
   return (
@@ -123,7 +126,7 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
                   variant="ghost" 
                   className="text-sm font-medium transition-colors text-foreground/80 hover:text-primary"
                 >
-                  Pages
+                  {t('navigation.pages')}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-48 bg-background/95 backdrop-blur-md border-border/50">
@@ -171,12 +174,13 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
               to="/"
               className="text-sm font-medium transition-colors text-foreground/80 hover:text-primary"
             >
-              Home
+              {t('navigation.home')}
             </Link>
           )}
         </nav>
 
         <div className="flex items-center ml-6">
+          <LanguageSwitcher />
           <ThemeToggle />
 
           {/* Mobile menu button */}
@@ -229,7 +233,7 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
                 document.body.style.overflow = '';
               }}
             >
-              Home
+              {t('navigation.home')}
             </Link>
           )}
           
@@ -251,7 +255,10 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection = 'hero' }) => {
             </Link>
           ))}
           
-          <ThemeToggle className="mt-6" />
+          <div className="flex items-center gap-4 mt-6">
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>

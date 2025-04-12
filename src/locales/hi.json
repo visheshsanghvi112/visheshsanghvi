@@ -1,0 +1,80 @@
+
+{
+  "common": {
+    "language": "Hindi",
+    "languageNative": "हिन्दी"
+  },
+  "navigation": {
+    "home": "होम",
+    "experience": "अनुभव",
+    "education": "शिक्षा",
+    "skills": "कौशल",
+    "interactiveSkills": "इंटरैक्टिव कौशल",
+    "projects": "प्रोजेक्ट्स",
+    "github": "गिटहब",
+    "certifications": "प्रमाणपत्र",
+    "testimonials": "प्रशंसापत्र",
+    "contact": "संपर्क",
+    "pages": "पेजेज",
+    "resume": "रिज्यूमे",
+    "blog": "ब्लॉग",
+    "caseStudies": "केस स्टडीज",
+    "setup": "मेरा सेटअप",
+    "codeDemos": "कोड डेमो"
+  },
+  "hero": {
+    "greeting": "नमस्ते, मैं हूँ",
+    "occupation": "फुल स्टैक डेवलपर",
+    "tagline": "आधुनिक तकनीकों के साथ सुंदर, कार्यात्मक एप्लिकेशन बनाना"
+  },
+  "sections": {
+    "experience": {
+      "title": "पेशेवर अनुभव",
+      "careerPath": "करियर पथ",
+      "current": "वर्तमान पद",
+      "remote": "रिमोट",
+      "onsite": "ऑनसाइट",
+      "certificate": "प्रमाणपत्र",
+      "offerLetter": "ऑफर लेटर"
+    },
+    "education": {
+      "title": "शिक्षा",
+      "learningJourney": "सीखने की यात्रा",
+      "grade": "ग्रेड"
+    },
+    "skills": {
+      "title": "कौशल और विशेषज्ञता",
+      "technicalSkills": "तकनीकी कौशल",
+      "frameworks": "फ्रेमवर्क और लाइब्रेरीज",
+      "tools": "टूल्स और प्लेटफॉर्म",
+      "languages": "भाषाएँ"
+    },
+    "projects": {
+      "title": "विशेष प्रोजेक्ट्स",
+      "viewLive": "लाइव देखें",
+      "viewCode": "कोड देखें",
+      "details": "विवरण"
+    },
+    "contact": {
+      "title": "संपर्क करें",
+      "name": "नाम",
+      "email": "ईमेल",
+      "message": "संदेश",
+      "send": "संदेश भेजें",
+      "success": "संदेश सफलतापूर्वक भेजा गया!",
+      "error": "संदेश भेजने में त्रुटि। कृपया पुनः प्रयास करें।"
+    }
+  },
+  "components": {
+    "languageSwitcher": {
+      "title": "भाषा बदलें",
+      "language": "भाषा"
+    },
+    "theme": {
+      "toggle": "थीम बदलें",
+      "light": "लाइट",
+      "dark": "डार्क",
+      "system": "सिस्टम"
+    }
+  }
+}
