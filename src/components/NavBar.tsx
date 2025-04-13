@@ -154,6 +154,19 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                         </Link>
                       </NavigationMenuLink>
                     </div>
+                    <div>
+                      <NavigationMenuLink 
+                        asChild 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Link to="/linkedin">
+                          <div className="text-sm font-medium leading-none">{t('navigation.linkedin')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            My professional network and career highlights
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -215,6 +228,11 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
               <DropdownMenuItem asChild>
                 <Link to="/leetcode" className="w-full cursor-pointer">
                   {t('navigation.leetcode')}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/linkedin" className="w-full cursor-pointer">
+                  {t('navigation.linkedin')}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>

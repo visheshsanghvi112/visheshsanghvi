@@ -22,6 +22,7 @@
     "setup": "My Setup",
     "codeDemos": "Code Demos",
     "leetcode": "LeetCode",
+    "linkedin": "LinkedIn",
     "backToHome": "Back to Home"
   },
   "hero": {
@@ -98,6 +99,36 @@
       "development": "Development",
       "design": "Design", 
       "productivity": "Productivity"
+    },
+    "linkedin": {
+      "title": "Professional Profile",
+      "subtitle": "Connect with me on LinkedIn and explore my professional journey",
+      "overview": "Overview",
+      "highlights": "Career Highlights",
+      "featured": "Featured Posts",
+      "recommendations": "Recommendations",
+      "skills": "Endorsed Skills",
+      "connections": "Network Connections",
+      "activity": "Recent Activity",
+      "contact": "Contact Information",
+      "about": "About Me",
+      "backToHome": "Back to Home",
+      "viewProfile": "View on LinkedIn",
+      "downloadResume": "Download Resume",
+      "connectWithMe": "Connect with Me",
+      "messageMe": "Message Me",
+      "position": "Position",
+      "company": "Company",
+      "duration": "Duration",
+      "location": "Location",
+      "endorsements": "Endorsements",
+      "posts": "Posts and Articles",
+      "viewMore": "View More",
+      "networkStats": "Network Statistics",
+      "connections": "Connections",
+      "followers": "Followers",
+      "following": "Following",
+      "mutualConnections": "Mutual Connections"
     }
   },
   "components": {
@@ -142,6 +173,15 @@
         "difficulty": "Difficulty",
         "viewAll": "View All Submissions"
       }
+    },
+    "linkedin": {
+      "profile": "Profile",
+      "experience": "Experience",
+      "education": "Education",
+      "skills": "Skills",
+      "recommendations": "Recommendations",
+      "activity": "Activity",
+      "connections": "Connections"
     }
   }
 }
