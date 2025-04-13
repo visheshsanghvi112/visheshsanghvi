@@ -1,3 +1,4 @@
+
 {
   "common": {
     "language": "English",
@@ -125,7 +126,22 @@
       "streakDays": "Streak Days",
       "reputation": "Reputation",
       "rank": "Rank",
-      "viewProfile": "View Full Profile"
+      "viewProfile": "View Full Profile",
+      "badges": {
+        "title": "LeetCode Badges",
+        "earned": "Earned Badges",
+        "recent": "Recently Earned"
+      },
+      "submissions": {
+        "title": "Recent Submissions",
+        "language": "Language",
+        "runtime": "Runtime",
+        "memory": "Memory",
+        "status": "Status",
+        "date": "Date",
+        "difficulty": "Difficulty",
+        "viewAll": "View All Submissions"
+      }
     }
   }
 }
