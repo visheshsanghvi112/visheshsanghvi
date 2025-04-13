@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, ChevronDown } from 'lucide-react';
+import { Menu, ChevronDown, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -146,12 +146,12 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                         asChild 
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
-                        <a href="#leetcode">
+                        <Link to="/leetcode">
                           <div className="text-sm font-medium leading-none">{t('navigation.leetcode')}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                             My LeetCode solutions and statistics
                           </p>
-                        </a>
+                        </Link>
                       </NavigationMenuLink>
                     </div>
                   </div>
@@ -213,9 +213,9 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <a href="#leetcode" className="w-full cursor-pointer">
+                <Link to="/leetcode" className="w-full cursor-pointer">
                   {t('navigation.leetcode')}
-                </a>
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

@@ -1,4 +1,3 @@
-
 {
   "common": {
     "language": "English",
@@ -21,7 +20,8 @@
     "caseStudies": "Case Studies",
     "setup": "My Setup",
     "codeDemos": "Code Demos",
-    "leetcode": "LeetCode Stats"
+    "leetcode": "LeetCode",
+    "backToHome": "Back to Home"
   },
   "hero": {
     "greeting": "Hi, I'm",
@@ -112,18 +112,19 @@
     },
     "leetcode": {
       "title": "LeetCode Stats",
-      "error": "Failed to load LeetCode profile",
-      "rank": "Rank",
+      "error": "Using fallback data due to API error",
+      "subtitle": "Track my progress and achievements on LeetCode, where I regularly solve algorithmic and data structure problems.",
       "problemsSolved": "Problems Solved",
       "total": "Total",
       "easy": "Easy",
-      "medium": "Medium",
+      "medium": "Medium", 
       "hard": "Hard",
       "stats": "Statistics",
       "acceptanceRate": "Acceptance Rate",
       "contributions": "Contributions",
-      "streakDays": "Active Days",
+      "streakDays": "Streak Days",
       "reputation": "Reputation",
+      "rank": "Rank",
       "viewProfile": "View Full Profile"
     }
   }

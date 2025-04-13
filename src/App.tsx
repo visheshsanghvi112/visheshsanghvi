@@ -13,6 +13,7 @@ import Blog from "./pages/Blog";
 import CaseStudies from "./pages/CaseStudies";
 import Setup from "./pages/Setup";
 import CodeDemo from "./pages/CodeDemo";
+import LeetCode from "./pages/LeetCode";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => {
               <Route path="/case-studies/:id" element={<CaseStudies />} />
               <Route path="/setup" element={<Setup />} />
               <Route path="/code-demo" element={<CodeDemo />} />
+              <Route path="/leetcode" element={<LeetCode />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

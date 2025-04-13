@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import NavBar from '../components/NavBar';
 import AnimatedSection from '../components/AnimatedSection';
-import LeetCodeStats from '../components/LeetCodeStats';
 import { Button } from '@/components/ui/button';
 import { 
   ArrowLeft, Laptop, Monitor, Cpu, HardDrive, Speaker, Keyboard, 
@@ -277,11 +275,6 @@ const Setup = () => {
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-10">
             {t('sections.setup.subtitle')}
           </p>
-        </AnimatedSection>
-        
-        {/* LeetCode Stats */}
-        <AnimatedSection className="section-container pb-10" animation="slide-up" delay={100}>
-          <LeetCodeStats />
         </AnimatedSection>
         
         {/* Workspace Tour */}
