@@ -119,12 +119,12 @@ const LeetCodeStats: React.FC = () => {
     if (error) {
       console.error('LeetCode stats error:', error);
       toast({
-        title: "LeetCode Stats",
-        description: "Using fallback data due to API error",
+        title: t('components.leetcode.title'),
+        description: t('components.leetcode.error'),
         variant: "destructive",
       });
     }
-  }, [error, toast]);
+  }, [error, toast, t]);
 
   if (isLoading) {
     return <LeetCodeStatsSkeleton />;
@@ -192,7 +192,7 @@ const LeetCodeStats: React.FC = () => {
                     {profile.easySolved} / {profile.totalEasy}
                   </span>
                 </div>
-                <Progress value={easyProgress} className={cn("h-2 bg-secondary/30")} indicatorClassName="bg-green-500" />
+                <Progress value={easyProgress} className="h-2 bg-secondary/30" indicatorClassName="bg-green-500" />
               </div>
               
               <div>
@@ -202,7 +202,7 @@ const LeetCodeStats: React.FC = () => {
                     {profile.mediumSolved} / {profile.totalMedium}
                   </span>
                 </div>
-                <Progress value={mediumProgress} className={cn("h-2 bg-secondary/30")} indicatorClassName="bg-yellow-500" />
+                <Progress value={mediumProgress} className="h-2 bg-secondary/30" indicatorClassName="bg-yellow-500" />
               </div>
               
               <div>
@@ -212,7 +212,7 @@ const LeetCodeStats: React.FC = () => {
                     {profile.hardSolved} / {profile.totalHard}
                   </span>
                 </div>
-                <Progress value={hardProgress} className={cn("h-2 bg-secondary/30")} indicatorClassName="bg-red-500" />
+                <Progress value={hardProgress} className="h-2 bg-secondary/30" indicatorClassName="bg-red-500" />
               </div>
             </div>
           </div>
