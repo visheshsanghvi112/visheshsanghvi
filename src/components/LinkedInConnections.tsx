@@ -9,7 +9,7 @@ import { Separator } from '@/components/ui/separator';
 
 // Real network stats for Vishesh Sanghvi
 const stats = {
-  connections: 243,
+  connections: 243, // Real connection count from LinkedIn
   followers: 265,
   following: 87,
   reach: '5K+',
@@ -63,7 +63,7 @@ const LinkedInConnections: React.FC = () => {
             variant="ghost" 
             size="sm" 
             className="gap-1"
-            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi/", "_blank")}
           >
             <ExternalLink className="h-4 w-4" />
             {t('sections.linkedin.viewMore')}

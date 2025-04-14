@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import NavBar from '@/components/NavBar';
 import LinkedInProfile from '@/components/LinkedInProfile';
 import LinkedInExperience from '@/components/LinkedInExperience';
-import LinkedInSkills from '@/components/LinkedInSkills';
 import LinkedInActivity from '@/components/LinkedInActivity';
 import LinkedInConnections from '@/components/LinkedInConnections';
 import LinkedInCertifications from '@/components/LinkedInCertifications';
@@ -47,7 +46,7 @@ const LinkedIn: React.FC = () => {
             </Button>
             <Button 
               className="bg-[#0077B5] hover:bg-[#006699] gap-2"
-              onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}
+              onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi/", "_blank")}
             >
               <Linkedin className="h-4 w-4" />
               {t('sections.linkedin.viewProfile')}
@@ -68,7 +67,6 @@ const LinkedIn: React.FC = () => {
             </div>
             
             <div className="space-y-8">
-              <LinkedInSkills />
               <LinkedInConnections />
             </div>
           </div>

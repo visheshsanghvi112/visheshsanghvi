@@ -56,7 +56,7 @@ const LinkedInProfile: React.FC = () => {
             </div>
             
             <div className="flex flex-wrap gap-2">
-              <Button className="gap-2" onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}>
+              <Button className="gap-2" onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi/", "_blank")}>
                 <ExternalLink className="h-4 w-4" />
                 {t('sections.linkedin.viewProfile')}
               </Button>

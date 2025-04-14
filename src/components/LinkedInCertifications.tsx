@@ -61,7 +61,7 @@ const LinkedInCertifications: React.FC = () => {
             variant="ghost" 
             size="sm" 
             className="gap-1"
-            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/details/certifications/", "_blank")}
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi/details/certifications/", "_blank")}
           >
             <ExternalLink className="h-4 w-4" />
             {t('sections.linkedin.viewMore')}
