@@ -17,7 +17,7 @@ const activities = [
     likes: 87,
     comments: 24,
     shares: 12,
-    content: 'I've put together a comprehensive guide on optimizing React applications for better performance. Topics include memoization, code splitting, virtualization, and more. Check it out at the link below!',
+    content: "I've put together a comprehensive guide on optimizing React applications for better performance. Topics include memoization, code splitting, virtualization, and more. Check it out at the link below!",
     hashtags: ['#reactjs', '#webdev', '#performance', '#javascript']
   },
   {
@@ -28,7 +28,7 @@ const activities = [
     likes: 156,
     comments: 38,
     shares: 45,
-    content: 'Accessibility shouldn't be an afterthought. In this article, I discuss practical techniques for making your React applications more accessible to all users...',
+    content: "Accessibility shouldn't be an afterthought. In this article, I discuss practical techniques for making your React applications more accessible to all users...",
     hashtags: ['#accessibility', '#a11y', '#reactjs', '#inclusivedesign']
   },
   {
@@ -39,7 +39,7 @@ const activities = [
     likes: 234,
     comments: 65,
     shares: 8,
-    content: 'I'm excited to announce that I've joined TechCorp as a Senior Full Stack Developer! Looking forward to working with this amazing team on challenging projects.',
+    content: "I'm excited to announce that I've joined TechCorp as a Senior Full Stack Developer! Looking forward to working with this amazing team on challenging projects.",
     hashtags: ['#newjob', '#techjobs', '#career', '#fullstack']
   }
 ];

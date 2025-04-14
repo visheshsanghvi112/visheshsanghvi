@@ -45,7 +45,7 @@ const experiences = [
     description: 'Created responsive web interfaces for enterprise clients. Worked with design team to implement UI/UX improvements.',
     skills: ['HTML/CSS', 'JavaScript', 'jQuery', 'Sass', 'Bootstrap', 'Git'],
     highlights: [
-      'Developed the company's component library, increasing development speed by 30%',
+      "Developed the company's component library, increasing development speed by 30%",
       'Rebuilt legacy applications with modern frontend technologies',
       'Implemented A/B testing framework leading to 15% increase in user engagement'
     ]
