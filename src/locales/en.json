@@ -128,7 +128,12 @@
       "connections": "Connections",
       "followers": "Followers",
       "following": "Following",
-      "mutualConnections": "Mutual Connections"
+      "mutualConnections": "Mutual Connections",
+      "certifications": "Certifications",
+      "issuedDate": "Issued Date",
+      "credentialId": "Credential ID",
+      "organization": "Issuing Organization",
+      "skills": "Skills"
     }
   },
   "components": {
@@ -181,7 +186,8 @@
       "skills": "Skills",
       "recommendations": "Recommendations",
       "activity": "Activity",
-      "connections": "Connections"
+      "connections": "Connections",
+      "certifications": "Certifications"
     }
   }
 }

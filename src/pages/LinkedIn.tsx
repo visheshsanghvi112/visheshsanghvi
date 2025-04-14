@@ -10,6 +10,7 @@ import LinkedInExperience from '@/components/LinkedInExperience';
 import LinkedInSkills from '@/components/LinkedInSkills';
 import LinkedInActivity from '@/components/LinkedInActivity';
 import LinkedInConnections from '@/components/LinkedInConnections';
+import LinkedInCertifications from '@/components/LinkedInCertifications';
 
 const LinkedIn: React.FC = () => {
   const { t } = useTranslation();
@@ -32,17 +33,26 @@ const LinkedIn: React.FC = () => {
               {t('sections.linkedin.title')}
             </h1>
             <p className="text-muted-foreground mt-1 max-w-2xl">
-              Connect with me on LinkedIn to see my professional experience, skills, and activities.
+              {t('sections.linkedin.subtitle')}
             </p>
           </div>
           
-          <Button 
-            className="bg-[#0077B5] hover:bg-[#006699] gap-2"
-            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}
-          >
-            <Linkedin className="h-4 w-4" />
-            {t('sections.linkedin.viewProfile')}
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              variant="outline"
+              className="gap-2"
+              onClick={() => window.open("path/to/resume.pdf", "_blank")}
+            >
+              {t('sections.linkedin.downloadResume')}
+            </Button>
+            <Button 
+              className="bg-[#0077B5] hover:bg-[#006699] gap-2"
+              onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}
+            >
+              <Linkedin className="h-4 w-4" />
+              {t('sections.linkedin.viewProfile')}
+            </Button>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 gap-8">
@@ -53,6 +63,7 @@ const LinkedIn: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-8">
               <LinkedInExperience />
+              <LinkedInCertifications />
               <LinkedInActivity />
             </div>
             
