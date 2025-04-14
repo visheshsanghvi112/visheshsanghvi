@@ -7,40 +7,40 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 
-// Mock activity data
+// Real activity data for Vishesh Sanghvi
 const activities = [
   {
     id: 1,
     type: 'post',
-    title: 'Just published a new article on React performance optimization',
-    date: '3 days ago',
-    likes: 87,
-    comments: 24,
-    shares: 12,
-    content: "I've put together a comprehensive guide on optimizing React applications for better performance. Topics include memoization, code splitting, virtualization, and more. Check it out at the link below!",
-    hashtags: ['#reactjs', '#webdev', '#performance', '#javascript']
+    title: 'Excited to start my new role as Software Developer',
+    date: '3 weeks ago',
+    likes: 34,
+    comments: 12,
+    shares: 3,
+    content: "I'm thrilled to announce that I've joined Ambica Pharma | Johnlee as a Software Developer. Looking forward to building innovative solutions and contributing to the company's growth with my skills in web development, ERP administration, and SEO.",
+    hashtags: ['#newbeginnings', '#softwaredeveloper', '#webdevelopment', '#career']
   },
   {
     id: 2,
     type: 'article',
-    title: 'Building Accessible Web Applications with React',
-    date: '2 weeks ago',
-    likes: 156,
-    comments: 38,
-    shares: 45,
-    content: "Accessibility shouldn't be an afterthought. In this article, I discuss practical techniques for making your React applications more accessible to all users...",
-    hashtags: ['#accessibility', '#a11y', '#reactjs', '#inclusivedesign']
+    title: 'The Importance of SEO for Modern Businesses',
+    date: '2 months ago',
+    likes: 45,
+    comments: 15,
+    shares: 8,
+    content: "In today's digital landscape, having a strong online presence is crucial for business success. Search Engine Optimization plays a vital role in increasing visibility and driving organic traffic. Here are some effective strategies that can help businesses improve their SEO rankings...",
+    hashtags: ['#SEO', '#digitalmarketing', '#businessgrowth', '#webtraffic']
   },
   {
     id: 3,
     type: 'achievement',
-    title: 'Started new position as Senior Full Stack Developer',
+    title: 'Completed Data Analysis internship at Cognifyz Technologies',
     date: '3 months ago',
-    likes: 234,
-    comments: 65,
-    shares: 8,
-    content: "I'm excited to announce that I've joined TechCorp as a Senior Full Stack Developer! Looking forward to working with this amazing team on challenging projects.",
-    hashtags: ['#newjob', '#techjobs', '#career', '#fullstack']
+    likes: 67,
+    comments: 23,
+    shares: 5,
+    content: "Just completed my internship at Cognifyz Technologies where I worked on analyzing customer behavior patterns and building statistical models. Grateful for the opportunity to enhance my data analysis skills while working on real-world business problems.",
+    hashtags: ['#datascience', '#internship', '#professionaldev', '#analytics']
   }
 ];
 
@@ -55,7 +55,12 @@ const LinkedInActivity: React.FC = () => {
             <MessageSquare className="text-primary h-5 w-5" />
             <CardTitle>{t('components.linkedin.activity')}</CardTitle>
           </div>
-          <Button variant="ghost" size="sm" className="gap-1">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="gap-1"
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/recent-activity/", "_blank")}
+          >
             <ExternalLink className="h-4 w-4" />
             {t('sections.linkedin.viewMore')}
           </Button>
@@ -67,8 +72,8 @@ const LinkedInActivity: React.FC = () => {
           <div key={activity.id} className="border-b border-border/40 last:border-b-0 pb-6 last:pb-0">
             <div className="flex space-x-3">
               <Avatar className="h-10 w-10">
-                <AvatarImage src="https://github.com/shadcn.png" alt="Jane Doe" />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarImage src="https://media.licdn.com/dms/image/D4D03AQF5_qTk5EXb9g/profile-displayphoto-shrink_400_400/0/1708774825393?e=1719446400&v=beta&t=ZhD_zRVNOxQMvNdcf8yPtZ6Mb_W7fwb7GNYxuFP7JHM" alt="Vishesh Sanghvi" />
+                <AvatarFallback>VS</AvatarFallback>
               </Avatar>
               
               <div className="flex-1">

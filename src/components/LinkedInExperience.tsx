@@ -6,48 +6,77 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
-// Mock experience data
+// Real experience data based on Vishesh Sanghvi's LinkedIn
 const experiences = [
   {
     id: 1,
-    title: 'Senior Full Stack Developer',
-    company: 'TechCorp',
-    duration: 'Jan 2022 - Present',
-    location: 'San Francisco, CA (Remote)',
-    description: 'Leading development of a React-based SaaS platform with microservices architecture. Implemented CI/CD pipelines and mentored junior developers.',
-    skills: ['React', 'Node.js', 'TypeScript', 'AWS', 'Docker', 'MongoDB'],
+    title: "Software Developer",
+    company: "Ambica Pharma | Johnlee",
+    duration: "May 2024 - Present",
+    location: "Mumbai, Maharashtra, India",
+    description: "Web & Software Developer | ERP Administrator | SEO. Managing and developing websites and applications utilizing WordPress, CodeIgniter, Laravel, HTML, CSS, and JavaScript. Overseeing ERP system and enhancing website performance through SEO.",
+    skills: ["Full-Stack Development", "Laravel", "WordPress", "SEO", "ERP Administration"],
     highlights: [
-      'Reduced page load time by 40% through optimized bundle splitting and lazy loading',
-      'Architected and implemented a real-time notification system using WebSockets',
-      'Led migration from REST to GraphQL, improving API efficiency by 35%'
+      "Manage and develop websites and applications utilizing WordPress, CodeIgniter, Laravel, HTML, CSS, and JavaScript",
+      "Oversee and optimize ERP system ensuring seamless business operations",
+      "Enhance performance and visibility of websites through SEO strategies, improving site rankings and user experience",
+      "Build efficient, scalable solutions that support business growth"
     ]
   },
   {
     id: 2,
-    title: 'Full Stack Developer',
-    company: 'InnovateTech',
-    duration: 'Mar 2019 - Dec 2021',
-    location: 'Boston, MA (Hybrid)',
-    description: 'Developed and maintained multiple React-based web applications with Node.js backends. Collaborated closely with design and product teams.',
-    skills: ['React', 'Express', 'PostgreSQL', 'Redux', 'Jest', 'Material UI'],
+    title: "Cloud Computing",
+    company: "Pinnacle Labs",
+    duration: "Oct 2024 - Oct 2024",
+    location: "Mumbai, Maharashtra, India",
+    description: "Worked with cloud infrastructure technologies and deployment solutions.",
+    skills: ["Cloud Computing", "AWS", "Infrastructure"],
     highlights: [
-      'Implemented a complex form builder tool that increased customer conversion by 25%',
-      'Designed and built a reporting dashboard that improved data visibility for managers',
-      'Reduced API response times by 60% through query optimization and caching'
+      "Managed cloud infrastructure across platforms",
+      "Deployed scalable solutions using containerization technologies",
+      "Optimized resource allocation for cost-effective operations"
     ]
   },
   {
     id: 3,
-    title: 'Frontend Developer',
-    company: 'WebSolutions',
-    duration: 'Jun 2017 - Feb 2019',
-    location: 'New York, NY',
-    description: 'Created responsive web interfaces for enterprise clients. Worked with design team to implement UI/UX improvements.',
-    skills: ['HTML/CSS', 'JavaScript', 'jQuery', 'Sass', 'Bootstrap', 'Git'],
+    title: "Data Analyst",
+    company: "Oasis Infobyte",
+    duration: "Sep 2024 - Oct 2024",
+    location: "Mumbai, Maharashtra, India",
+    description: "Performed data analysis and visualization for business insights.",
+    skills: ["Data Analysis", "Visualization", "Python"],
     highlights: [
-      "Developed the company's component library, increasing development speed by 30%",
-      'Rebuilt legacy applications with modern frontend technologies',
-      'Implemented A/B testing framework leading to 15% increase in user engagement'
+      "Performed exploratory data analysis on large datasets",
+      "Created visualization dashboards to represent insights",
+      "Developed predictive models using machine learning algorithms"
+    ]
+  },
+  {
+    id: 4,
+    title: "Data Scientist Intern",
+    company: "EVOASTRA VENTURES PVT LTD",
+    duration: "Sep 2024 - Oct 2024",
+    location: "Mumbai, Maharashtra, India",
+    description: "Implemented machine learning solutions and database architecture optimization.",
+    skills: ["Machine Learning", "Data Science", "Database Design"],
+    highlights: [
+      "Implemented machine learning solutions for business challenges",
+      "Designed and optimized database architectures",
+      "Conducted A/B testing to validate new features"
+    ]
+  },
+  {
+    id: 5,
+    title: "Data Analysis Intern",
+    company: "Cognifyz Technologies",
+    duration: "Aug 2024 - Sep 2024",
+    location: "Mumbai, Maharashtra, India",
+    description: "Analyzed customer behavior patterns and built statistical models for market trends.",
+    skills: ["Data Analysis", "Statistics", "SQL"],
+    highlights: [
+      "Analyzed customer behavior patterns from transaction data",
+      "Built statistical models to forecast market trends",
+      "Automated reporting processes using Python and SQL"
     ]
   }
 ];
@@ -63,7 +92,12 @@ const LinkedInExperience: React.FC = () => {
             <Briefcase className="text-primary h-5 w-5" />
             <CardTitle>{t('components.linkedin.experience')}</CardTitle>
           </div>
-          <Button variant="ghost" size="sm" className="gap-1">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="gap-1"
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/details/experience/", "_blank")}
+          >
             <ExternalLink className="h-4 w-4" />
             {t('sections.linkedin.viewMore')}
           </Button>

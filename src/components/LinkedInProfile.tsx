@@ -10,18 +10,18 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const LinkedInProfile: React.FC = () => {
   const { t } = useTranslation();
   
-  // Mock profile data
+  // Real profile data
   const profile = {
-    name: 'Jane Doe',
-    headline: 'Senior Full Stack Developer | React | Node.js | TypeScript | AWS',
-    location: 'San Francisco, CA',
-    connections: 500,
-    about: 'Passionate full-stack developer with 5+ years of experience building scalable web applications. I specialize in React, Node.js, and cloud infrastructure. I love solving complex problems and creating intuitive user experiences.',
+    name: 'Vishesh Sanghvi',
+    headline: 'Web & Software Developer | ERP Administrator | SEO at Ambica Pharma | Johnlee',
+    location: 'Mumbai, Maharashtra, India',
+    connections: 243,
+    about: 'Web & Software Developer | ERP Administrator | SEO. Manage and develop websites and applications utilizing WordPress, CodeIgniter, Laravel, HTML, CSS, and JavaScript. Oversee and optimize ERP system ensuring seamless business operations. Enhance performance and visibility of websites through SEO strategies, improving site rankings and user experience. Build efficient, scalable solutions that support business growth.',
     currentPosition: {
-      title: 'Senior Full Stack Developer',
-      company: 'TechCorp',
-      duration: 'Jan 2022 - Present',
-      location: 'San Francisco, CA (Remote)'
+      title: 'Software Developer',
+      company: 'Ambica Pharma | Johnlee',
+      duration: 'May 2024 - Present',
+      location: 'Mumbai, Maharashtra, India'
     }
   };
   
@@ -33,8 +33,8 @@ const LinkedInProfile: React.FC = () => {
       {/* Profile Info */}
       <div className="px-6 sm:px-8 relative">
         <Avatar className="h-24 w-24 border-4 border-background absolute -top-12">
-          <AvatarImage src="https://github.com/shadcn.png" alt={profile.name} />
-          <AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
+          <AvatarImage src="https://media.licdn.com/dms/image/D4D03AQF5_qTk5EXb9g/profile-displayphoto-shrink_400_400/0/1708774825393?e=1719446400&v=beta&t=ZhD_zRVNOxQMvNdcf8yPtZ6Mb_W7fwb7GNYxuFP7JHM" alt={profile.name} />
+          <AvatarFallback>VS</AvatarFallback>
         </Avatar>
         
         <div className="pt-16 pb-6">
@@ -56,7 +56,7 @@ const LinkedInProfile: React.FC = () => {
             </div>
             
             <div className="flex flex-wrap gap-2">
-              <Button className="gap-2">
+              <Button className="gap-2" onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}>
                 <ExternalLink className="h-4 w-4" />
                 {t('sections.linkedin.viewProfile')}
               </Button>

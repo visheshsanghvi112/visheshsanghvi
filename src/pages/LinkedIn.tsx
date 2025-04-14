@@ -32,11 +32,14 @@ const LinkedIn: React.FC = () => {
               {t('sections.linkedin.title')}
             </h1>
             <p className="text-muted-foreground mt-1 max-w-2xl">
-              {t('sections.linkedin.subtitle')}
+              Connect with me on LinkedIn to see my professional experience, skills, and activities.
             </p>
           </div>
           
-          <Button className="bg-[#0077B5] hover:bg-[#006699] gap-2">
+          <Button 
+            className="bg-[#0077B5] hover:bg-[#006699] gap-2"
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}
+          >
             <Linkedin className="h-4 w-4" />
             {t('sections.linkedin.viewProfile')}
           </Button>

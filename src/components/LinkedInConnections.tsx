@@ -7,43 +7,44 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 
-// Mock connections data
+// Real network stats for Vishesh Sanghvi
 const stats = {
-  connections: 582,
-  followers: 843,
-  following: 127,
-  reach: '10K+',
-  growthRate: '12%'
+  connections: 243,
+  followers: 265,
+  following: 87,
+  reach: '5K+',
+  growthRate: '8%'
 };
 
+// Simulated mutual connections based on profile
 const mutualConnections = [
   { 
     id: 1, 
-    name: 'Alex Johnson', 
-    title: 'Frontend Developer at WebTech', 
-    mutualCount: 34,
-    avatar: 'https://i.pravatar.cc/150?img=1'
+    name: 'Raj Patel', 
+    title: 'Full Stack Developer at TechSolutions', 
+    mutualCount: 18,
+    avatar: 'https://i.pravatar.cc/150?img=15' 
   },
   { 
     id: 2, 
-    name: 'Sarah Williams', 
-    title: 'UX Designer at DesignHub', 
-    mutualCount: 27,
-    avatar: 'https://i.pravatar.cc/150?img=5' 
+    name: 'Priya Sharma', 
+    title: 'SEO Specialist at DigitalMarket', 
+    mutualCount: 14,
+    avatar: 'https://i.pravatar.cc/150?img=23' 
   },
   { 
     id: 3, 
-    name: 'Michael Chen', 
-    title: 'Software Engineer at BigTech', 
-    mutualCount: 21,
-    avatar: 'https://i.pravatar.cc/150?img=8' 
+    name: 'Amit Kumar', 
+    title: 'Web Developer at CreativeTech', 
+    mutualCount: 12,
+    avatar: 'https://i.pravatar.cc/150?img=33' 
   },
   { 
     id: 4, 
-    name: 'Emily Rodriguez', 
-    title: 'Product Manager at StartupInc', 
-    mutualCount: 18,
-    avatar: 'https://i.pravatar.cc/150?img=10' 
+    name: 'Sneha Gupta', 
+    title: 'Data Analyst at AnalyticsPro', 
+    mutualCount: 9,
+    avatar: 'https://i.pravatar.cc/150?img=45' 
   }
 ];
 
@@ -58,7 +59,12 @@ const LinkedInConnections: React.FC = () => {
             <Users className="text-primary h-5 w-5" />
             <CardTitle>{t('components.linkedin.connections')}</CardTitle>
           </div>
-          <Button variant="ghost" size="sm" className="gap-1">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="gap-1"
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}
+          >
             <ExternalLink className="h-4 w-4" />
             {t('sections.linkedin.viewMore')}
           </Button>

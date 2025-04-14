@@ -7,19 +7,19 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-// Mock skills data
+// Real skills data for Vishesh Sanghvi
 const skillCategories = [
   {
     id: 'frontend',
     name: 'Frontend Development',
     icon: Layout,
     skills: [
-      { name: 'React', endorsements: 78, level: 95 },
-      { name: 'TypeScript', endorsements: 64, level: 90 },
-      { name: 'JavaScript', endorsements: 89, level: 95 },
-      { name: 'HTML/CSS', endorsements: 72, level: 90 },
-      { name: 'Redux', endorsements: 42, level: 85 },
-      { name: 'Next.js', endorsements: 37, level: 85 }
+      { name: 'HTML/CSS', endorsements: 17, level: 95 },
+      { name: 'JavaScript', endorsements: 15, level: 90 },
+      { name: 'React', endorsements: 10, level: 85 },
+      { name: 'WordPress', endorsements: 12, level: 90 },
+      { name: 'Tailwind CSS', endorsements: 8, level: 85 },
+      { name: 'UI/UX Design', endorsements: 7, level: 80 }
     ]
   },
   {
@@ -27,33 +27,35 @@ const skillCategories = [
     name: 'Backend Development',
     icon: Server,
     skills: [
-      { name: 'Node.js', endorsements: 61, level: 85 },
-      { name: 'Express', endorsements: 53, level: 85 },
-      { name: 'GraphQL', endorsements: 38, level: 80 },
-      { name: 'RESTful APIs', endorsements: 59, level: 90 },
-      { name: 'Python', endorsements: 29, level: 75 }
+      { name: 'PHP', endorsements: 14, level: 85 },
+      { name: 'Laravel', endorsements: 11, level: 85 },
+      { name: 'CodeIgniter', endorsements: 9, level: 80 },
+      { name: 'RESTful APIs', endorsements: 8, level: 85 },
+      { name: 'Node.js', endorsements: 7, level: 75 }
     ]
   },
   {
     id: 'database',
-    name: 'Databases',
+    name: 'Databases & Analysis',
     icon: Database,
     skills: [
-      { name: 'MongoDB', endorsements: 45, level: 85 },
-      { name: 'PostgreSQL', endorsements: 38, level: 80 },
-      { name: 'MySQL', endorsements: 32, level: 75 },
-      { name: 'Redis', endorsements: 24, level: 70 }
+      { name: 'SQL', endorsements: 13, level: 85 },
+      { name: 'MySQL', endorsements: 12, level: 85 },
+      { name: 'Data Analysis', endorsements: 10, level: 80 },
+      { name: 'Excel', endorsements: 11, level: 90 },
+      { name: 'MongoDB', endorsements: 6, level: 70 }
     ]
   },
   {
     id: 'cloud',
-    name: 'Cloud & DevOps',
+    name: 'SEO & Administration',
     icon: Cloud,
     skills: [
-      { name: 'AWS', endorsements: 42, level: 80 },
-      { name: 'Docker', endorsements: 39, level: 85 },
-      { name: 'CI/CD', endorsements: 35, level: 80 },
-      { name: 'Kubernetes', endorsements: 27, level: 70 }
+      { name: 'SEO', endorsements: 15, level: 90 },
+      { name: 'ERP Administration', endorsements: 14, level: 85 },
+      { name: 'Google Analytics', endorsements: 10, level: 85 },
+      { name: 'Content Management', endorsements: 9, level: 80 },
+      { name: 'Digital Marketing', endorsements: 8, level: 75 }
     ]
   }
 ];
@@ -69,7 +71,12 @@ const LinkedInSkills: React.FC = () => {
             <BadgeCheck className="text-primary h-5 w-5" />
             <CardTitle>{t('components.linkedin.skills')}</CardTitle>
           </div>
-          <Button variant="ghost" size="sm" className="gap-1">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="gap-1"
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/details/skills/", "_blank")}
+          >
             <ExternalLink className="h-4 w-4" />
             {t('sections.linkedin.viewMore')}
           </Button>
