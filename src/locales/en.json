@@ -166,7 +166,30 @@
       "badges": {
         "title": "LeetCode Badges",
         "earned": "Earned Badges",
-        "recent": "Recently Earned"
+        "recent": "Recently Earned",
+        "error": {
+          "title": "Error loading badges",
+          "description": "Failed to fetch badge data. Using locally stored data instead."
+        },
+        "categories": {
+          "annual": "Annual Medals",
+          "studyPlan": "Study Plan Medals",
+          "achievement": "Achievement Badges",
+          "contest": "Contest Badges",
+          "topic": "Topic Badges",
+          "account": "Account Badges"
+        }
+      },
+      "recentSolutions": {
+        "title": "Recent Solutions",
+        "subtitle": "Problems solved by visheshsanghvi112",
+        "lastUpdated": "Updated Today",
+        "solved": "Solved",
+        "viewSolution": "View Solution",
+        "error": {
+          "title": "Error loading solutions",
+          "description": "Failed to fetch recent solutions. Using locally stored data instead."
+        }
       },
       "submissions": {
         "title": "Recent Submissions",
