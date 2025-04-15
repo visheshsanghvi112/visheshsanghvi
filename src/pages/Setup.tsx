@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +8,8 @@ import {
   ArrowLeft, Laptop, Monitor, Cpu, HardDrive, Speaker, Keyboard, 
   Mouse, Headphones, Smartphone, Coffee, Palette, Globe, 
   Code, CircuitBoard, Gamepad, BookOpen, Terminal, Cloud,
-  Video, Mic, PlugZap, Camera, PenTool, Server
+  Video, Mic, PlugZap, Camera, PenTool, Server, Database,
+  MessageSquare, Clock, Calendar, FileCheck, Focus, Lock
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
@@ -107,7 +107,6 @@ const Setup = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   
-  // Enhanced Setup data with more categories and badges
   const hardwareItems = [
     {
       icon: Laptop,
@@ -370,7 +369,6 @@ const Setup = () => {
       <NavBar />
       
       <main className="pt-20 md:pt-24">
-        {/* Hero Section with improved visual elements */}
         <AnimatedSection 
           className="section-container py-16 md:py-20" 
           animation="fade"
@@ -416,7 +414,6 @@ const Setup = () => {
           </div>
         </AnimatedSection>
         
-        {/* Workspace Tour with improved styling */}
         <AnimatedSection className="section-container pb-10" animation="slide-up" delay={200}>
           <div className="bg-card/30 border border-border/40 rounded-2xl overflow-hidden mb-16 shadow-xl">
             <div className="relative">
@@ -458,7 +455,6 @@ const Setup = () => {
           </div>
         </AnimatedSection>
         
-        {/* Setup Items with enhanced tabs and organization */}
         <AnimatedSection className="section-container pb-20" animation="fade" delay={300}>
           <Tabs defaultValue="hardware" className="mb-10">
             <TabsList className="mb-8 w-full justify-start overflow-x-auto p-1 bg-secondary/20 rounded-full">
