@@ -1,18 +1,33 @@
 
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { Award, Trophy, Code, Zap, Flame, Calendar, BarChart, Star, Medal, Rocket } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
-// Mocked badges data since we don't have real API data
-const mockBadges = [
+interface LeetCodeBadge {
+  id: string;
+  name: string;
+  description: string;
+  tier: 'gold' | 'silver' | 'bronze';
+  icon: React.ElementType;
+  date: string;
+}
+
+// API endpoint for fetching badges (this would be replaced by a real endpoint)
+const BADGES_API_URL = 'https://leetcode-api.visheshsanghvi112.workers.dev/badges';
+
+// Fallback mock data
+const mockBadges: LeetCodeBadge[] = [
   {
     id: 'annual-badge-2024',
     name: 'Annual Badge 2024',
     description: 'Completed 100+ problems in 2024',
-    tier: 'gold', // gold, silver, bronze
+    tier: 'gold',
     icon: Trophy,
     date: '2024-03-15',
   },
@@ -103,8 +118,65 @@ const getBadgeColor = (tier: string) => {
   }
 };
 
+const fetchBadges = async (): Promise<LeetCodeBadge[]> => {
+  try {
+    const response = await fetch(BADGES_API_URL, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      },
+      signal: AbortSignal.timeout(5000)
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch badges');
+    }
+    
+    const data = await response.json();
+    console.log('Badges API response:', data);
+    
+    // Check if the response has the expected format
+    if (!Array.isArray(data)) {
+      throw new Error('Invalid API response format');
+    }
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching badges:', error);
+    // Fallback to mock data
+    return mockBadges;
+  }
+};
+
 const LeetCodeBadges: React.FC = () => {
   const { t } = useTranslation();
+  const { toast } = useToast();
+  
+  const { data: badges, isLoading, error } = useQuery({
+    queryKey: ['leetcode-badges'],
+    queryFn: fetchBadges,
+    staleTime: 1000 * 60 * 30, // 30 minutes
+    retry: 2,
+    retryDelay: 1000,
+  });
+
+  // Show a toast if there was an error fetching the data
+  React.useEffect(() => {
+    if (error) {
+      console.error('LeetCode badges error:', error);
+      toast({
+        title: t('components.leetcode.badges.error.title'),
+        description: t('components.leetcode.badges.error.description'),
+        variant: "destructive",
+      });
+    }
+  }, [error, toast, t]);
+
+  if (isLoading) {
+    return <BadgesSkeleton />;
+  }
+
+  const badgeData = badges || mockBadges;
   
   return (
     <Card className="bg-card/50 backdrop-blur-sm border border-border/40 overflow-hidden">
@@ -120,14 +192,14 @@ const LeetCodeBadges: React.FC = () => {
             </CardDescription>
           </div>
           <Badge variant="outline" className="bg-primary/10">
-            {mockBadges.length} Badges Earned
+            {badgeData.length} Badges Earned
           </Badge>
         </div>
       </CardHeader>
       
       <CardContent className="p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {mockBadges.map((badge) => {
+          {badgeData.map((badge) => {
             const IconComponent = badge.icon;
             const badgeColor = getBadgeColor(badge.tier);
             
@@ -161,6 +233,31 @@ const LeetCodeBadges: React.FC = () => {
               </div>
             );
           })}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+const BadgesSkeleton = () => {
+  return (
+    <Card className="bg-card/50 backdrop-blur-sm border border-border/40">
+      <CardHeader className="bg-primary/5 border-b border-border/40">
+        <Skeleton className="h-7 w-48" />
+        <Skeleton className="h-5 w-64 mt-1" />
+      </CardHeader>
+      <CardContent className="p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="rounded-lg border border-border/40 p-4">
+              <div className="flex flex-col items-center">
+                <Skeleton className="h-16 w-16 rounded-full mb-3" />
+                <Skeleton className="h-5 w-24 mb-1" />
+                <Skeleton className="h-4 w-32 mb-2" />
+                <Skeleton className="h-3 w-full mt-auto" />
+              </div>
+            </div>
+          ))}
         </div>
       </CardContent>
     </Card>

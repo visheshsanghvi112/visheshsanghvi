@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, Code, Trophy, Star, Award, Target, Calendar, Zap } from 'lucide-react';
+import { ArrowLeft, Code, Trophy, Star, Award, Target, Calendar, Zap, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -10,6 +10,7 @@ import NavBar from '../components/NavBar';
 import LeetCodeStats from '../components/LeetCodeStats';
 import LeetCodeBadges from '../components/LeetCodeBadges';
 import LeetCodeSubmissions from '../components/LeetCodeSubmissions';
+import LeetCodeRecentSolutions from '../components/LeetCodeRecentSolutions';
 import AnimatedSection from '../components/AnimatedSection';
 
 const LeetCode = () => {
@@ -66,7 +67,7 @@ const LeetCode = () => {
                 <Zap className="text-yellow-500" size={16} />
                 Daily Challenge
               </Button>
-              <Button className="gap-2" size="sm">
+              <Button className="gap-2" size="sm" onClick={() => window.open("https://leetcode.com/u/visheshsanghvi112/", "_blank")}>
                 <Target className="mr-1" size={16} />
                 View on LeetCode
               </Button>
@@ -76,10 +77,14 @@ const LeetCode = () => {
         
         <AnimatedSection className="section-container pb-8" animation="slide-up">
           <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="grid w-full md:w-auto md:inline-grid grid-cols-4 md:grid-cols-4 h-auto p-1 mb-8">
+            <TabsList className="grid w-full md:w-auto md:inline-grid grid-cols-5 md:grid-cols-5 h-auto p-1 mb-8">
               <TabsTrigger value="overview" className="flex items-center gap-2 py-2">
                 <Trophy size={16} />
                 <span className="hidden sm:inline">Overview</span>
+              </TabsTrigger>
+              <TabsTrigger value="recent" className="flex items-center gap-2 py-2">
+                <CheckCircle2 size={16} />
+                <span className="hidden sm:inline">Recent</span>
               </TabsTrigger>
               <TabsTrigger value="badges" className="flex items-center gap-2 py-2">
                 <Award size={16} />
@@ -97,6 +102,10 @@ const LeetCode = () => {
             
             <TabsContent value="overview" className="mt-0">
               <LeetCodeStats />
+            </TabsContent>
+
+            <TabsContent value="recent" className="mt-0">
+              <LeetCodeRecentSolutions />
             </TabsContent>
             
             <TabsContent value="badges" className="mt-0">
