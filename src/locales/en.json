@@ -98,7 +98,14 @@
       "entertainment": "Entertainment",
       "development": "Development",
       "design": "Design", 
-      "productivity": "Productivity"
+      "productivity": "Productivity",
+      "hosting": "Hosting",
+      "cloud": "Cloud",
+      "database": "Database",
+      "network": "Network",
+      "security": "Security",
+      "communication": "Communication",
+      "media": "Media"
     },
     "linkedin": {
       "title": "Professional Profile",

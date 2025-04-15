@@ -24,7 +24,7 @@ const projects: ProjectProps[] = [
     title: "Yugrow Pharmacy",
     description: "A comprehensive pharmacy management system with inventory tracking, order management, and customer relationship features. Built for seamless pharmacy operations and improved patient care.",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Bootstrap"],
-    image: "https://images.unsplash.com/photo-1631549916768-4119b4123a21?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    image: "/lovable-uploads/fa0fd1d7-e4b7-49db-905d-cb71530ae5b8.png",
     liveUrl: "https://yugrowpharmacy.com/",
     icon: <Pill size={18} />,
     featured: true,
