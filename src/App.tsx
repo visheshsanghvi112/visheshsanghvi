@@ -15,6 +15,7 @@ import Setup from "./pages/Setup";
 import CodeDemo from "./pages/CodeDemo";
 import LeetCode from "./pages/LeetCode";
 import LinkedIn from "./pages/LinkedIn";
+import Projects from "./pages/Projects";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => {
               <Route path="/admin" element={<Admin />} />
               <Route path="/resume" element={<Resume />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/projects" element={<Projects />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/case-studies/:id" element={<CaseStudies />} />
               <Route path="/setup" element={<Setup />} />

@@ -5,7 +5,6 @@ import HeroSection from '../components/HeroSection';
 import ExperienceSection from '../components/ExperienceSection';
 import EducationSection from '../components/EducationSection';
 import CertificationsSection from '../components/CertificationsSection';
-import ProjectsSection from '../components/ProjectsSection';
 import ContactSection from '../components/ContactSection';
 import SkillsSection from '../components/SkillsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
@@ -54,8 +53,8 @@ const Index: React.FC = () => {
 
       // Update active section for highlighting in navigation
       const sections = isMobile 
-        ? ['hero', 'experience', 'education', 'projects', 'interactive-skills', 'github-activity', 'certifications', 'testimonials', 'contact'] 
-        : ['hero', 'experience', 'education', 'skills', 'interactive-skills', 'projects', 'github-activity', 'certifications', 'testimonials', 'contact'];
+        ? ['hero', 'experience', 'education', 'interactive-skills', 'github-activity', 'certifications', 'testimonials', 'contact'] 
+        : ['hero', 'experience', 'education', 'skills', 'interactive-skills', 'github-activity', 'certifications', 'testimonials', 'contact'];
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
@@ -97,8 +96,8 @@ const Index: React.FC = () => {
   // Function to navigate to next/previous section
   const navigateToNextSection = (direction: 'up' | 'down') => {
     const sections = isMobile 
-      ? ['hero', 'experience', 'education', 'projects', 'interactive-skills', 'github-activity', 'certifications', 'testimonials', 'contact'] 
-      : ['hero', 'experience', 'education', 'skills', 'interactive-skills', 'projects', 'github-activity', 'certifications', 'testimonials', 'contact'];
+      ? ['hero', 'experience', 'education', 'interactive-skills', 'github-activity', 'certifications', 'testimonials', 'contact'] 
+      : ['hero', 'experience', 'education', 'skills', 'interactive-skills', 'github-activity', 'certifications', 'testimonials', 'contact'];
     
     const currentIndex = sections.indexOf(activeSection);
     let targetIndex;
@@ -135,7 +134,6 @@ const Index: React.FC = () => {
         <EducationSection />
         <SkillsSection />
         <LiveSkillsSection />
-        <ProjectsSection />
         <GitHubActivitySection />
         <CertificationsSection />
         <TestimonialsSection />
@@ -177,11 +175,29 @@ const Index: React.FC = () => {
               </div>
             </div>
             
-            {/* Case Studies Card */}
+            {/* Projects Card */}
             <div className="group relative overflow-hidden rounded-xl shadow-md bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/20 transition-all duration-300 hover:shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative p-6 flex flex-col h-full">
                 <div className="mb-4 w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                  <FileCode2 size={24} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">Projects</h3>
+                <p className="text-foreground/70 text-sm mb-4 flex-grow">
+                  Collection of my development projects and technical work.
+                </p>
+                <Link to="/projects" className="inline-flex items-center text-primary hover:text-primary/80 text-sm font-medium">
+                  View Projects
+                  <ExternalLink size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Case Studies Card */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/20 transition-all duration-300 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative p-6 flex flex-col h-full">
+                <div className="mb-4 w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
                   <Book size={24} />
                 </div>
                 <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">Case Studies</h3>
@@ -190,24 +206,6 @@ const Index: React.FC = () => {
                 </p>
                 <Link to="/case-studies" className="inline-flex items-center text-primary hover:text-primary/80 text-sm font-medium">
                   View Case Studies
-                  <ExternalLink size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
-            
-            {/* Setup Card */}
-            <div className="group relative overflow-hidden rounded-xl shadow-md bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/20 transition-all duration-300 hover:shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative p-6 flex flex-col h-full">
-                <div className="mb-4 w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
-                  <Settings size={24} />
-                </div>
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">My Setup</h3>
-                <p className="text-foreground/70 text-sm mb-4 flex-grow">
-                  The hardware, software, and workflow I use for development.
-                </p>
-                <Link to="/setup" className="inline-flex items-center text-primary hover:text-primary/80 text-sm font-medium">
-                  Explore Setup
                   <ExternalLink size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
@@ -305,9 +303,9 @@ const Index: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-3">
               <Link to="/blog" className="text-xs text-foreground/60 hover:text-primary transition-colors">Blog</Link>
               <span className="text-foreground/40">•</span>
-              <Link to="/case-studies" className="text-xs text-foreground/60 hover:text-primary transition-colors">Case Studies</Link>
+              <Link to="/projects" className="text-xs text-foreground/60 hover:text-primary transition-colors">Projects</Link>
               <span className="text-foreground/40">•</span>
-              <Link to="/setup" className="text-xs text-foreground/60 hover:text-primary transition-colors">My Setup</Link>
+              <Link to="/case-studies" className="text-xs text-foreground/60 hover:text-primary transition-colors">Case Studies</Link>
               <span className="text-foreground/40">•</span>
               <Link to="/code-demo" className="text-xs text-foreground/60 hover:text-primary transition-colors">Code Demos</Link>
             </div>

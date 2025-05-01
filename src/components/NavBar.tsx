@@ -37,7 +37,6 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
     { id: 'hero', label: t('navigation.home') },
     { id: 'experience', label: t('navigation.experience') },
     { id: 'skills', label: t('navigation.skills') },
-    { id: 'projects', label: t('navigation.projects') },
     { id: 'contact', label: t('navigation.contact') },
   ];
 
@@ -107,10 +106,10 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                         asChild 
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
-                        <Link to="/case-studies">
-                          <div className="text-sm font-medium leading-none">{t('navigation.caseStudies')}</div>
+                        <Link to="/projects">
+                          <div className="text-sm font-medium leading-none">{t('navigation.projects')}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Detailed case studies of my key projects
+                            Collection of my development and design projects
                           </p>
                         </Link>
                       </NavigationMenuLink>
@@ -120,10 +119,10 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                         asChild 
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
-                        <Link to="/setup">
-                          <div className="text-sm font-medium leading-none">{t('navigation.setup')}</div>
+                        <Link to="/case-studies">
+                          <div className="text-sm font-medium leading-none">{t('navigation.caseStudies')}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Tools and technologies I use
+                            Detailed case studies of my key projects
                           </p>
                         </Link>
                       </NavigationMenuLink>
@@ -211,13 +210,13 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/case-studies" className="w-full cursor-pointer">
-                  {t('navigation.caseStudies')}
+                <Link to="/projects" className="w-full cursor-pointer">
+                  {t('navigation.projects')}
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/setup" className="w-full cursor-pointer">
-                  {t('navigation.setup')}
+                <Link to="/case-studies" className="w-full cursor-pointer">
+                  {t('navigation.caseStudies')}
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>

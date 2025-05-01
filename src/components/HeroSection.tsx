@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import Background3D from './Background3D';
 import DownloadCVButton from './DownloadCVButton';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   const [typedText, setTypedText] = useState("");
@@ -105,13 +106,13 @@ const HeroSection: React.FC = () => {
           }}
         >
           <DownloadCVButton className="transform transition hover:scale-105 active:scale-95" />
-          <a
-            href="#projects"
+          <Link
+            to="/projects"
             className="px-6 py-3 bg-secondary/80 text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95 backdrop-blur-sm relative overflow-hidden group"
           >
             <span className="absolute inset-0 w-0 bg-primary/10 transition-all duration-300 group-hover:w-full"></span>
             <span className="relative">View Projects</span>
-          </a>
+          </Link>
           <a
             href="#contact"
             className="px-6 py-3 bg-secondary/50 text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95 backdrop-blur-sm relative overflow-hidden group"
