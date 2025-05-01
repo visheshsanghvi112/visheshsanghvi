@@ -1,11 +1,13 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home, Bot, BarChart, Pill, Package, Building2, Tag } from 'lucide-react';
+import { Github, ExternalLink, Code } from 'lucide-react';
 import NavBar from '../components/NavBar';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+import AnimatedSection from '@/components/AnimatedSection';
 
 interface ProjectProps {
   title: string;
@@ -139,90 +141,90 @@ const projects: ProjectProps[] = [
   }
 ];
 
-const ProjectCard: React.FC<{ project: ProjectProps; isFeatured: boolean }> = ({ project, isFeatured }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
   const isMobile = useIsMobile();
   
-  // Always show action buttons on mobile
-  const showActions = isMobile || isHovered;
-
   return (
     <motion.div 
-      className={cn(
-        "glass-panel h-full rounded-2xl overflow-hidden transition-all duration-500 group flex flex-col bg-gradient-to-br from-white/90 to-secondary/30 dark:from-background/80 dark:to-secondary/20 border-white/10 hover:shadow-lg hover:shadow-primary/20",
-        isFeatured ? "col-span-1 md:col-span-2 lg:col-span-2" : "col-span-1"
-      )}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.1 }}
+      transition={{ duration: 0.6 }}
     >
-      {/* Image container with overlay */}
-      <div className="relative overflow-hidden h-48">
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-        />
-        <div className={cn(
-          "absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end p-6 transition-all duration-300",
-          showActions ? "opacity-100" : "opacity-0"
-        )}>
-          <div className="flex space-x-3 transform transition-transform duration-300 ease-out" style={{
-            transform: showActions ? 'translateY(0)' : 'translateY(20px)'
-          }}>
-            {project.githubUrl && (
-              <motion.a 
-                href={project.githubUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-primary/30 transition-colors"
-                aria-label={`View ${project.title} on GitHub`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Github size={18} className="text-white" />
-              </motion.a>
-            )}
-            {project.liveUrl && (
-              <motion.a 
-                href={project.liveUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-primary/30 transition-colors"
-                aria-label={`View ${project.title} live demo`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <ExternalLink size={18} className="text-white" />
-              </motion.a>
-            )}
-          </div>
+      <Card className="h-full overflow-hidden hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 border border-border/40 bg-card flex flex-col">
+        <div className="relative h-48 overflow-hidden">
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          />
+          
+          {(project.githubUrl || project.liveUrl) && (
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end justify-end p-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <div className="flex gap-2">
+                {project.githubUrl && (
+                  <motion.a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button size="icon" variant="ghost" className="bg-white/10 backdrop-blur-md text-white hover:bg-white/20">
+                      <Github size={18} />
+                    </Button>
+                  </motion.a>
+                )}
+                
+                {project.liveUrl && (
+                  <motion.a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button size="icon" variant="ghost" className="bg-white/10 backdrop-blur-md text-white hover:bg-white/20">
+                      <ExternalLink size={18} />
+                    </Button>
+                  </motion.a>
+                )}
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-6 flex flex-col flex-grow">
-        {project.featured && (
-          <span className="inline-block px-2 py-1 text-xs font-medium bg-primary/20 text-primary rounded mb-3">
-            Featured Project
-          </span>
-        )}
-        {project.association && (
-          <span className="inline-block px-2 py-1 text-xs font-medium bg-secondary/50 text-foreground/80 rounded mb-3 flex items-center gap-1">
-            <School size={12} />
-            {project.association}
-          </span>
-        )}
-        <div className="flex items-center gap-2 mb-2">
-          {project.icon && <span className="text-primary">{project.icon}</span>}
-          <h3 className="text-xl font-bold bg-gradient-to-r from-foreground via-primary/90 to-primary/70 bg-clip-text text-transparent">{project.title}</h3>
-        </div>
-        <p className="text-foreground/70 text-sm mb-4 flex-grow">{project.description}</p>
         
-        <div className="flex flex-wrap gap-2 mt-auto">
+        <CardHeader className="p-4">
+          <div className="flex items-center gap-2">
+            {project.icon && <span className="text-primary">{project.icon}</span>}
+            <h3 className="text-xl font-bold bg-gradient-to-r from-foreground via-primary/90 to-primary/70 bg-clip-text text-transparent">
+              {project.title}
+            </h3>
+          </div>
+          
+          {project.featured && (
+            <div className="mt-2">
+              <span className="inline-block px-2 py-1 text-xs font-medium bg-primary/20 text-primary rounded">
+                Featured Project
+              </span>
+            </div>
+          )}
+          
+          {project.association && (
+            <div className="mt-1">
+              <span className="inline-block px-2 py-1 text-xs font-medium bg-secondary/50 text-foreground/80 rounded">
+                {project.association}
+              </span>
+            </div>
+          )}
+        </CardHeader>
+        
+        <CardContent className="p-4 pt-0 flex-grow">
+          <p className="text-foreground/70 text-sm">{project.description}</p>
+        </CardContent>
+        
+        <CardFooter className="p-4 flex flex-wrap gap-2 border-t border-border/40">
           {project.technologies.map((tech, index) => (
             <motion.span 
               key={index} 
@@ -233,8 +235,8 @@ const ProjectCard: React.FC<{ project: ProjectProps; isFeatured: boolean }> = ({
               {tech}
             </motion.span>
           ))}
-        </div>
-      </div>
+        </CardFooter>
+      </Card>
     </motion.div>
   );
 };
@@ -242,7 +244,6 @@ const ProjectCard: React.FC<{ project: ProjectProps; isFeatured: boolean }> = ({
 const Projects: React.FC = () => {
   // Get unique categories from projects
   const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
-  const isMobile = useIsMobile();
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -258,21 +259,21 @@ const Projects: React.FC = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <NavBar />
       
-      <main className="pt-28 md:pt-32 pb-16">
-        <motion.div 
-          className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="text-center mb-12">
+      <AnimatedSection className="pt-28 md:pt-32 pb-16" animation="fade">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <motion.span 
               className="inline-block px-3 py-1 text-xs uppercase tracking-wider font-semibold bg-secondary/70 text-foreground/90 rounded-full mb-3"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              My Work
+              My Portfolio
             </motion.span>
             <motion.h1 
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent"
@@ -280,7 +281,7 @@ const Projects: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Projects
+              Featured Projects
             </motion.h1>
             <motion.p 
               className="max-w-2xl mx-auto text-foreground/70 text-lg"
@@ -288,9 +289,9 @@ const Projects: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              Showcasing my best work across web development, mobile applications, AI, and data science.
+              A showcase of my work across different technologies and domains
             </motion.p>
-          </div>
+          </motion.div>
           
           <Tabs defaultValue="All" className="w-full">
             <motion.div 
@@ -319,7 +320,7 @@ const Projects: React.FC = () => {
             </motion.div>
             
             {categories.map(category => (
-              <TabsContent key={category} value={category} className="mt-0 animate-fade-in">
+              <TabsContent key={category} value={category} className="mt-0">
                 <motion.div 
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                   variants={containerVariants}
@@ -331,18 +332,14 @@ const Projects: React.FC = () => {
                     ? projects 
                     : projects.filter(project => project.category === category)
                   ).map((project, index) => (
-                    <ProjectCard 
-                      key={index} 
-                      project={project} 
-                      isFeatured={project.featured && (category === "All" || projects.filter(p => p.category === category).length <= 3)}
-                    />
+                    <ProjectCard key={index} project={project} />
                   ))}
                 </motion.div>
               </TabsContent>
             ))}
           </Tabs>
-        </motion.div>
-      </main>
+        </div>
+      </AnimatedSection>
     </div>
   );
 };
