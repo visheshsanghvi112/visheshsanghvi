@@ -1,6 +1,22 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Code } from 'lucide-react';
+import { 
+  Github, 
+  ExternalLink, 
+  Code, 
+  Pill, 
+  Package, 
+  Building2, 
+  Tag, 
+  Bot, 
+  BarChart, 
+  FileType, 
+  Smartphone, 
+  PenTool, 
+  Home, 
+  School 
+} from 'lucide-react';
 import NavBar from '../components/NavBar';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
