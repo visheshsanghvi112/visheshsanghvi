@@ -88,20 +88,10 @@ const projects: ProjectProps[] = [
     category: "Web"
   },
   {
-    title: "Yugrow Discount Platform",
-    description: "A dynamic discount platform offering deals across various categories. Features user accounts, wishlist functionality, and a responsive product catalog for enhanced shopping experience.",
-    technologies: ["Next.js", "React", "Tailwind CSS", "MongoDB"],
-    image: "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    liveUrl: "https://yugrow.vercel.app/",
-    icon: <Tag size={18} />,
-    featured: true,
-    category: "Web"
-  },
-  {
     title: "Ambica Pharma",
     description: "A professional landing page for Ambica Pharma, a pharmaceutical company. Features responsive design, product showcases, and company information.",
     technologies: ["React", "Tailwind CSS", "Framer Motion"],
-    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    image: "/lovable-uploads/1282192f-354f-42bb-81cd-6c8cc5767875.png",
     githubUrl: "https://github.com/visheshsanghvi112/ambica-pharma-portal",
     liveUrl: "https://ambicapharma.net/",
     icon: <Pill size={18} />,
@@ -285,7 +275,7 @@ const projects: ProjectProps[] = [
     category: "Finance"
   },
   {
-    title: "FoodyBite 🍔",
+    title: "FoodyBite ���",
     description: "A vibrant Flutter-based restaurant app UI inspired by designs from Uplabs. Features beautifully crafted screens that showcase the potential of Flutter in creating engaging user interfaces.",
     technologies: ["Flutter", "Firebase", "UI/UX Design"],
     image: "https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
