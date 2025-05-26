@@ -21,14 +21,13 @@
     "caseStudies": "Case Studies",
     "setup": "My Setup",
     "codeDemos": "Code Demos",
-    "leetcode": "LeetCode",
-    "linkedin": "LinkedIn",
+    "leetcode": "LeetCode Stats",
     "backToHome": "Back to Home"
   },
   "hero": {
     "greeting": "Hi, I'm",
     "occupation": "Full Stack Developer",
-    "tagline": "Building beautiful, functional applications with modern technologies"
+    "tagline": "Building beautiful and functional applications with modern technologies"
   },
   "sections": {
     "experience": {
@@ -67,9 +66,19 @@
       "success": "Message sent successfully!",
       "error": "Error sending message. Please try again."
     },
+    "linkedin": {
+      "title": "LinkedIn Profile",
+      "subtitle": "Connect with me professionally and explore my career journey",
+      "downloadResume": "Download Resume",
+      "viewProfile": "View Profile",
+      "connectWithMe": "Connect",
+      "position": "Current Position",
+      "about": "About",
+      "viewMore": "View More"
+    },
     "setup": {
       "title": "My Development Setup",
-      "subtitle": "A tour of the hardware and software tools I use for development, design, and productivity",
+      "subtitle": "A tour through the hardware and software tools I use for development, design, and productivity",
       "workspace": "My Workspace",
       "workspaceDescription": "This is where the magic happens. I've designed my workspace to maximize productivity and comfort during those long coding sessions. Good ergonomics, proper lighting, and a distraction-free environment help me stay in the flow state.",
       "hardware": "Hardware",
@@ -82,12 +91,12 @@
       "productivityTechniques": "Productivity Techniques",
       "questions": "Have a question about my setup?",
       "questionsSubtitle": "Feel free to reach out if you have any questions about my tools or workflow. I'm always happy to share tips and recommendations.",
-      "getInTouch": "Get in Touch",
+      "getInTouch": "Get In Touch",
       "viewDetails": "View Details",
       "backToHome": "Back to Home",
       "category": "Category",
-      "primarydevice": "Primary Device",
-      "secondarydevice": "Secondary Device",
+      "primaryDevice": "Primary Device",
+      "secondaryDevice": "Secondary Device",
       "display": "Display",
       "server": "Server",
       "storage": "Storage",
@@ -98,49 +107,7 @@
       "entertainment": "Entertainment",
       "development": "Development",
       "design": "Design", 
-      "productivity": "Productivity",
-      "hosting": "Hosting",
-      "cloud": "Cloud",
-      "database": "Database",
-      "network": "Network",
-      "security": "Security",
-      "communication": "Communication",
-      "media": "Media"
-    },
-    "linkedin": {
-      "title": "Professional Profile",
-      "subtitle": "Connect with me on LinkedIn and explore my professional journey",
-      "overview": "Overview",
-      "highlights": "Career Highlights",
-      "featured": "Featured Posts",
-      "recommendations": "Recommendations",
-      "skills": "Endorsed Skills",
-      "connections": "Network Connections",
-      "activity": "Recent Activity",
-      "contact": "Contact Information",
-      "about": "About Me",
-      "backToHome": "Back to Home",
-      "viewProfile": "View on LinkedIn",
-      "downloadResume": "Download Resume",
-      "connectWithMe": "Connect with Me",
-      "messageMe": "Message Me",
-      "position": "Position",
-      "company": "Company",
-      "duration": "Duration",
-      "location": "Location",
-      "endorsements": "Endorsements",
-      "posts": "Posts and Articles",
-      "viewMore": "View More",
-      "networkStats": "Network Statistics",
-      "connections": "Connections",
-      "followers": "Followers",
-      "following": "Following",
-      "mutualConnections": "Mutual Connections",
-      "certifications": "Certifications",
-      "issuedDate": "Issued Date",
-      "credentialId": "Credential ID",
-      "organization": "Issuing Organization",
-      "skills": "Skills"
+      "productivity": "Productivity"
     }
   },
   "components": {
@@ -156,68 +123,22 @@
     },
     "leetcode": {
       "title": "LeetCode Stats",
-      "error": "Using fallback data due to API error",
-      "subtitle": "Track my progress and achievements on LeetCode, where I regularly solve algorithmic and data structure problems.",
+      "error": "Failed to load LeetCode profile",
+      "rank": "Rank",
       "problemsSolved": "Problems Solved",
       "total": "Total",
       "easy": "Easy",
-      "medium": "Medium", 
+      "medium": "Medium",
       "hard": "Hard",
-      "stats": "Statistics",
+      "stats": "Stats",
       "acceptanceRate": "Acceptance Rate",
       "contributions": "Contributions",
-      "streakDays": "Streak Days",
+      "streakDays": "Active Days",
       "reputation": "Reputation",
-      "rank": "Rank",
-      "viewProfile": "View Full Profile",
-      "badges": {
-        "title": "LeetCode Badges",
-        "earned": "Earned Badges",
-        "recent": "Recently Earned",
-        "error": {
-          "title": "Error loading badges",
-          "description": "Failed to fetch badge data. Using locally stored data instead."
-        },
-        "categories": {
-          "annual": "Annual Medals",
-          "studyPlan": "Study Plan Medals",
-          "achievement": "Achievement Badges",
-          "contest": "Contest Badges",
-          "topic": "Topic Badges",
-          "account": "Account Badges"
-        }
-      },
-      "recentSolutions": {
-        "title": "Recent Solutions",
-        "subtitle": "Problems solved by visheshsanghvi112",
-        "lastUpdated": "Updated Today",
-        "solved": "Solved",
-        "viewSolution": "View Solution",
-        "error": {
-          "title": "Error loading solutions",
-          "description": "Failed to fetch recent solutions. Using locally stored data instead."
-        }
-      },
-      "submissions": {
-        "title": "Recent Submissions",
-        "language": "Language",
-        "runtime": "Runtime",
-        "memory": "Memory",
-        "status": "Status",
-        "date": "Date",
-        "difficulty": "Difficulty",
-        "viewAll": "View All Submissions"
-      }
+      "viewProfile": "View Full Profile"
     },
     "linkedin": {
-      "profile": "Profile",
-      "experience": "Experience",
-      "education": "Education",
-      "skills": "Skills",
-      "recommendations": "Recommendations",
-      "activity": "Activity",
-      "connections": "Connections",
-      "certifications": "Certifications"
+      "skills": "Skills & Endorsements"
     }
   }
 }
