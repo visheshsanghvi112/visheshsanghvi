@@ -1,0 +1,28 @@
+
+{
+  "name": "Vishesh Sanghvi - Portfolio",
+  "short_name": "Vishesh Portfolio",
+  "description": "Full Stack Developer & Big Data Analytics Student Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/lovable-uploads/a9d5c5fd-da0c-44b1-8abb-8f97d994e746.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/lovable-uploads/a9d5c5fd-da0c-44b1-8abb-8f97d994e746.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "technology"],
+  "lang": "en",
+  "dir": "ltr"
+}
