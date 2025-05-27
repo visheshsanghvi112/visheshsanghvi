@@ -1,4 +1,6 @@
 
+import React from 'react';
+
 // Performance monitoring utilities
 export const measurePerformance = (name: string, fn: () => void | Promise<void>) => {
   const start = performance.now();
