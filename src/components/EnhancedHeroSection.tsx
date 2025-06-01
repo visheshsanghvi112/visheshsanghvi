@@ -53,7 +53,7 @@ const EnhancedHeroSection: React.FC = () => {
       }, 50);
       return () => clearTimeout(timeout);
     }
-  }, [typedText]);
+  }, [typedText, fullText]);
 
   // Terminal animation
   useEffect(() => {
@@ -113,8 +113,8 @@ const EnhancedHeroSection: React.FC = () => {
             key={i}
             className="absolute w-1 h-1 bg-primary/30 rounded-full"
             initial={{ 
-              x: Math.random() * window.innerWidth, 
-              y: Math.random() * window.innerHeight 
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)
             }}
             animate={{
               y: [null, -20, 20],
@@ -303,12 +303,12 @@ const EnhancedHeroSection: React.FC = () => {
               </div>
               <div className="space-y-1">
                 <AnimatePresence>
-                  {terminalLines.map((line, index) => (
+                  {terminalLines.filter(line => line != null && line !== undefined).map((line, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={line.startsWith('~') ? 'text-green-400' : 'text-gray-300'}
+                      className={line && line.startsWith('~') ? 'text-green-400' : 'text-gray-300'}
                     >
                       {line}
                     </motion.div>
