@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Github, ExternalLink, Code, School, Smartphone, FileType, PenTool, Home, Bot, BarChart, Pill, Package, Building2, Tag } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
+import EnhancedProjectCard from './EnhancedProjectCard';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -265,7 +266,7 @@ const ProjectsSection: React.FC = () => {
                 ? projects 
                 : projects.filter(project => project.category === category)
               ).map((project, index) => (
-                <ProjectCard 
+                <EnhancedProjectCard 
                   key={index} 
                   project={project} 
                   isFeatured={project.featured && (category === "All" || projects.filter(p => p.category === category).length <= 3)}
