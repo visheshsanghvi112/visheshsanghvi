@@ -25,28 +25,23 @@ import {
   Activity,
   Presentation,
   Bitcoin,
-  FlaskConical,
-  Gamepad2,
-  DollarSign,
-  Palette,
-  Heart,
-  Plane,
-  Zap,
-  Utensils,
-  Dumbbell,
-  Brain,
-  Users,
-  Shield,
-  Search
+  FlaskConical
 } from 'lucide-react';
 import NavBar from '../components/NavBar';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { useIsMobile } from '@/hooks/use-mobile';
 import AnimatedSection from '@/components/AnimatedSection';
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from '@/components/ui/pagination';
 
 interface ProjectProps {
   title: string;
@@ -62,7 +57,6 @@ interface ProjectProps {
 }
 
 const projects: ProjectProps[] = [
-  // Featured Projects
   {
     title: "Yugrow Pharmacy",
     description: "A comprehensive pharmacy management system with inventory tracking, order management, and customer relationship features. Built for seamless pharmacy operations and improved patient care.",
@@ -72,28 +66,6 @@ const projects: ProjectProps[] = [
     icon: <Pill size={18} />,
     featured: true,
     category: "Web"
-  },
-  {
-    title: "Chess by VS",
-    description: "A modern chess game implementation with AI opponents and multiplayer capabilities. Features clean UI design and intelligent gameplay mechanics.",
-    technologies: ["React", "TypeScript", "Chess.js", "AI"],
-    image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/p-914120",
-    liveUrl: "https://chess-by-vs.vercel.app",
-    icon: <Gamepad2 size={18} />,
-    featured: true,
-    category: "Games"
-  },
-  {
-    title: "Billifyy",
-    description: "A comprehensive billing and invoice management system with dark futuristic theme. Streamlines financial operations for businesses of all sizes.",
-    technologies: ["React", "Next.js", "TailwindCSS", "Database"],
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/t-618158",
-    liveUrl: "https://billifyy.vercel.app",
-    icon: <DollarSign size={18} />,
-    featured: true,
-    category: "Finance"
   },
   {
     title: "Pharma ERP",
@@ -116,6 +88,27 @@ const projects: ProjectProps[] = [
     category: "Web"
   },
   {
+    title: "Ambica Pharma",
+    description: "A professional landing page for Ambica Pharma, a pharmaceutical company. Features responsive design, product showcases, and company information.",
+    technologies: ["React", "Tailwind CSS", "Framer Motion"],
+    image: "/lovable-uploads/1282192f-354f-42bb-81cd-6c8cc5767875.png",
+    githubUrl: "https://github.com/visheshsanghvi112/ambica-pharma-portal",
+    liveUrl: "https://ambicapharma.net/",
+    icon: <Pill size={18} />,
+    featured: true,
+    category: "Web"
+  },
+  {
+    title: "Baker & Davis",
+    description: "A modern landing page for Baker & Davis, a pharmacy company. Features elegant design, service showcases, and customer testimonials.",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    image: "https://images.unsplash.com/photo-1586015555751-63c79a26fe5d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://bakerdavis.vercel.app",
+    icon: <Pill size={18} />,
+    featured: true,
+    category: "Web"
+  },
+  {
     title: "VisheshGpt",
     description: "An advanced AI-powered chatbot designed for daily needs. Leveraging state-of-the-art language models to provide intelligent responses, assistance, and information on a wide range of topics.",
     technologies: ["AI", "Python", "Streamlit", "NLP"],
@@ -126,204 +119,140 @@ const projects: ProjectProps[] = [
     category: "AI"
   },
   {
-    title: "Bills Generator",
-    description: "Professional invoice and bill generation tool with customizable templates. Perfect for freelancers and small businesses to create professional invoices.",
-    technologies: ["React", "JavaScript", "PDF Generation"],
-    image: "https://images.unsplash.com/photo-1554224154-26032fced8bd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/BillsGenerator-",
-    liveUrl: "https://bills-generator.vercel.app",
-    icon: <FileText size={18} />,
-    category: "Finance"
-  },
-  {
-    title: "Crypto Tracker",
-    description: "Real-time cryptocurrency tracking and portfolio management application. Monitor market trends and manage your crypto investments effectively.",
-    technologies: ["React", "API Integration", "Chart.js"],
-    image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/c-503186",
-    liveUrl: "https://crypto-two-sepia.vercel.app",
-    icon: <DollarSign size={18} />,
-    category: "Finance"
-  },
-  {
-    title: "Resume AI",
-    description: "AI-powered resume builder and analyzer with intelligent insights. Helps create professional resumes with personalized recommendations and formatting.",
-    technologies: ["React", "AI", "TypeScript", "Resume Analysis"],
-    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/billifyy",
-    liveUrl: "https://resume-ai-one-tau.vercel.app",
-    icon: <Bot size={18} />,
-    category: "AI"
-  },
-  {
-    title: "ConvrtAI",
-    description: "AI-powered conversion platform with multiple format support. Smart document and media conversion tool with platform demonstration features.",
-    technologies: ["React", "AI", "File Processing", "TypeScript"],
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/resume-insight-builder-62",
-    liveUrl: "https://convrtai.vercel.app",
-    icon: <Zap size={18} />,
-    category: "AI"
-  },
-  {
-    title: "AI Code Detection",
-    description: "Advanced code integrity scanner that analyzes code for AI generation patterns and human imperfections. Helps maintain code authenticity and quality.",
-    technologies: ["React", "AI", "Code Analysis", "TypeScript"],
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/code-integrity-scanner-03",
-    liveUrl: "https://ai-code-detection.vercel.app",
-    icon: <Shield size={18} />,
-    category: "AI"
-  },
-  {
-    title: "Form Genius",
-    description: "Advanced form builder with conditional logic, styling options, and element editing. Create dynamic forms with powerful customization features.",
-    technologies: ["React", "Form Builder", "Conditional Logic"],
-    image: "https://images.unsplash.com/photo-1586264102394-c905af0746a3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/form-genius-engine-79",
-    liveUrl: "https://form-genius-theta.vercel.app",
-    icon: <FileText size={18} />,
-    category: "Tools"
-  },
-  {
-    title: "PDF Merge",
-    description: "Simple and efficient PDF merging tool. Combine multiple PDF documents into a single file with ease and maintain document quality.",
-    technologies: ["React", "PDF.js", "File Processing"],
-    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/p-013807",
-    liveUrl: "https://pdf-merge-pearl.vercel.app",
-    icon: <FileType size={18} />,
-    category: "Tools"
-  },
-  {
-    title: "Ring Size Calculator",
-    description: "Precise ring sizing tool with enhanced responsiveness and accuracy. Perfect for jewelry shopping with improved mobile experience.",
-    technologies: ["React", "Measurement Tools", "Responsive Design"],
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/royal-ring-reign-65",
-    liveUrl: "https://ringsize.vercel.app",
-    icon: <Calculator size={18} />,
-    category: "Tools"
-  },
-  {
-    title: "Meal Flow AI Planner",
-    description: "AI-powered meal planning and nutrition tracking application. Smart meal recommendations based on dietary preferences and health goals.",
-    technologies: ["React", "AI", "Nutrition API", "Planning"],
-    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/meal-flow-ai-planner-53",
-    liveUrl: "https://meal-flow-ai-planner.vercel.app",
-    icon: <Utensils size={18} />,
-    category: "Health"
-  },
-  {
-    title: "Gymkhaana",
-    description: "Comprehensive fitness tracking and gym management platform. Fast fuel delivery system for fitness enthusiasts with dependency optimization.",
-    technologies: ["React", "Fitness Tracking", "Date Management"],
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/fit-fuel-fast",
-    liveUrl: "https://gymkhaana.vercel.app",
-    icon: <Dumbbell size={18} />,
-    category: "Health"
-  },
-  {
-    title: "Curva Nord Rebellion",
-    description: "Creative online platform with engaging visual design and interactive elements. Features unique styling and user experience optimization.",
-    technologies: ["React", "CSS3", "Interactive Design"],
+    title: "Dreamscape Gallery",
+    description: "An immersive art gallery website showcasing digital and traditional artwork with a modern, interactive interface for art enthusiasts.",
+    technologies: ["React", "Three.js", "Tailwind CSS"],
     image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/curva-nord-rebellion-online",
-    liveUrl: "https://curva-nord-rebellion.vercel.app",
-    icon: <Palette size={18} />,
-    category: "Creative"
-  },
-  {
-    title: "Rekhta Realms",
-    description: "Digital poetry and literature platform celebrating Urdu and Hindi poetry. Features detailed project documentation and cultural content.",
-    technologies: ["React", "Literature Platform", "Cultural Content"],
-    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/rekhta-roman-verse-22",
-    liveUrl: "https://rekhta-realms.vercel.app",
-    icon: <PenTool size={18} />,
-    category: "Creative"
-  },
-  {
-    title: "Bini Gallery",
-    description: "Dreamscape art gallery with immersive visual experiences. Showcases digital artworks with responsive design and smooth navigation.",
-    technologies: ["React", "Gallery Platform", "Visual Arts"],
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/s-dreamscape-gallery",
-    liveUrl: "https://bini-five.vercel.app",
-    icon: <Palette size={18} />,
-    category: "Creative"
+    icon: <PenTool size={18} />,
+    category: "Web"
   },
   {
-    title: "Worlds by Vishesh",
-    description: "Personal creative showcase platform featuring various digital worlds and interactive experiences. Multi-dimensional portfolio of creative works.",
-    technologies: ["React", "Interactive Design", "Creative Platform"],
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/worldsbyvishesh",
-    liveUrl: "https://worldsbyvishesh.vercel.app",
-    icon: <Home size={18} />,
-    category: "Creative"
+    title: "Dialogue Dhoom",
+    description: "A multiplayer Bollywood dialogue game where players guess movie titles from famous dialogues. Test your Bollywood knowledge in this fun, interactive game.",
+    technologies: ["React", "Socket.io", "Express", "MongoDB"],
+    image: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/dialogue-dhoom-mobile-game",
+    liveUrl: "https://dialoguedhoom.vercel.app/",
+    icon: <Presentation size={18} />,
+    category: "Games"
   },
   {
-    title: "Seaside Stay",
-    description: "Coastal accommodation booking platform with wave-inspired design. Features hotel and resort booking with seaside-themed user interface.",
-    technologies: ["React", "Booking System", "Wave Design"],
-    image: "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/m-923127",
-    liveUrl: "https://seasidestay.vercel.app",
-    icon: <Plane size={18} />,
-    category: "Travel"
-  },
-  {
-    title: "Travel Planner",
-    description: "Comprehensive travel planning and booking platform. Helps travelers organize trips, find accommodations, and plan itineraries efficiently.",
-    technologies: ["React", "Travel API", "Planning Tools"],
-    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/a-522273",
-    liveUrl: "https://travel-eta-wheat.vercel.app",
-    icon: <Plane size={18} />,
-    category: "Travel"
-  },
-  {
-    title: "Cortex Second Brain",
-    description: "Advanced knowledge management system with sub-cortex organization. Intelligent note-taking and information retrieval platform.",
-    technologies: ["React", "Knowledge Management", "Data Organization"],
-    image: "https://images.unsplash.com/photo-1559474309-48f9b0b24cb2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/c-666698",
-    liveUrl: "https://cortexsecond-brain.vercel.app",
-    icon: <Brain size={18} />,
-    category: "Productivity"
-  },
-  {
-    title: "Agent Haven Cloud",
-    description: "Cloud-based agent management platform with data export capabilities. Streamlines agent operations with PDF export and module management.",
-    technologies: ["React", "Cloud Platform", "Data Export"],
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/a-609842",
-    liveUrl: "https://agent-haven-cloud.vercel.app",
-    icon: <Users size={18} />,
-    category: "Business"
-  },
-  {
-    title: "Interview Prep",
-    description: "Comprehensive interview preparation platform for data science and technical roles. Features practice questions and preparation materials.",
-    technologies: ["React", "Interview Platform", "Data Science"],
-    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    githubUrl: "https://github.com/visheshsanghvi112/data-interview-nexus-01",
-    liveUrl: "https://interviewprep-red.vercel.app",
-    icon: <Briefcase size={18} />,
+    title: "Language Lab",
+    description: "An innovative language learning platform that helps users learn different languages through visual and audio techniques. Features interactive lessons and pronunciation guides.",
+    technologies: ["React", "Next.js", "TailwindCSS", "AI"],
+    image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://languagelab-one.vercel.app/dashboard",
+    icon: <Globe size={18} />,
     category: "Education"
   },
   {
-    title: "Ambica Pharma",
-    description: "A professional landing page for Ambica Pharma, a pharmaceutical company. Features responsive design, product showcases, and company information.",
-    technologies: ["React", "Tailwind CSS", "Framer Motion"],
-    image: "/lovable-uploads/1282192f-354f-42bb-81cd-6c8cc5767875.png",
-    githubUrl: "https://github.com/visheshsanghvi112/ambica-pharma-portal",
-    liveUrl: "https://ambicapharma.net/",
-    icon: <Pill size={18} />,
+    title: "Management System",
+    description: "A fully functional ERP dashboard system for business management with features for inventory, sales, HR, and finance tracking in a unified interface.",
+    technologies: ["React", "Node.js", "MySQL", "Chart.js"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/f-333644",
+    icon: <Briefcase size={18} />,
     category: "Web"
+  },
+  {
+    title: "Learn Syntax",
+    description: "An interactive platform to learn coding languages with in-browser compilation. Features multiple courses, pathways, and lessons for various programming languages including Python.",
+    technologies: ["React", "Next.js", "Monaco Editor", "WebAssembly"],
+    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://learnsyntax.vercel.app/",
+    icon: <Code size={18} />,
+    category: "Education"
+  },
+  {
+    title: "Learn Bitcoin",
+    description: "An educational platform about Bitcoin with real-time price monitoring and profit calculation tools based on Indian markets. Perfect for cryptocurrency beginners.",
+    technologies: ["React", "Next.js", "Chart.js", "CoinGecko API"],
+    image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://learnbitcoin-theta.vercel.app/",
+    icon: <Bitcoin size={18} />,
+    category: "Finance"
+  },
+  {
+    title: "Stats Made Easy",
+    description: "A visual educational platform that makes statistical concepts easy to understand through interactive visualizations and simplified explanations.",
+    technologies: ["React", "D3.js", "TailwindCSS"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://stats-made-easy.vercel.app/",
+    icon: <Activity size={18} />,
+    category: "Education"
+  },
+  {
+    title: "Ketaki Digital Canvas",
+    description: "A portfolio website for a creative professional showcasing their work and skills in a visually appealing layout.",
+    technologies: ["React", "GSAP", "CSS3"],
+    image: "https://images.unsplash.com/photo-1618004912476-29818d81ae2e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/ketaki-digital-canvas",
+    icon: <PenTool size={18} />,
+    category: "Web"
+  },
+  {
+    title: "Brewery",
+    description: "A fully functional e-commerce website for t-shirts and shorts with product listings, cart functionality, user accounts, and secure checkout options.",
+    technologies: ["React", "Next.js", "Commerce.js", "Stripe"],
+    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "http://breweryy.vercel.app/",
+    icon: <Shirt size={18} />,
+    category: "E-commerce"
+  },
+  {
+    title: "ResumeATS",
+    description: "A free resume builder tool that helps create ATS-friendly resumes with customizable templates and export options.",
+    technologies: ["React", "PDF.js", "Firebase Auth"],
+    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://resumeats.vercel.app/auth",
+    icon: <FileText size={18} />,
+    category: "Tools"
+  },
+  {
+    title: "Readme Generator",
+    description: "A free tool for generating professional README files for GitHub repositories with customizable sections and markdown support.",
+    technologies: ["React", "Next.js", "TailwindCSS"],
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://friendly-readme-creator.vercel.app/",
+    icon: <FileBadge size={18} />,
+    category: "Tools"
+  },
+  {
+    title: "3D Disease Spread Simulation",
+    description: "A 3D visualization tool for disease spread simulation using the SIR model, helping to understand epidemic dynamics.",
+    technologies: ["Python", "Streamlit", "Plotly", "SciPy"],
+    image: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://diseasefds.streamlit.app/",
+    icon: <FlaskConical size={18} />,
+    category: "Data"
+  },
+  {
+    title: "Movie Recommendation System",
+    description: "A PySpark-based movie recommendation system using collaborative filtering to suggest personalized movie recommendations.",
+    technologies: ["PySpark", "Python", "Pandas", "Jupyter"],
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/Recommendation-system",
+    icon: <BarChart size={18} />,
+    category: "Data"
+  },
+  {
+    title: "Prezii Downloader",
+    description: "A Python tool that automates extraction of slides and text from Prezi presentations and saves them as Word documents and PDFs, no premium account needed.",
+    technologies: ["Python", "Streamlit", "BeautifulSoup", "docx"],
+    image: "https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    liveUrl: "https://prezii.streamlit.app/",
+    icon: <Presentation size={18} />,
+    category: "Tools"
+  },
+  {
+    title: "Brewery Streetwear",
+    description: "An alternative e-commerce storefront for Brewery with enhanced UI features and improved product filtering and categorization.",
+    technologies: ["React", "Next.js", "Stripe", "TailwindCSS"],
+    image: "https://images.unsplash.com/photo-1561052967-61fc91e48d79?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/brewery-streetwear-storefront",
+    icon: <Shirt size={18} />,
+    category: "E-commerce"
   },
   {
     title: "Stock Analysis Tool",
@@ -332,18 +261,68 @@ const projects: ProjectProps[] = [
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/Analysis-tool",
     icon: <BarChart size={18} />,
+    featured: false,
     category: "Data"
   },
   {
-    title: "FoodyBite 🍔",
+    title: "Finanza",
+    description: "A comprehensive financial management application allowing users to track expenses, manage investments, and visualize spending patterns through interactive charts and reports.",
+    technologies: ["React", "Node.js", "MongoDB", "Express", "Chart.js"],
+    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/Finanza",
+    icon: <FileType size={18} />,
+    featured: false,
+    category: "Finance"
+  },
+  {
+    title: "FoodyBite ���",
     description: "A vibrant Flutter-based restaurant app UI inspired by designs from Uplabs. Features beautifully crafted screens that showcase the potential of Flutter in creating engaging user interfaces.",
     technologies: ["Flutter", "Firebase", "UI/UX Design"],
     image: "https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     githubUrl: "https://github.com/visheshsanghvi112/FoodApp_flutter",
     icon: <Smartphone size={18} />,
     category: "Mobile"
+  },
+  {
+    title: "Interior Design AI",
+    description: "This project utilizes AI to help users create personalized interior design concepts. With a user-friendly interface, it offers real-time design suggestions tailored to individual preferences.",
+    technologies: ["AI", "Web Development", "UI/UX Design"],
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/InteriorDesignAi",
+    icon: <PenTool size={18} />,
+    category: "AI"
+  },
+  {
+    title: "My Portfolio",
+    description: "A visually appealing and interactive portfolio designed to highlight my projects and accomplishments. This platform reflects my creative vision and commitment to excellence.",
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/portfoliovishesh",
+    icon: <Home size={18} />,
+    category: "Web"
+  },
+  {
+    title: "PDF To Word Converter",
+    description: "File conversion utilities created with Python for converting between PDF and Word formats. Features include PDF to Word conversion and Word to PDF transformation with efficient file handling.",
+    technologies: ["Python", "PyMuPDF", "python-docx"],
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/PDF-and-Word-Converter",
+    icon: <FileType size={18} />,
+    category: "Utilities"
+  },
+  {
+    title: "Sports Team Management System",
+    description: "A Flutter-based app aimed at modernizing sports team management. Integrated with Firebase for real-time updates and Google Sign-In API for security, it fosters community engagement and event planning.",
+    technologies: ["Flutter", "Firebase", "Google Sign-In API"],
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    githubUrl: "https://github.com/visheshsanghvi112/SportsTeamManagementFlutter",
+    association: "Kishinchand Chellaram Law College",
+    icon: <School size={18} />,
+    category: "Mobile"
   }
 ];
+
+const PROJECTS_PER_PAGE = 9;
 
 const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
   const isMobile = useIsMobile();
@@ -446,22 +425,31 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
 };
 
 const Projects: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const categories = ["All", "Web", "Games", "AI", "Finance", "Tools", "Health", "Creative", "Travel", "Business", "Education", "Data", "Mobile", "Productivity"];
+  // Get unique categories from projects
+  const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
+  const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState("All");
   
-  // Filter projects by category and search
-  const filteredProjects = projects.filter(project => {
-    const matchesCategory = activeCategory === "All" || project.category === activeCategory;
-    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
+  // Filter projects by category
+  const filteredProjects = activeCategory === "All" 
+    ? projects 
+    : projects.filter(project => project.category === activeCategory);
+  
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
+  
+  // Get current projects
+  const indexOfLastProject = currentPage * PROJECTS_PER_PAGE;
+  const indexOfFirstProject = indexOfLastProject - PROJECTS_PER_PAGE;
+  const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
+  
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   
   // Handle category change
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
+    setCurrentPage(1); // Reset to first page when changing category
   };
   
   const containerVariants = {
@@ -492,7 +480,7 @@ const Projects: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              Complete Portfolio
+              My Portfolio
             </motion.span>
             <motion.h1 
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent"
@@ -500,7 +488,7 @@ const Projects: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              All Projects ({projects.length})
+              Featured Projects
             </motion.h1>
             <motion.p 
               className="max-w-2xl mx-auto text-foreground/70 text-lg"
@@ -508,27 +496,8 @@ const Projects: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              Explore my complete collection of projects across different technologies and domains
+              A showcase of my work across different technologies and domains
             </motion.p>
-          </motion.div>
-          
-          {/* Search Bar */}
-          <motion.div 
-            className="max-w-md mx-auto mb-8"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.4 }}
-          >
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/50" size={20} />
-              <Input
-                type="text"
-                placeholder="Search projects..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-background/50 border-border/40"
-              />
-            </div>
           </motion.div>
           
           <Tabs defaultValue="All" className="w-full" onValueChange={handleCategoryChange}>
@@ -536,7 +505,7 @@ const Projects: React.FC = () => {
               className="flex justify-center mb-10 overflow-x-auto pb-2"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.4 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
             >
               <TabsList className="bg-secondary/20 p-1 rounded-full flex-nowrap justify-start md:justify-center w-auto min-w-full md:min-w-0">
                 {categories.map((category, index) => (
@@ -544,13 +513,13 @@ const Projects: React.FC = () => {
                     key={category}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 + (index * 0.05), duration: 0.4 }}
+                    transition={{ delay: 0.5 + (index * 0.1), duration: 0.4 }}
                   >
                     <TabsTrigger 
                       value={category}
                       className="px-4 py-2 rounded-full text-sm whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-white"
                     >
-                      {category} ({category === "All" ? projects.length : projects.filter(p => p.category === category).length})
+                      {category}
                     </TabsTrigger>
                   </motion.div>
                 ))}
@@ -560,22 +529,48 @@ const Projects: React.FC = () => {
             {categories.map(category => (
               <TabsContent key={category} value={category} className="mt-0">
                 <motion.div 
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                   variants={containerVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                 >
-                  {filteredProjects.map((project, index) => (
+                  {currentProjects.map((project, index) => (
                     <ProjectCard key={index} project={project} />
                   ))}
                 </motion.div>
                 
-                {/* No results message */}
-                {filteredProjects.length === 0 && (
-                  <div className="text-center py-12">
-                    <p className="text-foreground/70">No projects found matching your criteria.</p>
-                  </div>
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <Pagination className="my-8">
+                    <PaginationContent>
+                      <PaginationItem>
+                        <PaginationPrevious 
+                          onClick={() => currentPage > 1 && paginate(currentPage - 1)}
+                          className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                        />
+                      </PaginationItem>
+                      
+                      {Array.from({ length: totalPages }, (_, i) => (
+                        <PaginationItem key={i}>
+                          <PaginationLink
+                            onClick={() => paginate(i + 1)}
+                            isActive={currentPage === i + 1}
+                            className="cursor-pointer"
+                          >
+                            {i + 1}
+                          </PaginationLink>
+                        </PaginationItem>
+                      ))}
+                      
+                      <PaginationItem>
+                        <PaginationNext 
+                          onClick={() => currentPage < totalPages && paginate(currentPage + 1)}
+                          className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                        />
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
                 )}
               </TabsContent>
             ))}
