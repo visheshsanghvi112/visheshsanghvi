@@ -47,14 +47,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useIsMobile } from '@/hooks/use-mobile';
 import AnimatedSection from '@/components/AnimatedSection';
-import { 
-  Pagination, 
-  PaginationContent, 
-  PaginationItem, 
-  PaginationLink, 
-  PaginationNext, 
-  PaginationPrevious 
-} from '@/components/ui/pagination';
 
 interface ProjectProps {
   title: string;
@@ -353,8 +345,6 @@ const projects: ProjectProps[] = [
   }
 ];
 
-const PROJECTS_PER_PAGE = 12;
-
 const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
   const isMobile = useIsMobile();
   
@@ -458,7 +448,6 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
 const Projects: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const categories = ["All", "Web", "Games", "AI", "Finance", "Tools", "Health", "Creative", "Travel", "Business", "Education", "Data", "Mobile", "Productivity"];
-  const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState("All");
   
   // Filter projects by category and search
@@ -470,21 +459,9 @@ const Projects: React.FC = () => {
     return matchesCategory && matchesSearch;
   });
   
-  // Calculate total pages
-  const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
-  
-  // Get current projects
-  const indexOfLastProject = currentPage * PROJECTS_PER_PAGE;
-  const indexOfFirstProject = indexOfLastProject - PROJECTS_PER_PAGE;
-  const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
-  
-  // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-  
   // Handle category change
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
-    setCurrentPage(1); // Reset to first page when changing category
   };
   
   const containerVariants = {
@@ -589,7 +566,7 @@ const Projects: React.FC = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                 >
-                  {currentProjects.map((project, index) => (
+                  {filteredProjects.map((project, index) => (
                     <ProjectCard key={index} project={project} />
                   ))}
                 </motion.div>
@@ -599,54 +576,6 @@ const Projects: React.FC = () => {
                   <div className="text-center py-12">
                     <p className="text-foreground/70">No projects found matching your criteria.</p>
                   </div>
-                )}
-                
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <Pagination className="my-8">
-                    <PaginationContent>
-                      <PaginationItem>
-                        <PaginationPrevious 
-                          onClick={() => currentPage > 1 && paginate(currentPage - 1)}
-                          className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
-                        />
-                      </PaginationItem>
-                      
-                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                        let pageNumber;
-                        if (totalPages <= 5) {
-                          pageNumber = i + 1;
-                        } else {
-                          if (currentPage <= 3) {
-                            pageNumber = i + 1;
-                          } else if (currentPage >= totalPages - 2) {
-                            pageNumber = totalPages - 4 + i;
-                          } else {
-                            pageNumber = currentPage - 2 + i;
-                          }
-                        }
-                        
-                        return (
-                          <PaginationItem key={i}>
-                            <PaginationLink
-                              onClick={() => paginate(pageNumber)}
-                              isActive={currentPage === pageNumber}
-                              className="cursor-pointer"
-                            >
-                              {pageNumber}
-                            </PaginationLink>
-                          </PaginationItem>
-                        );
-                      })}
-                      
-                      <PaginationItem>
-                        <PaginationNext 
-                          onClick={() => currentPage < totalPages && paginate(currentPage + 1)}
-                          className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
-                        />
-                      </PaginationItem>
-                    </PaginationContent>
-                  </Pagination>
                 )}
               </TabsContent>
             ))}
