@@ -2,7 +2,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Code, Database, Globe, Sparkles, Terminal, Coffee, MapPin, Clock } from 'lucide-react';
-import Background3D from './Background3D';
+import AdvancedBackground3D from './AdvancedBackground3D';
+import { 
+  heroVariants, 
+  heroItemVariants, 
+  magneticVariants, 
+  floatingVariants,
+  perspectiveVariants,
+  pulseVariants 
+} from './animations/AnimationVariants';
 import DownloadCVButton from './DownloadCVButton';
 import ModernLogo from './ModernLogo';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -104,7 +112,7 @@ const EnhancedHeroSection: React.FC = () => {
       style={{ y, opacity }}
     >
       {/* Enhanced 3D animated background */}
-      <Background3D className="absolute inset-0 z-0" />
+      <AdvancedBackground3D className="absolute inset-0 z-0" />
       
       {/* Floating particles */}
       <div className="absolute inset-0 z-5">
@@ -332,7 +340,7 @@ const EnhancedHeroSection: React.FC = () => {
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  className="glass-panel p-4 rounded-lg backdrop-blur-sm text-center hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+                  className="neural-glass neural-pulse p-4 rounded-lg text-center hover:scale-110 transition-all duration-300"
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ delay: index * 0.1 }}
                 >
