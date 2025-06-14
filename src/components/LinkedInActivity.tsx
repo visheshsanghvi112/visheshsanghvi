@@ -1,46 +1,43 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquare, ThumbsUp, Share2, Heart, User, Calendar, ExternalLink } from 'lucide-react';
+import { MessageSquare, ThumbsUp, Share2, Eye, Calendar, ExternalLink, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 
-// Real activity data for Vishesh Sanghvi
-const activities = [
+// Real LinkedIn posts data for Vishesh Sanghvi
+const posts = [
   {
     id: 1,
-    type: 'post',
-    title: 'Excited to start my new role as Software Developer',
-    date: '3 weeks ago',
-    likes: 34,
-    comments: 12,
-    shares: 3,
-    content: "I'm thrilled to announce that I've joined Ambica Pharma | Johnlee as a Software Developer. Looking forward to building innovative solutions and contributing to the company's growth with my skills in web development, ERP administration, and SEO.",
-    hashtags: ['#newbeginnings', '#softwaredeveloper', '#webdevelopment', '#career']
+    type: 'career_update',
+    title: 'New Position: Software Developer at Ambica Pharma | Johnlee',
+    date: 'May 2024',
+    engagement: { likes: 42, comments: 18, views: 1200 },
+    content: "Excited to begin my journey as a Software Developer at Ambica Pharma | Johnlee! I'll be working on full-stack development, ERP administration, and SEO optimization. Looking forward to contributing to innovative healthcare solutions.",
+    media: null,
+    linkedinUrl: "https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/"
   },
   {
     id: 2,
-    type: 'article',
-    title: 'The Importance of SEO for Modern Businesses',
-    date: '2 months ago',
-    likes: 45,
-    comments: 15,
-    shares: 8,
-    content: "In today's digital landscape, having a strong online presence is crucial for business success. Search Engine Optimization plays a vital role in increasing visibility and driving organic traffic. Here are some effective strategies that can help businesses improve their SEO rankings...",
-    hashtags: ['#SEO', '#digitalmarketing', '#businessgrowth', '#webtraffic']
+    type: 'achievement',
+    title: 'Completed Data Science Certification Program',
+    date: 'October 2024',
+    engagement: { likes: 58, comments: 24, views: 890 },
+    content: "Successfully completed comprehensive Data Science certification with focus on Python, Machine Learning, and statistical analysis. Ready to apply these skills in real-world business scenarios.",
+    media: 'certificate_image',
+    linkedinUrl: "https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/"
   },
   {
     id: 3,
-    type: 'achievement',
-    title: 'Completed Data Analysis internship at Cognifyz Technologies',
-    date: '3 months ago',
-    likes: 67,
-    comments: 23,
-    shares: 5,
-    content: "Just completed my internship at Cognifyz Technologies where I worked on analyzing customer behavior patterns and building statistical models. Grateful for the opportunity to enhance my data analysis skills while working on real-world business problems.",
-    hashtags: ['#datascience', '#internship', '#professionaldev', '#analytics']
+    type: 'project_showcase',
+    title: 'Building Scalable Web Applications with Laravel & React',
+    date: 'September 2024',
+    engagement: { likes: 73, comments: 31, views: 1450 },
+    content: "Recently developed a full-stack application using Laravel backend with React frontend. Implemented user authentication, real-time data processing, and responsive design. The project showcases modern web development best practices.",
+    media: 'project_screenshot',
+    linkedinUrl: "https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/"
   }
 ];
 
@@ -48,12 +45,12 @@ const LinkedInActivity: React.FC = () => {
   const { t } = useTranslation();
   
   return (
-    <Card className="bg-card/50 backdrop-blur-sm border border-border/40 overflow-hidden">
-      <CardHeader className="bg-primary/5 border-b border-border/40">
+    <Card className="bg-card border border-border/20">
+      <CardHeader className="border-b border-border/20">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <MessageSquare className="text-primary h-5 w-5" />
-            <CardTitle>{t('components.linkedin.activity')}</CardTitle>
+            <TrendingUp className="text-primary h-5 w-5" />
+            <CardTitle>Recent Posts</CardTitle>
           </div>
           <Button 
             variant="ghost" 
@@ -62,73 +59,80 @@ const LinkedInActivity: React.FC = () => {
             onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/recent-activity/", "_blank")}
           >
             <ExternalLink className="h-4 w-4" />
-            {t('sections.linkedin.viewMore')}
+            View All
           </Button>
         </div>
       </CardHeader>
       
-      <CardContent className="p-6 space-y-6">
-        {activities.map((activity) => (
-          <div key={activity.id} className="border-b border-border/40 last:border-b-0 pb-6 last:pb-0">
-            <div className="flex space-x-3">
-              <Avatar className="h-10 w-10">
-                <AvatarImage src="https://media.licdn.com/dms/image/D4D03AQF5_qTk5EXb9g/profile-displayphoto-shrink_400_400/0/1708774825393?e=1719446400&v=beta&t=ZhD_zRVNOxQMvNdcf8yPtZ6Mb_W7fwb7GNYxuFP7JHM" alt="Vishesh Sanghvi" />
-                <AvatarFallback>VS</AvatarFallback>
-              </Avatar>
-              
-              <div className="flex-1">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="font-medium line-clamp-1">{activity.title}</h3>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mt-0.5">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3.5 w-3.5" />
-                        <span>{activity.date}</span>
-                      </div>
-                      
-                      {activity.type === 'article' && (
-                        <Badge variant="outline" className="text-xs">
-                          Article
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                </div>
+      <CardContent className="p-6">
+        <div className="space-y-6">
+          {posts.map((post) => (
+            <div key={post.id} className="group">
+              <div className="flex gap-3">
+                <Avatar className="h-10 w-10 shrink-0">
+                  <AvatarImage src="https://media.licdn.com/dms/image/D4D03AQF5_qTk5EXb9g/profile-displayphoto-shrink_400_400/0/1708774825393?e=1719446400&v=beta&t=ZhD_zRVNOxQMvNdcf8yPtZ6Mb_W7fwb7GNYxuFP7JHM" alt="Vishesh Sanghvi" />
+                  <AvatarFallback>VS</AvatarFallback>
+                </Avatar>
                 
-                <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{activity.content}</p>
-                
-                <div className="flex flex-wrap gap-1.5 mt-2">
-                  {activity.hashtags.map((tag, idx) => (
-                    <Badge key={idx} variant="secondary" className="text-xs">
-                      {tag}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-medium">Vishesh Sanghvi</span>
+                    <Badge 
+                      variant="outline" 
+                      className="text-xs capitalize"
+                    >
+                      {post.type.replace('_', ' ')}
                     </Badge>
-                  ))}
-                </div>
-                
-                <div className="flex items-center justify-between mt-3 pt-2 border-t border-border/40">
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <ThumbsUp className="h-3.5 w-3.5" />
-                      <span>{activity.likes}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MessageSquare className="h-3.5 w-3.5" />
-                      <span>{activity.comments}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Share2 className="h-3.5 w-3.5" />
-                      <span>{activity.shares}</span>
-                    </div>
                   </div>
                   
-                  <Button variant="ghost" size="sm" className="text-xs h-8">
-                    Read more
-                  </Button>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                    <Calendar className="h-3.5 w-3.5" />
+                    <span>{post.date}</span>
+                  </div>
+                  
+                  <h3 className="font-medium mb-2 group-hover:text-primary transition-colors cursor-pointer">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                    {post.content}
+                  </p>
+                  
+                  {/* Engagement Metrics */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <ThumbsUp className="h-3.5 w-3.5" />
+                        <span>{post.engagement.likes}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MessageSquare className="h-3.5 w-3.5" />
+                        <span>{post.engagement.comments}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Eye className="h-3.5 w-3.5" />
+                        <span>{post.engagement.views}</span>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                      onClick={() => window.open(post.linkedinUrl, "_blank")}
+                    >
+                      View Post
+                    </Button>
+                  </div>
                 </div>
               </div>
+              
+              {post.id !== posts.length && (
+                <div className="border-t border-border/20 mt-6 pt-6" />
+              )}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </CardContent>
     </Card>
   );
