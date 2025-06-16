@@ -170,51 +170,6 @@
   .subtle-reveal.revealed {
     @apply opacity-100 translate-y-0;
   }
-
-  /* Neural network glass panel effect */
-  .neural-glass {
-    background: rgba(59, 130, 246, 0.05);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      0 0 20px rgba(59, 130, 246, 0.1);
-  }
-
-  /* Holographic shimmer effect */
-  .holographic-shimmer {
-    background: linear-gradient(45deg, 
-      hsl(var(--primary)) 0%, 
-      hsl(var(--secondary)) 25%, 
-      hsl(var(--accent)) 50%, 
-      hsl(var(--primary)) 75%, 
-      hsl(var(--secondary)) 100%);
-    background-size: 200% 200%;
-    animation: holographic-shift 4s ease-in-out infinite;
-  }
-
-  @keyframes holographic-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  /* Neural pulse glow */
-  .neural-pulse {
-    animation: neural-pulse 2s ease-in-out infinite alternate;
-  }
-
-  @keyframes neural-pulse {
-    from { 
-      box-shadow: 
-        0 0 20px hsl(var(--primary) / 0.3),
-        0 0 40px hsl(var(--primary) / 0.2);
-    }
-    to { 
-      box-shadow: 
-        0 0 30px hsl(var(--primary) / 0.5),
-        0 0 60px hsl(var(--primary) / 0.3);
-    }
-  }
   
   .section-container {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 overflow-hidden;

@@ -50,71 +50,69 @@ const LinkedInCertifications: React.FC = () => {
   const { t } = useTranslation();
   
   return (
-    <Card className="bg-card border border-border/20">
-      <CardHeader className="border-b border-border/20">
+    <Card className="bg-card/50 backdrop-blur-sm border border-border/40 overflow-hidden">
+      <CardHeader className="bg-primary/5 border-b border-border/40">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Award className="text-primary h-5 w-5" />
-            <CardTitle>Certifications</CardTitle>
+            <CardTitle>{t('components.linkedin.certifications')}</CardTitle>
           </div>
           <Button 
             variant="ghost" 
             size="sm" 
             className="gap-1"
-            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/details/certifications/", "_blank")}
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi/details/certifications/", "_blank")}
           >
             <ExternalLink className="h-4 w-4" />
-            View All
+            {t('sections.linkedin.viewMore')}
           </Button>
         </div>
       </CardHeader>
       
       <CardContent className="p-6">
-        <div className="space-y-4">
-          {certifications.slice(0, 3).map((cert) => (
-            <div key={cert.id} className="group p-3 rounded-lg border border-border/20 hover:border-border/40 transition-colors">
-              <div className="flex gap-3">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-lg bg-primary/5 flex items-center justify-center border border-border/20">
-                    <Award className="h-5 w-5 text-primary" />
+        <div className="space-y-6">
+          {certifications.map((cert) => (
+            <div key={cert.id} className="flex gap-4 border-b border-border/40 last:border-b-0 pb-4 last:pb-0">
+              <div className="shrink-0 mt-1">
+                <div className="w-12 h-12 rounded overflow-hidden bg-muted flex items-center justify-center">
+                  <img 
+                    src={cert.logo} 
+                    alt={cert.organization}
+                    className="max-w-full max-h-full object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'https://placeholder.svg';
+                      target.onerror = null;
+                    }}
+                  />
+                </div>
+              </div>
+              
+              <div className="flex-1">
+                <h3 className="text-base font-medium">{cert.name}</h3>
+                <p className="text-sm text-muted-foreground">{cert.organization}</p>
+                
+                <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3.5 w-3.5" />
+                    <span>Issued {cert.issueDate}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Globe className="h-3.5 w-3.5" />
+                    <span>Credential ID: {cert.credentialId}</span>
                   </div>
                 </div>
                 
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-medium truncate">{cert.name}</h3>
-                  <p className="text-sm text-muted-foreground">{cert.organization}</p>
-                  
-                  <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                    <span>Issued {cert.issueDate}</span>
-                    <span>•</span>
-                    <span>ID: {cert.credentialId}</span>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {cert.skills.slice(0, 3).map((skill, idx) => (
-                      <Badge key={idx} variant="secondary" className="text-xs">
-                        {skill}
-                      </Badge>
-                    ))}
-                    {cert.skills.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{cert.skills.length - 3} more
-                      </Badge>
-                    )}
-                  </div>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {cert.skills.map((skill, idx) => (
+                    <Badge key={idx} variant="secondary" className="text-xs">
+                      {skill}
+                    </Badge>
+                  ))}
                 </div>
               </div>
             </div>
           ))}
-          
-          <Button 
-            variant="outline" 
-            size="sm" 
-            className="w-full"
-            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/details/certifications/", "_blank")}
-          >
-            View All {certifications.length} Certifications
-          </Button>
         </div>
       </CardContent>
     </Card>
