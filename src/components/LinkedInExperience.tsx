@@ -85,12 +85,12 @@ const LinkedInExperience: React.FC = () => {
   const { t } = useTranslation();
   
   return (
-    <Card className="bg-card/50 backdrop-blur-sm border border-border/40 overflow-hidden">
-      <CardHeader className="bg-primary/5 border-b border-border/40">
+    <Card className="bg-card border border-border/20">
+      <CardHeader className="border-b border-border/20">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Briefcase className="text-primary h-5 w-5" />
-            <CardTitle>{t('components.linkedin.experience')}</CardTitle>
+            <CardTitle>Experience</CardTitle>
           </div>
           <Button 
             variant="ghost" 
@@ -99,7 +99,7 @@ const LinkedInExperience: React.FC = () => {
             onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/details/experience/", "_blank")}
           >
             <ExternalLink className="h-4 w-4" />
-            {t('sections.linkedin.viewMore')}
+            View All
           </Button>
         </div>
       </CardHeader>

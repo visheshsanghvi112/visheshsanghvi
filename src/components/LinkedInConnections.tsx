@@ -52,85 +52,86 @@ const LinkedInConnections: React.FC = () => {
   const { t } = useTranslation();
   
   return (
-    <Card className="bg-card/50 backdrop-blur-sm border border-border/40 overflow-hidden">
-      <CardHeader className="bg-primary/5 border-b border-border/40">
+    <Card className="bg-card border border-border/20">
+      <CardHeader className="border-b border-border/20">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Users className="text-primary h-5 w-5" />
-            <CardTitle>{t('components.linkedin.connections')}</CardTitle>
+            <CardTitle>Network</CardTitle>
           </div>
           <Button 
             variant="ghost" 
             size="sm" 
             className="gap-1"
-            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi/", "_blank")}
+            onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}
           >
             <ExternalLink className="h-4 w-4" />
-            {t('sections.linkedin.viewMore')}
+            View Profile
           </Button>
         </div>
       </CardHeader>
       
       <CardContent className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Network Stats */}
-          <div>
-            <h3 className="font-medium mb-3 flex items-center gap-1">
-              <BarChart className="h-4 w-4 text-primary" />
-              <span>{t('sections.linkedin.networkStats')}</span>
-            </h3>
+        {/* Network Stats */}
+        <div className="space-y-4">
+          <h3 className="font-medium flex items-center gap-2">
+            <BarChart className="h-4 w-4 text-primary" />
+            Network Overview
+          </h3>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-primary/5 rounded-lg p-4 text-center">
+              <p className="text-2xl font-bold text-primary">{stats.connections}</p>
+              <p className="text-xs text-muted-foreground">Connections</p>
+            </div>
             
-            <div className="grid grid-cols-2 gap-4 bg-muted/50 rounded-lg p-4">
-              <div className="space-y-1 p-2 rounded-md">
-                <span className="text-xs text-muted-foreground">{t('sections.linkedin.connections')}</span>
-                <p className="text-xl font-bold">{stats.connections}</p>
-              </div>
-              
-              <div className="space-y-1 p-2 rounded-md">
-                <span className="text-xs text-muted-foreground">{t('sections.linkedin.followers')}</span>
-                <p className="text-xl font-bold">{stats.followers}</p>
-              </div>
-              
-              <div className="space-y-1 p-2 rounded-md">
-                <span className="text-xs text-muted-foreground">{t('sections.linkedin.following')}</span>
-                <p className="text-xl font-bold">{stats.following}</p>
-              </div>
-              
-              <div className="space-y-1 p-2 rounded-md">
-                <span className="text-xs text-muted-foreground">Growth Rate</span>
-                <p className="text-xl font-bold text-green-500">{stats.growthRate}</p>
-              </div>
+            <div className="bg-muted/50 rounded-lg p-4 text-center">
+              <p className="text-2xl font-bold">{stats.followers}</p>
+              <p className="text-xs text-muted-foreground">Followers</p>
+            </div>
+            
+            <div className="bg-muted/50 rounded-lg p-4 text-center">
+              <p className="text-2xl font-bold">{stats.following}</p>
+              <p className="text-xs text-muted-foreground">Following</p>
+            </div>
+            
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 text-center">
+              <p className="text-2xl font-bold text-green-600">{stats.growthRate}</p>
+              <p className="text-xs text-muted-foreground">Growth Rate</p>
             </div>
           </div>
           
-          {/* Mutual Connections */}
-          <div>
-            <h3 className="font-medium mb-3 flex items-center gap-1">
+          {/* Professional Circle */}
+          <div className="pt-4 border-t border-border/20">
+            <h4 className="font-medium mb-3 flex items-center gap-2">
               <UserPlus className="h-4 w-4 text-primary" />
-              <span>{t('sections.linkedin.mutualConnections')}</span>
-            </h3>
+              Professional Circle
+            </h4>
             
             <div className="space-y-3">
-              {mutualConnections.map((connection) => (
-                <div key={connection.id} className="flex items-center justify-between gap-3 group hover:bg-muted/50 p-2 rounded-md transition-colors">
-                  <div className="flex items-center gap-3">
-                    <Avatar className="h-10 w-10">
-                      <AvatarImage src={connection.avatar} alt={connection.name} />
-                      <AvatarFallback>{connection.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    
-                    <div>
-                      <p className="font-medium text-sm">{connection.name}</p>
-                      <p className="text-xs text-muted-foreground line-clamp-1">{connection.title}</p>
-                    </div>
-                  </div>
+              {mutualConnections.slice(0, 3).map((connection) => (
+                <div key={connection.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={connection.avatar} alt={connection.name} />
+                    <AvatarFallback className="text-xs">{connection.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
                   
-                  <Button variant="outline" size="sm" className="text-xs h-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Connect
-                  </Button>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm truncate">{connection.name}</p>
+                    <p className="text-xs text-muted-foreground truncate">{connection.title}</p>
+                  </div>
                 </div>
               ))}
             </div>
+            
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="w-full mt-3"
+              onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/", "_blank")}
+            >
+              View All Connections
+            </Button>
           </div>
         </div>
       </CardContent>
