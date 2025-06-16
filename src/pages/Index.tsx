@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
-import EnhancedHeroSection from '../components/EnhancedHeroSection';
+import HeroSection from '../components/HeroSection';
 import ExperienceSection from '../components/ExperienceSection';
 import EducationSection from '../components/EducationSection';
 import CertificationsSection from '../components/CertificationsSection';
@@ -11,7 +11,6 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import FloatingNavDots from '../components/FloatingNavDots';
 import LiveSkillsSection from '../components/LiveSkillsSection';
 import GitHubActivitySection from '../components/GitHubActivitySection';
-import ProjectsSection from '../components/ProjectsSection';
 import { ArrowUp, Book, FileCode2, Settings, BookOpen, ExternalLink } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
@@ -130,13 +129,12 @@ const Index: React.FC = () => {
       <FloatingNavDots activeSection={activeSection} />
       
       <main className="pt-16 md:pt-20 relative">
-        <EnhancedHeroSection />
+        <HeroSection />
         <ExperienceSection />
         <EducationSection />
         <SkillsSection />
         <LiveSkillsSection />
         <GitHubActivitySection />
-        <ProjectsSection />
         <CertificationsSection />
         <TestimonialsSection />
         <ContactSection />
