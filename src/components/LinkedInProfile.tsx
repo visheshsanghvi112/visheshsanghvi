@@ -26,56 +26,76 @@ const LinkedInProfile: React.FC = () => {
   };
   
   return (
-    <Card className="bg-card border border-border/20 overflow-hidden">
-      {/* Clean Header with Gradient */}
-      <div className="h-24 bg-gradient-to-r from-[#0077B5]/10 via-primary/5 to-transparent"></div>
+    <Card className="bg-card/50 backdrop-blur-sm border border-border/40 overflow-hidden">
+      {/* Cover Image */}
+      <div className="h-32 bg-gradient-to-r from-primary/20 to-primary/5 w-full"></div>
       
-      {/* Profile Content */}
-      <div className="px-8 relative">
-        <div className="flex flex-col lg:flex-row lg:items-start gap-6 -mt-8">
-          {/* Profile Image */}
-          <Avatar className="h-20 w-20 border-4 border-background shadow-lg bg-background">
-            <AvatarImage src="https://media.licdn.com/dms/image/D4D03AQF5_qTk5EXb9g/profile-displayphoto-shrink_400_400/0/1708774825393?e=1719446400&v=beta&t=ZhD_zRVNOxQMvNdcf8yPtZ6Mb_W7fwb7GNYxuFP7JHM" alt={profile.name} />
-            <AvatarFallback className="text-lg font-semibold">VS</AvatarFallback>
-          </Avatar>
-          
-          {/* Profile Info */}
-          <div className="flex-1 pt-2">
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-              <div className="space-y-3">
-                <div>
-                  <h1 className="text-3xl font-bold">{profile.name}</h1>
-                  <p className="text-lg text-muted-foreground mt-1">{profile.headline}</p>
+      {/* Profile Info */}
+      <div className="px-6 sm:px-8 relative">
+        <Avatar className="h-24 w-24 border-4 border-background absolute -top-12">
+          <AvatarImage src="https://media.licdn.com/dms/image/D4D03AQF5_qTk5EXb9g/profile-displayphoto-shrink_400_400/0/1708774825393?e=1719446400&v=beta&t=ZhD_zRVNOxQMvNdcf8yPtZ6Mb_W7fwb7GNYxuFP7JHM" alt={profile.name} />
+          <AvatarFallback>VS</AvatarFallback>
+        </Avatar>
+        
+        <div className="pt-16 pb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-bold">{profile.name}</h1>
+              <p className="text-muted-foreground">{profile.headline}</p>
+              
+              <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-1">
+                  <MapPin className="h-4 w-4" />
+                  <span>{profile.location}</span>
                 </div>
-                
-                <div className="flex flex-wrap items-center gap-4 text-sm">
-                  <div className="flex items-center gap-1 text-muted-foreground">
-                    <MapPin className="h-4 w-4" />
-                    <span>{profile.location}</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-muted-foreground">
-                    <Link className="h-4 w-4" />
-                    <span className="font-medium">{profile.connections}</span> connections
-                  </div>
-                  <div className="flex items-center gap-1 text-muted-foreground">
-                    <span className="font-medium">265</span> followers
-                  </div>
-                </div>
-                
-                {/* Current Position Inline */}
-                <div className="flex items-center gap-2 text-sm bg-primary/5 px-3 py-2 rounded-lg w-fit">
-                  <Briefcase className="h-4 w-4 text-primary" />
-                  <span className="font-medium">{profile.currentPosition.title}</span>
-                  <span className="text-muted-foreground">at {profile.currentPosition.company}</span>
+                <div className="flex items-center gap-1">
+                  <Link className="h-4 w-4" />
+                  <span>{profile.connections}+ connections</span>
                 </div>
               </div>
             </div>
             
-            {/* About Section */}
-            <div className="mt-6 pb-8">
-              <h2 className="text-lg font-semibold mb-3">About</h2>
-              <p className="text-muted-foreground leading-relaxed">{profile.about}</p>
+            <div className="flex flex-wrap gap-2">
+              <Button className="gap-2" onClick={() => window.open("https://www.linkedin.com/in/vishesh-sanghvi/", "_blank")}>
+                <ExternalLink className="h-4 w-4" />
+                {t('sections.linkedin.viewProfile')}
+              </Button>
+              <Button variant="outline">
+                {t('sections.linkedin.connectWithMe')}
+              </Button>
             </div>
+          </div>
+          
+          {/* Current Position */}
+          <Card className="mt-6 bg-muted/50">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base font-medium flex items-center gap-2">
+                <Briefcase className="h-4 w-4 text-primary" />
+                {t('sections.linkedin.position')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col">
+                <div className="font-medium">{profile.currentPosition.title}</div>
+                <div className="text-sm">{profile.currentPosition.company}</div>
+                <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3.5 w-3.5" />
+                    <span>{profile.currentPosition.duration}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <MapPin className="h-3.5 w-3.5" />
+                    <span>{profile.currentPosition.location}</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* About */}
+          <div className="mt-6">
+            <h2 className="text-lg font-medium mb-2">{t('sections.linkedin.about')}</h2>
+            <p className="text-muted-foreground">{profile.about}</p>
           </div>
         </div>
       </div>
