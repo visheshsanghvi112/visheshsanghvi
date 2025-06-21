@@ -5,11 +5,9 @@ import ExperienceSection from '../components/ExperienceSection';
 import EducationSection from '../components/EducationSection';
 import CertificationsSection from '../components/CertificationsSection';
 import ContactSection from '../components/ContactSection';
-import SkillsSection from '../components/SkillsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import FloatingNavDots from '../components/FloatingNavDots';
 import GitHubActivitySection from '../components/GitHubActivitySection';
-import ProjectsSection from '../components/ProjectsSection';
 import { ArrowUp, Book, FileCode2, Settings, BookOpen, ExternalLink } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
@@ -50,10 +48,8 @@ const Index: React.FC = () => {
         }
       });
 
-      // Update active section for highlighting in navigation
-      const sections = isMobile 
-        ? ['hero', 'experience', 'education', 'github-activity', 'certifications', 'testimonials', 'contact'] 
-        : ['hero', 'experience', 'education', 'skills', 'github-activity', 'certifications', 'testimonials', 'contact'];
+      // Update active section for highlighting in navigation (removed skills from sections array)
+      const sections = ['hero', 'experience', 'education', 'github-activity', 'certifications', 'testimonials', 'contact'];
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
@@ -92,11 +88,9 @@ const Index: React.FC = () => {
     };
   }, [isMobile, activeSection]);
   
-  // Function to navigate to next/previous section
+  // Function to navigate to next/previous section (removed skills from sections array)
   const navigateToNextSection = (direction: 'up' | 'down') => {
-    const sections = isMobile 
-      ? ['hero', 'experience', 'education', 'github-activity', 'certifications', 'testimonials', 'contact'] 
-      : ['hero', 'experience', 'education', 'skills', 'github-activity', 'certifications', 'testimonials', 'contact'];
+    const sections = ['hero', 'experience', 'education', 'github-activity', 'certifications', 'testimonials', 'contact'];
     
     const currentIndex = sections.indexOf(activeSection);
     let targetIndex;
@@ -131,9 +125,7 @@ const Index: React.FC = () => {
         <EnhancedHeroSection />
         <ExperienceSection />
         <EducationSection />
-        <SkillsSection />
         <GitHubActivitySection />
-        <ProjectsSection />
         <CertificationsSection />
         <TestimonialsSection />
         <ContactSection />
