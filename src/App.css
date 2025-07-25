@@ -54,21 +54,48 @@ section {
   padding-top: 4rem; /* Added padding for better spacing */
 }
 
+/* Custom scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* For better mobile experience */
 @media (max-width: 768px) {
-  #skills {
-    display: none !important;
+  /* Improve touch experience */
+  body {
+    -webkit-overflow-scrolling: touch;
   }
   
-  #projects, #certifications {
+  /* Ensure sections are visible on mobile */
+  section {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     z-index: 1;
   }
   
-  /* Improve touch experience */
-  body {
+  /* Fix container width issues on mobile */
+  .container {
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Better mobile tab scrolling */
+  .mobile-tab-scroll {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
+  }
+  
+  .mobile-tab-scroll::-webkit-scrollbar {
+    display: none;
   }
 }

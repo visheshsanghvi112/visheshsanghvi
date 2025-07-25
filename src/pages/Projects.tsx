@@ -572,7 +572,7 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
   
   return (
     <motion.div 
-      className="h-full"
+      className="h-full group"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -587,7 +587,10 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
           />
           
           {(project.githubUrl || project.liveUrl) && (
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end justify-end p-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
+            <div className={cn(
+              "absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end justify-end p-4 transition-opacity duration-300",
+              isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+            )}>
               <div className="flex gap-2">
                 {project.githubUrl && (
                   <motion.a
@@ -745,12 +748,12 @@ const Projects: React.FC = () => {
           
           <Tabs defaultValue="All" className="w-full" onValueChange={handleCategoryChange}>
             <motion.div 
-              className="flex justify-center mb-10 overflow-x-auto pb-2"
+              className="flex justify-center mb-10 overflow-x-auto pb-2 scrollbar-hide"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.4 }}
             >
-              <TabsList className="bg-secondary/20 p-1 rounded-full flex-nowrap justify-start md:justify-center w-auto min-w-full md:min-w-0">
+              <TabsList className="bg-secondary/20 p-1 rounded-full flex-nowrap justify-start md:justify-center w-auto min-w-max md:min-w-0 gap-1">
                 {categories.map((category, index) => (
                   <motion.div
                     key={category}
