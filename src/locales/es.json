@@ -21,7 +21,8 @@
     "caseStudies": "Casos de Estudio",
     "setup": "Mi Configuración",
     "codeDemos": "Demos de Código",
-    "leetcode": "Estadísticas de LeetCode"
+    "leetcode": "Estadísticas de LeetCode",
+    "linkedin": "LinkedIn"
   },
   "hero": {
     "greeting": "Hola, soy",
