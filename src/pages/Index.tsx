@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
-import ProfessionalHeroSection from '../components/ProfessionalHeroSection';
+import EnhancedHeroSection from '../components/EnhancedHeroSection';
 import ExperienceSection from '../components/ExperienceSection';
 import EducationSection from '../components/EducationSection';
 import CertificationsSection from '../components/CertificationsSection';
@@ -122,7 +122,7 @@ const Index: React.FC = () => {
       <FloatingNavDots activeSection={activeSection} />
       
       <main className="pt-16 md:pt-20 relative">
-        <ProfessionalHeroSection />
+        <EnhancedHeroSection />
         <ExperienceSection />
         <EducationSection />
         <GitHubActivitySection />
