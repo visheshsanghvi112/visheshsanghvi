@@ -220,20 +220,16 @@ const EnhancedHeroSection: React.FC = () => {
               </motion.div>
               
               <motion.div
-                className="text-base sm:text-lg text-foreground/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-6"
+                className="text-center lg:text-left mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <span className="text-balance">{typedText}</span>
-                <motion.span
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                  className="text-primary"
-                >
-                  |
-                </motion.span>
-                <p className="mt-3 text-foreground/70">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
+                  I help founders turn ideas into seamless
+                  <span className="italic"> digital experiences</span>
+                </h1>
+                <p className="mt-4 text-foreground/70 max-w-2xl mx-auto lg:mx-0">
                   Specializing in full-stack development with React, PHP, and Python. 
                   Building scalable web applications and turning complex problems into elegant solutions.
                 </p>
@@ -267,20 +263,19 @@ const EnhancedHeroSection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 }}
               >
-                <DownloadCVButton className="transform transition hover:scale-105 active:scale-95" />
-                <Link
-                  to="/projects"
-                  className="px-6 py-3 bg-secondary/80 text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95 backdrop-blur-sm relative overflow-hidden group"
-                >
-                  <span className="absolute inset-0 w-0 bg-primary/10 transition-all duration-300 group-hover:w-full"></span>
-                  <span className="relative">View Projects</span>
-                </Link>
                 <a
-                  href="#contact"
-                  className="px-6 py-3 bg-secondary/50 text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95 backdrop-blur-sm relative overflow-hidden group"
+                  href="https://calendly.com/visheshsanghvi112/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors hover-scale"
                 >
-                  <span className="absolute inset-0 w-0 bg-primary/10 transition-all duration-300 group-hover:w-full"></span>
-                  <span className="relative">Contact Me</span>
+                  Let's Connect
+                </a>
+                <a
+                  href="mailto:visheshsanghvi112@gmail.com"
+                  className="px-6 py-3 rounded-full bg-secondary/60 text-foreground hover:bg-secondary/80 transition-colors"
+                >
+                  visheshsanghvi112@gmail.com
                 </a>
               </motion.div>
             </div>
