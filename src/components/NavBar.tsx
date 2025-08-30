@@ -35,8 +35,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
   
   const navItems = [
     { id: 'hero', label: t('navigation.home') },
-    { id: 'experience', label: t('navigation.experience') },
-    { id: 'skills', label: t('navigation.skills') },
+    { id: 'experience', label: t('navigation.about') },
+    { id: 'projects', label: t('navigation.work') },
     { id: 'contact', label: t('navigation.contact') },
   ];
 
@@ -71,23 +71,10 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
               
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium">
-                  {t('navigation.pages')}
+                  More
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[320px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-                    <div>
-                      <NavigationMenuLink 
-                        asChild 
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <Link to="/resume">
-                          <div className="text-sm font-medium leading-none">{t('navigation.resume')}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Interactive resume showcasing my skills and experience
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
+                  <div className="grid w-[280px] gap-3 p-4">
                     <div>
                       <NavigationMenuLink 
                         asChild 
@@ -96,20 +83,7 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                         <Link to="/blog">
                           <div className="text-sm font-medium leading-none">{t('navigation.blog')}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Articles and insights on development and technology
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                    <div>
-                      <NavigationMenuLink 
-                        asChild 
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <Link to="/projects">
-                          <div className="text-sm font-medium leading-none">{t('navigation.projects')}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Collection of my development and design projects
+                            Articles and insights on development
                           </p>
                         </Link>
                       </NavigationMenuLink>
@@ -122,20 +96,7 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                         <Link to="/case-studies">
                           <div className="text-sm font-medium leading-none">{t('navigation.caseStudies')}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Detailed case studies of my key projects
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                    <div>
-                      <NavigationMenuLink 
-                        asChild 
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <Link to="/code-demo">
-                          <div className="text-sm font-medium leading-none">{t('navigation.codeDemos')}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Interactive code demonstrations and examples
+                            Detailed project breakdowns
                           </p>
                         </Link>
                       </NavigationMenuLink>
@@ -146,9 +107,9 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/leetcode">
-                          <div className="text-sm font-medium leading-none">{t('navigation.leetcode')}</div>
+                          <div className="text-sm font-medium leading-none">LeetCode</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            My LeetCode solutions and statistics
+                            Coding solutions and statistics
                           </p>
                         </Link>
                       </NavigationMenuLink>
@@ -159,15 +120,33 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/linkedin">
-                          <div className="text-sm font-medium leading-none">{t('navigation.linkedin')}</div>
+                          <div className="text-sm font-medium leading-none">LinkedIn</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            My professional network and career highlights
+                            Professional network and highlights
                           </p>
                         </Link>
                       </NavigationMenuLink>
                     </div>
                   </div>
                 </NavigationMenuContent>
+              </NavigationMenuItem>
+              
+              <NavigationMenuItem>
+                <NavigationMenuLink
+                  asChild
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "px-4 py-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90"
+                  )}
+                >
+                  <a 
+                    href="https://calendly.com/visheshsanghvi112/30min" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Book a Call
+                  </a>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -200,9 +179,24 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
               ))}
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link to="/resume" className="w-full cursor-pointer">
-                  {t('navigation.resume')}
-                </Link>
+                <a 
+                  href="https://drive.google.com/file/d/1xxnxIPt1BJ1ecNQKxnD5Oqal5jdqJ8tf/view?usp=drive_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full cursor-pointer"
+                >
+                  Resume
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a 
+                  href="https://calendly.com/visheshsanghvi112/30min" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full cursor-pointer"
+                >
+                  Book a Call
+                </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/blog" className="w-full cursor-pointer">

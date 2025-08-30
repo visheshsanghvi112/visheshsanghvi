@@ -33,7 +33,7 @@ const EnhancedHeroSection: React.FC = () => {
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
   const [terminalLines, setTerminalLines] = useState<string[]>([]);
   
-  const fullText = "Full-stack developer specializing in web development and database management";
+  const fullText = "I help founders turn ideas into seamless digital experiences";
   const isMobile = useIsMobile();
   const heroRef = useRef<HTMLElement>(null);
   
@@ -215,8 +215,8 @@ const EnhancedHeroSection: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                <Sparkles size={16} className="text-primary" />
-                BDA Student | Full-Stack Alchemist | React, PHP, Python
+                 <Sparkles size={16} className="text-primary" />
+                Full-Stack Developer | React, PHP, Python Expert
               </motion.div>
               
               <motion.div
@@ -234,8 +234,8 @@ const EnhancedHeroSection: React.FC = () => {
                   |
                 </motion.span>
                 <p className="mt-3 text-foreground/70">
-                  Turning code into impact—crafting sleek frontends with React & Flutter, 
-                  powering backends with PHP, and decoding data with Python.
+                  Specializing in full-stack development with React, PHP, and Python. 
+                  Building scalable web applications and turning complex problems into elegant solutions.
                 </p>
               </motion.div>
 
