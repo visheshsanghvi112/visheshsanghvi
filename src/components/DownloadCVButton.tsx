@@ -77,7 +77,7 @@ const DownloadCVButton = ({ className }: { className?: string }) => {
         title: "Redirecting to Resume",
         description: "Thank you for your interest in my resume!",
       });
-      window.location.href = "https://drive.google.com/file/d/1xxnxIPt1BJ1ecNQKxnD5Oqal5jdqJ8tf/view?usp=drive_link";
+      window.location.href = "https://drive.google.com/file/d/1fjc-mHrwavHSOmJm6ck3zF7fNKIy1tXW/view?usp=sharing";
     }, 1500);
   };
 

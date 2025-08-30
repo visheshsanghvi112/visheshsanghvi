@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, ChevronDown } from 'lucide-react';
+import { Menu, ChevronDown, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -11,6 +11,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
@@ -26,7 +35,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
   
   const navItems = [
     { id: 'hero', label: t('navigation.home') },
-    { id: 'experience', label: t('navigation.about') },
+    { id: 'experience', label: t('navigation.experience') },
+    { id: 'skills', label: t('navigation.skills') },
     { id: 'contact', label: t('navigation.contact') },
   ];
 
@@ -39,81 +49,129 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
           </Link>
         </div>
         
-        <nav className="hidden md:flex items-center w-full justify-center">
-          <div className="rounded-full bg-card/60 backdrop-blur border border-border/40 shadow-md px-2 py-1 flex items-center gap-1">
-            {/* Primary links */}
-            <Link
-              to="/"
-              className={cn(
-                "px-4 py-2 text-sm font-medium rounded-full hover:bg-accent hover:text-accent-foreground transition-colors",
-                activeSection === 'hero' && "bg-primary/10 text-primary"
-              )}
-            >
-              {t('navigation.home')}
-            </Link>
-            <a
-              href="#experience"
-              className={cn(
-                "px-4 py-2 text-sm font-medium rounded-full hover:bg-accent hover:text-accent-foreground transition-colors",
-                activeSection === 'experience' && "bg-primary/10 text-primary"
-              )}
-            >
-              {t('navigation.about')}
-            </a>
-            <Link
-              to="/projects"
-              className="px-4 py-2 text-sm font-medium rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              {t('navigation.work')}
-            </Link>
-            <Link
-              to="/blog"
-              className="px-4 py-2 text-sm font-medium rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              {t('navigation.blog')}
-            </Link>
-
-            {/* More dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="px-4 py-2 text-sm font-medium rounded-full hover:bg-accent hover:text-accent-foreground transition-colors inline-flex items-center">
-                More <ChevronDown className="ml-1 h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="w-56">
-                <DropdownMenuItem asChild>
-                  <Link to="/case-studies">{t('navigation.caseStudies')}</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/code-demo">{t('navigation.codeDemos')}</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/leetcode">{t('navigation.leetcode')}</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/linkedin">{t('navigation.linkedin')}</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <a 
-                    href="https://drive.google.com/file/d/1xxnxIPt1BJ1ecNQKxnD5Oqal5jdqJ8tf/view?usp=drive_link" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+        <div className="hidden md:flex items-center">
+          <NavigationMenu className="mx-6">
+            <NavigationMenuList>
+              {navItems.map((item) => (
+                <NavigationMenuItem key={item.id}>
+                  <NavigationMenuLink
+                    href={`#${item.id}`}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "px-4 py-2 text-sm font-medium transition-colors",
+                      activeSection === item.id 
+                        ? "bg-primary/10 text-primary" 
+                        : "hover:bg-accent hover:text-accent-foreground"
+                    )}
                   >
-                    Resume (PDF)
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* CTA */}
-            <a
-              href="https://calendly.com/visheshsanghvi112/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-1 px-4 py-2 text-sm font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-lg"
-            >
-              Book a Call
-            </a>
-          </div>
-        </nav>
+                    {item.label}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+              
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium">
+                  {t('navigation.pages')}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[320px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                    <div>
+                      <NavigationMenuLink 
+                        asChild 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Link to="/resume">
+                          <div className="text-sm font-medium leading-none">{t('navigation.resume')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Interactive resume showcasing my skills and experience
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                    <div>
+                      <NavigationMenuLink 
+                        asChild 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Link to="/blog">
+                          <div className="text-sm font-medium leading-none">{t('navigation.blog')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Articles and insights on development and technology
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                    <div>
+                      <NavigationMenuLink 
+                        asChild 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Link to="/projects">
+                          <div className="text-sm font-medium leading-none">{t('navigation.projects')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Collection of my development and design projects
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                    <div>
+                      <NavigationMenuLink 
+                        asChild 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Link to="/case-studies">
+                          <div className="text-sm font-medium leading-none">{t('navigation.caseStudies')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Detailed case studies of my key projects
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                    <div>
+                      <NavigationMenuLink 
+                        asChild 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Link to="/code-demo">
+                          <div className="text-sm font-medium leading-none">{t('navigation.codeDemos')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Interactive code demonstrations and examples
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                    <div>
+                      <NavigationMenuLink 
+                        asChild 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Link to="/leetcode">
+                          <div className="text-sm font-medium leading-none">{t('navigation.leetcode')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            My LeetCode solutions and statistics
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                    <div>
+                      <NavigationMenuLink 
+                        asChild 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Link to="/linkedin">
+                          <div className="text-sm font-medium leading-none">{t('navigation.linkedin')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            My professional network and career highlights
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
         
         <div className="flex items-center space-x-2">
           <LanguageSwitcher />
@@ -142,24 +200,9 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
               ))}
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <a 
-                  href="https://drive.google.com/file/d/1xxnxIPt1BJ1ecNQKxnD5Oqal5jdqJ8tf/view?usp=drive_link" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full cursor-pointer"
-                >
-                  Resume
-                </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a 
-                  href="https://calendly.com/visheshsanghvi112/30min" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full cursor-pointer"
-                >
-                  Book a Call
-                </a>
+                <Link to="/resume" className="w-full cursor-pointer">
+                  {t('navigation.resume')}
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/blog" className="w-full cursor-pointer">
