@@ -77,7 +77,7 @@ const DownloadCVButton = ({ className }: { className?: string }) => {
         title: "Redirecting to Resume",
         description: "Thank you for your interest in my resume!",
       });
-      window.location.href = "https://drive.google.com/file/d/1fjc-mHrwavHSOmJm6ck3zF7fNKIy1tXW/view?usp=sharing";
+      window.location.href = "https://www.canva.com/design/DAGyyraNcBA/J0Jfadv1ePwuCK0znwJ6FQ/edit?utm_content=DAGyyraNcBA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton";
     }, 1500);
   };
 
