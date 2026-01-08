@@ -1,0 +1,3 @@
+# Vercel Redirects - Serve static assets directly, SPA routing for everything else
+/assets/*  200
+/*  /index.html  200
