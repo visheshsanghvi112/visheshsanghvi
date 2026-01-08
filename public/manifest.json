@@ -1,8 +1,7 @@
-
 {
   "name": "Vishesh Sanghvi - Portfolio",
   "short_name": "Vishesh Portfolio",
-  "description": "Full Stack Developer & Big Data Analytics Student Portfolio",
+  "description": "Full Stack Developer & Big Data Analytics MSc Graduate Portfolio",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -22,7 +21,11 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["portfolio", "developer", "technology"],
+  "categories": [
+    "portfolio",
+    "developer",
+    "technology"
+  ],
   "lang": "en",
   "dir": "ltr"
 }

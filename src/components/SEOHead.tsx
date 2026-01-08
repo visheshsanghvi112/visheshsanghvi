@@ -12,7 +12,7 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = 'Vishesh Sanghvi - Full Stack Developer & BDA Student',
+  title = 'Vishesh Sanghvi - Full Stack Developer & MSc Graduate',
   description = 'Portfolio of Vishesh Sanghvi - Full Stack Developer specializing in web development, database management, and data analytics.',
   keywords = 'Vishesh Sanghvi, Web Developer, Full Stack Developer, Database Management, Big Data Analytics, Mumbai Developer',
   image = '/lovable-uploads/a9d5c5fd-da0c-44b1-8abb-8f97d994e746.png',
@@ -28,7 +28,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Vishesh Sanghvi" />
-      
+
       {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -36,20 +36,20 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:url" content={fullUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="Vishesh Sanghvi Portfolio" />
-      
+
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={fullImageUrl} />
       <meta name="twitter:creator" content="@visheshsanghvi" />
-      
+
       {/* Additional SEO */}
       <meta name="robots" content="index, follow" />
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
       <link rel="canonical" href={fullUrl} />
-      
+
       {/* Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify({

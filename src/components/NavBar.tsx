@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Menu, ChevronDown, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -32,11 +32,14 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
   const { t } = useTranslation();
-  
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   const navItems = [
     { id: 'hero', label: t('navigation.home') },
     { id: 'experience', label: t('navigation.experience') },
-    { id: 'skills', label: t('navigation.skills') },
+    { id: 'education', label: 'Education' },
+    { id: 'certifications', label: 'Certifications' },
     { id: 'contact', label: t('navigation.contact') },
   ];
 
@@ -48,27 +51,39 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
             <Logo />
           </Link>
         </div>
-        
+
         <div className="hidden md:flex items-center">
           <NavigationMenu className="mx-6">
             <NavigationMenuList>
               {navItems.map((item) => (
                 <NavigationMenuItem key={item.id}>
-                  <NavigationMenuLink
-                    href={`#${item.id}`}
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      "px-4 py-2 text-sm font-medium transition-colors",
-                      activeSection === item.id 
-                        ? "bg-primary/10 text-primary" 
-                        : "hover:bg-accent hover:text-accent-foreground"
-                    )}
-                  >
-                    {item.label}
-                  </NavigationMenuLink>
+                  {isHomePage ? (
+                    <NavigationMenuLink
+                      href={`#${item.id}`}
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "px-4 py-2 text-sm font-medium transition-colors cursor-pointer",
+                        activeSection === item.id
+                          ? "bg-primary/10 text-primary"
+                          : "hover:bg-accent hover:text-accent-foreground"
+                      )}
+                    >
+                      {item.label}
+                    </NavigationMenuLink>
+                  ) : (
+                    <Link
+                      to={`/#${item.id}`}
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "px-4 py-2 text-sm font-medium transition-colors cursor-pointer"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </NavigationMenuItem>
               ))}
-              
+
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium">
                   {t('navigation.pages')}
@@ -76,8 +91,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                 <NavigationMenuContent>
                   <div className="grid w-[320px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
                     <div>
-                      <NavigationMenuLink 
-                        asChild 
+                      <NavigationMenuLink
+                        asChild
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/resume">
@@ -89,8 +104,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                       </NavigationMenuLink>
                     </div>
                     <div>
-                      <NavigationMenuLink 
-                        asChild 
+                      <NavigationMenuLink
+                        asChild
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/blog">
@@ -102,8 +117,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                       </NavigationMenuLink>
                     </div>
                     <div>
-                      <NavigationMenuLink 
-                        asChild 
+                      <NavigationMenuLink
+                        asChild
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/projects">
@@ -115,8 +130,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                       </NavigationMenuLink>
                     </div>
                     <div>
-                      <NavigationMenuLink 
-                        asChild 
+                      <NavigationMenuLink
+                        asChild
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/case-studies">
@@ -128,8 +143,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                       </NavigationMenuLink>
                     </div>
                     <div>
-                      <NavigationMenuLink 
-                        asChild 
+                      <NavigationMenuLink
+                        asChild
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/code-demo">
@@ -141,8 +156,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                       </NavigationMenuLink>
                     </div>
                     <div>
-                      <NavigationMenuLink 
-                        asChild 
+                      <NavigationMenuLink
+                        asChild
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/leetcode">
@@ -154,8 +169,8 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
                       </NavigationMenuLink>
                     </div>
                     <div>
-                      <NavigationMenuLink 
-                        asChild 
+                      <NavigationMenuLink
+                        asChild
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <Link to="/linkedin">
@@ -172,12 +187,12 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        
-        <div className="flex items-center space-x-2">
+
+        <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <Separator orientation="vertical" className="h-6 mx-1 hidden md:block" />
           <ThemeToggle />
-          
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon">
@@ -187,15 +202,24 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection }) => {
             <DropdownMenuContent align="end" className="w-52 md:hidden">
               {navItems.map((item) => (
                 <DropdownMenuItem key={item.id} asChild>
-                  <a 
-                    href={`#${item.id}`}
-                    className={cn(
-                      "w-full cursor-pointer",
-                      activeSection === item.id && "text-primary font-medium"
-                    )}
-                  >
-                    {item.label}
-                  </a>
+                  {isHomePage ? (
+                    <a
+                      href={`#${item.id}`}
+                      className={cn(
+                        "w-full cursor-pointer",
+                        activeSection === item.id && "text-primary font-medium"
+                      )}
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={`/#${item.id}`}
+                      className="w-full cursor-pointer"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </DropdownMenuItem>
               ))}
               <DropdownMenuSeparator />

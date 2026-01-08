@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
+import MainLayout from '@/components/MainLayout';
 import AnimatedSection from '../components/AnimatedSection';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -75,26 +75,26 @@ const blogPosts = [
 
 const BlogCard = ({ post }: { post: typeof blogPosts[0] }) => {
   const navigate = useNavigate();
-  
+
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
-  
+
   return (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 bg-card/50 backdrop-blur-sm border border-border/50">
       <div className="relative h-48 overflow-hidden">
-        <img 
-          src={post.image} 
-          alt={post.title} 
-          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" 
+        <img
+          src={post.image}
+          alt={post.title}
+          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
         />
         <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full flex items-center">
           <Eye size={12} className="mr-1" />
           {post.views}
         </div>
       </div>
-      
+
       <CardHeader className="pb-2">
         <div className="flex flex-wrap gap-1 mb-2">
           {post.tags.slice(0, 2).map(tag => (
@@ -108,33 +108,33 @@ const BlogCard = ({ post }: { post: typeof blogPosts[0] }) => {
             </Badge>
           )}
         </div>
-        
+
         <h3 className="text-xl font-semibold line-clamp-2 mb-1 hover:text-primary transition-colors duration-200">
           {post.title}
         </h3>
       </CardHeader>
-      
+
       <CardContent className="pb-2">
         <p className="text-foreground/70 text-sm line-clamp-3">
           {post.excerpt}
         </p>
       </CardContent>
-      
+
       <CardFooter className="flex justify-between text-sm text-foreground/60 pt-0">
         <div className="flex items-center gap-1">
           <Calendar size={14} />
           <span>{formatDate(post.date)}</span>
         </div>
-        
+
         <div className="flex items-center gap-1">
           <Clock size={14} />
           <span>{post.readTime}</span>
         </div>
       </CardFooter>
-      
+
       <div className="px-6 pb-6">
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           className="w-full group relative overflow-hidden"
           onClick={() => navigate(`/blog/${post.id}`)}
         >
@@ -149,43 +149,41 @@ const BlogCard = ({ post }: { post: typeof blogPosts[0] }) => {
 const Blog = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   // Filter posts based on search term
-  const filteredPosts = blogPosts.filter(post => 
+  const filteredPosts = blogPosts.filter(post =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())) ||
     post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <NavBar />
-      
-      <main className="pt-20 md:pt-24">
+    <MainLayout>
+      <div className="pt-4">
         {/* Hero Section */}
-        <AnimatedSection 
-          className="section-container py-16 md:py-20" 
+        <AnimatedSection
+          className="section-container py-16 md:py-20"
           animation="fade"
         >
-          <Button 
-            variant="ghost" 
-            className="mb-6 group" 
+          <Button
+            variant="ghost"
+            className="mb-6 group"
             onClick={() => navigate('/')}
           >
             <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Home
           </Button>
-          
+
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
               Blog & Insights
             </span>
           </h1>
-          
+
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-10">
             Thoughts, tutorials, and insights on web development, design, and technology.
           </p>
-          
+
           <div className="relative max-w-md mx-auto mb-16">
             <Input
               placeholder="Search articles by title, tag, or content..."
@@ -196,10 +194,10 @@ const Blog = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/40" size={18} />
           </div>
         </AnimatedSection>
-        
+
         {/* Blog Posts Grid */}
-        <AnimatedSection 
-          className="section-container pb-20" 
+        <AnimatedSection
+          className="section-container pb-20"
           animation="fade"
           staggerChildren
         >
@@ -207,7 +205,7 @@ const Blog = () => {
             <h2 className="text-2xl font-bold">
               {searchTerm ? `Search Results (${filteredPosts.length})` : 'Latest Articles'}
             </h2>
-            
+
             <div className="flex gap-2">
               <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
                 All
@@ -220,7 +218,7 @@ const Blog = () => {
               </Badge>
             </div>
           </div>
-          
+
           {filteredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post) => (
@@ -236,8 +234,8 @@ const Blog = () => {
               <p className="text-foreground/60">
                 Try adjusting your search terms or browse all articles.
               </p>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="mt-4"
                 onClick={() => setSearchTerm("")}
               >
@@ -246,16 +244,8 @@ const Blog = () => {
             </div>
           )}
         </AnimatedSection>
-      </main>
-      
-      <footer className="py-8 border-t border-border/60 bg-gradient-to-t from-background to-background/50">
-        <div className="container max-w-7xl mx-auto px-6 text-center">
-          <p className="text-foreground/60 text-sm">
-            © {new Date().getFullYear()} Vishesh Sanghvi. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </MainLayout>
   );
 };
 

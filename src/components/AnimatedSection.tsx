@@ -36,7 +36,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   backgroundAnimation = 'none',
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   // Determine animation class based on prop
   const getAnimationClasses = () => {
@@ -102,7 +102,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   // Get background animation classes
   const getBackgroundClasses = () => {
     if (!withBackground) return '';
-    
+
     switch (backgroundAnimation) {
       case 'pulse':
         return 'before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/20 before:via-secondary/20 before:to-primary/20 before:animate-pulse before:-z-10 before:rounded-xl';
@@ -123,12 +123,12 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       const [entry] = entries;
-      
+
       if (entry.isIntersecting) {
         setTimeout(() => {
           setIsVisible(true);
         }, delay);
-        
+
         if (once) {
           observer.unobserve(currentRef);
         }
@@ -161,11 +161,11 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         staggerChildren && 'stagger-children',
         className
       )}
-      style={{ 
+      style={{
         transitionDelay: `${delay}ms`,
         transitionDuration: `${duration}ms`,
         // Fix the TypeScript error by adding the property with correct typing
-        [`--stagger-delay` as string]: `${staggerDelay}ms` 
+        [`--stagger-delay` as string]: `${staggerDelay}ms`
       }}
     >
       {staggered ? (

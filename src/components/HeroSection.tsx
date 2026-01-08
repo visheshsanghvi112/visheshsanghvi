@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
   const isMobile = useIsMobile();
   const statsRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
-  
+
   // Typing effect
   useEffect(() => {
     if (typedText.length < fullText.length) {
@@ -66,21 +66,21 @@ const HeroSection: React.FC = () => {
             Vishesh Sanghvi
           </h1>
           <div className="chip bg-secondary/50 backdrop-blur-sm text-foreground/80 text-sm sm:text-base px-4 py-2 rounded-full inline-block mb-6 animate-slide-down opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-            BDA Student | Full-Stack Alchemist | React, PHP, Python
+            MSc in Big Data Analytics | Full-Stack Alchemist | React, PHP, Python
           </div>
           <div className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
             <span className="text-balance">{typedText}</span>
             <span className="animate-pulse">|</span>
             <p className="mt-3 text-foreground/70">Turning code into impact—crafting sleek frontends with React & Flutter, powering backends with PHP, and decoding data with Python. From servers to scrapers, I build, break, migrate, and scale—end to end.</p>
           </div>
-          
+
           {/* Stats cards with hover effects */}
-          <div 
+          <div
             ref={statsRef}
             className="flex flex-wrap justify-center gap-4 mt-8 opacity-0 transform translate-y-4"
-            style={{ 
+            style={{
               animation: 'fadeSlideUp 0.6s ease-out 1s forwards',
-              perspective: '1000px' 
+              perspective: '1000px'
             }}
           >
             <div className="glass-panel p-3 sm:p-4 rounded-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 transform">
@@ -98,10 +98,10 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={buttonsRef}
           className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-5 mt-8 opacity-0"
-          style={{ 
+          style={{
             animation: 'fadeIn 0.8s ease-out 1.2s forwards'
           }}
         >

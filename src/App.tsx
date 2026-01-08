@@ -12,7 +12,6 @@ import { analytics } from "@/utils/analytics";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
-import Resume from "./pages/Resume";
 import Blog from "./pages/Blog";
 import CaseStudies from "./pages/CaseStudies";
 import Setup from "./pages/Setup";
@@ -69,7 +68,7 @@ const App = () => {
               <Sonner />
               <BrowserRouter>
                 <AnalyticsTracker />
-                <Suspense 
+                <Suspense
                   fallback={
                     <div className="min-h-screen flex items-center justify-center">
                       <LoadingSpinner size="lg" />
@@ -79,7 +78,6 @@ const App = () => {
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/admin" element={<Admin />} />
-                    <Route path="/resume" element={<Resume />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/case-studies" element={<CaseStudies />} />

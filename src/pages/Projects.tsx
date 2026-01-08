@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Github, 
-  ExternalLink, 
-  Code, 
-  Pill, 
-  Package, 
-  Building2, 
-  Tag, 
-  Bot, 
-  BarChart, 
-  FileType, 
-  Smartphone, 
-  PenTool, 
-  Home, 
+import {
+  Github,
+  ExternalLink,
+  Code,
+  Pill,
+  Package,
+  Building2,
+  Tag,
+  Bot,
+  BarChart,
+  FileType,
+  Smartphone,
+  PenTool,
+  Home,
   School,
   BookOpen,
   Calculator,
@@ -38,23 +38,33 @@ import {
   Cpu,
   MessageSquare,
   Coffee,
-  Camera
+  Camera,
+  RefreshCw,
+  Loader2,
+  Search,
+  X
 } from 'lucide-react';
-import NavBar from '../components/NavBar';
+import MainLayout from '@/components/MainLayout';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import AnimatedSection from '@/components/AnimatedSection';
-import { 
-  Pagination, 
-  PaginationContent, 
-  PaginationItem, 
-  PaginationLink, 
-  PaginationNext, 
-  PaginationPrevious 
+import { HeroParallax } from '@/components/ui/hero-parallax';
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { MacbookScroll } from '@/components/ui/macbook-scroll';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious
 } from '@/components/ui/pagination';
+import { getCachedDeployedProjects, ProcessedProject } from '@/services/githubService';
+import { useToast } from '@/hooks/use-toast';
+
 
 interface ProjectProps {
   title: string;
@@ -67,9 +77,21 @@ interface ProjectProps {
   icon?: React.ReactNode;
   association?: string;
   category: string;
+  video?: string;
 }
 
 const projects: ProjectProps[] = [
+  {
+    title: "NeuroScope MRI Analysis",
+    description: "Deep Learning-Based Multimodal MRI Analysis for Early Detection of Neurological Diseases. A live implementation demo of my research using advanced AI models.",
+    technologies: ["Deep Learning", "Python", "Medical Imaging", "TensorFlow"],
+    image: "/vishesh-ai-project.png",
+    video: "/research-areas.mp4",
+    liveUrl: "https://neuroscope-mri.vercel.app/",
+    icon: <Brain size={18} />,
+    featured: true,
+    category: "AI"
+  },
   {
     title: "Yugrow Pharmacy",
     description: "A comprehensive pharmacy management system with inventory tracking, order management, and customer relationship features. Built for seamless pharmacy operations and improved patient care.",
@@ -115,7 +137,7 @@ const projects: ProjectProps[] = [
     title: "Baker & Davis",
     description: "A modern landing page for Baker & Davis, a pharmacy company. Features elegant design, service showcases, and customer testimonials.",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    image: "https://images.unsplash.com/photo-1586015555751-63c79a26fe5d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    image: "/baker-davis-ui.png",
     liveUrl: "https://bakerdavis.vercel.app",
     icon: <Pill size={18} />,
     featured: true,
@@ -569,9 +591,9 @@ const PROJECTS_PER_PAGE = 9;
 
 const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
   const isMobile = useIsMobile();
-  
+
   return (
-    <motion.div 
+    <motion.div
       className="h-full group"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -580,12 +602,23 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
     >
       <Card className="h-full overflow-hidden hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 border border-border/40 bg-card flex flex-col">
         <div className="relative h-48 overflow-hidden">
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-          />
-          
+          {project.video ? (
+            <video
+              src={project.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            />
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            />
+          )}
+
           {(project.githubUrl || project.liveUrl) && (
             <div className={cn(
               "absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end justify-end p-4 transition-opacity duration-300",
@@ -605,7 +638,7 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
                     </Button>
                   </motion.a>
                 )}
-                
+
                 {project.liveUrl && (
                   <motion.a
                     href={project.liveUrl}
@@ -623,7 +656,7 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
             </div>
           )}
         </div>
-        
+
         <CardHeader className="p-4">
           <div className="flex items-center gap-2">
             {project.icon && <span className="text-primary">{project.icon}</span>}
@@ -631,7 +664,7 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
               {project.title}
             </h3>
           </div>
-          
+
           {project.featured && (
             <div className="mt-2">
               <span className="inline-block px-2 py-1 text-xs font-medium bg-primary/20 text-primary rounded">
@@ -639,7 +672,7 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
               </span>
             </div>
           )}
-          
+
           {project.association && (
             <div className="mt-1">
               <span className="inline-block px-2 py-1 text-xs font-medium bg-secondary/50 text-foreground/80 rounded">
@@ -648,15 +681,15 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
             </div>
           )}
         </CardHeader>
-        
+
         <CardContent className="p-4 pt-0 flex-grow">
           <p className="text-foreground/70 text-sm">{project.description}</p>
         </CardContent>
-        
+
         <CardFooter className="p-4 flex flex-wrap gap-2 border-t border-border/40">
           {project.technologies.map((tech, index) => (
-            <motion.span 
-              key={index} 
+            <motion.span
+              key={index}
               className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-secondary/50 text-foreground/80"
               whileHover={{ scale: 1.05 }}
             >
@@ -671,56 +704,177 @@ const ProjectCard: React.FC<{ project: ProjectProps }> = ({ project }) => {
 };
 
 const Projects: React.FC = () => {
-  // Get unique categories from projects
-  const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
+  const { toast } = useToast();
+  const [githubProjects, setGithubProjects] = useState<ProjectProps[]>([]);
+  const [loadingGithub, setLoadingGithub] = useState(true);
+  const [githubError, setGithubError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState("All");
-  
-  // Filter projects by category
-  const filteredProjects = activeCategory === "All" 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
-  
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState<"recent" | "name" | "featured">("featured");
+
+  // Fetch GitHub projects on component mount
+  useEffect(() => {
+    const loadGithubProjects = async () => {
+      try {
+        setLoadingGithub(true);
+        setGithubError(null);
+        const deployedProjects = await getCachedDeployedProjects();
+
+        // Convert ProcessedProject to ProjectProps
+        const convertedProjects: ProjectProps[] = deployedProjects.map(project => ({
+          title: project.title,
+          description: project.description,
+          technologies: project.technologies,
+          image: project.image,
+          githubUrl: project.githubUrl,
+          liveUrl: project.liveUrl,
+          featured: project.featured,
+          category: project.category,
+        }));
+
+        setGithubProjects(convertedProjects);
+      } catch (error: any) {
+        console.error('Error loading GitHub projects:', error);
+        setGithubError(error.message || 'Failed to load GitHub projects');
+      } finally {
+        setLoadingGithub(false);
+      }
+    };
+
+    loadGithubProjects();
+  }, []);
+
+  // Merge manual projects with GitHub projects (manual projects first, then GitHub)
+  const allProjects = [...projects, ...githubProjects];
+
+  // Get unique categories from all projects
+  const categories = ["All", ...Array.from(new Set(allProjects.map(project => project.category)))];
+
+  // Filter projects by category and search
+  let filteredProjects = activeCategory === "All"
+    ? allProjects
+    : allProjects.filter(project => project.category === activeCategory);
+
+  // Apply search filter
+  if (searchQuery.trim()) {
+    const query = searchQuery.toLowerCase();
+    filteredProjects = filteredProjects.filter(project =>
+      project.title.toLowerCase().includes(query) ||
+      project.description.toLowerCase().includes(query) ||
+      project.technologies.some(tech => tech.toLowerCase().includes(query))
+    );
+  }
+
+  // Apply sorting
+  filteredProjects = [...filteredProjects].sort((a, b) => {
+    if (sortBy === "featured") {
+      // Featured projects first
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return 0;
+    } else if (sortBy === "name") {
+      return a.title.localeCompare(b.title);
+    }
+    // For "recent", keep the default order (manual first, then GitHub by update date)
+    return 0;
+  });
+
   // Calculate total pages
   const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
-  
+
   // Get current projects
   const indexOfLastProject = currentPage * PROJECTS_PER_PAGE;
   const indexOfFirstProject = indexOfLastProject - PROJECTS_PER_PAGE;
   const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
-  
+
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-  
+
   // Handle category change
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
     setCurrentPage(1); // Reset to first page when changing category
   };
-  
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        staggerChildren: 0.1 
-      } 
+
+  // Handle search change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1); // Reset to first page when searching
+  };
+
+  // Manual refresh function - bypasses cache
+  const handleRefresh = async () => {
+    // Clear cache first
+    localStorage.removeItem('github_projects_cache');
+    setLoadingGithub(true);
+    setGithubError(null);
+
+    try {
+      // Import fetchDeployedProjects to bypass cache
+      const { fetchDeployedProjects } = await import('@/services/githubService');
+      const deployedProjects = await fetchDeployedProjects();
+
+      const convertedProjects: ProjectProps[] = deployedProjects.map(project => ({
+        title: project.title,
+        description: project.description,
+        technologies: project.technologies,
+        image: project.image,
+        githubUrl: project.githubUrl,
+        liveUrl: project.liveUrl,
+        featured: project.featured,
+        category: project.category,
+      }));
+
+      setGithubProjects(convertedProjects);
+
+      // Re-cache the fresh data
+      localStorage.setItem('github_projects_cache', JSON.stringify({
+        data: deployedProjects,
+        timestamp: Date.now(),
+      }));
+
+      // Show success toast
+      toast({
+        title: "✅ Projects Refreshed!",
+        description: `Successfully loaded ${deployedProjects.length} projects from GitHub`,
+      });
+    } catch (error: any) {
+      console.error('Error refreshing GitHub projects:', error);
+      setGithubError(error.message || 'Failed to refresh projects');
+
+      // Show error toast
+      toast({
+        title: "❌ Refresh Failed",
+        description: error.message || 'Failed to refresh projects',
+        variant: "destructive",
+      });
+    } finally {
+      setLoadingGithub(false);
     }
   };
-  
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <NavBar />
-      
-      <AnimatedSection className="pt-28 md:pt-32 pb-16" animation="fade">
+    <MainLayout>
+      <AnimatedSection className="pt-8 pb-16" animation="fade">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.span 
+            <motion.span
               className="inline-block px-3 py-1 text-xs uppercase tracking-wider font-semibold bg-secondary/70 text-foreground/90 rounded-full mb-3"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -728,7 +882,7 @@ const Projects: React.FC = () => {
             >
               My Portfolio
             </motion.span>
-            <motion.h1 
+            <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -736,18 +890,189 @@ const Projects: React.FC = () => {
             >
               Featured Projects
             </motion.h1>
-            <motion.p 
-              className="max-w-2xl mx-auto text-foreground/70 text-lg"
+            <motion.p
+              className="max-w-2xl mx-auto text-foreground/70 text-lg mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
               A showcase of my work across different technologies and domains
             </motion.p>
+
+            {/* GitHub Sync Status */}
+            <motion.div
+              className="flex items-center justify-center gap-4 flex-wrap relative z-20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              <div className="flex items-center gap-2 text-sm">
+                {loadingGithub ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                    <span className="text-foreground/60">Syncing with GitHub...</span>
+                  </>
+                ) : githubError ? (
+                  <>
+                    <span className="text-destructive">⚠ GitHub sync failed</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full border border-green-500/20">
+                      <Github className="w-3 h-3" />
+                      Synced with GitHub
+                    </span>
+                    <span className="text-foreground/60">
+                      {allProjects.length} projects total ({githubProjects.length} auto-synced)
+                    </span>
+                  </>
+                )}
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleRefresh}
+                disabled={loadingGithub}
+                className="gap-2 relative z-20 cursor-pointer hover:bg-secondary/80 transition-colors"
+              >
+                <RefreshCw className={cn("w-3 h-3", loadingGithub && "animate-spin")} />
+                Refresh
+              </Button>
+            </motion.div>
           </motion.div>
-          
+
+
+
+          {/* MacBook Showcase - Featured Project */}
+          <div className="w-full relative z-10 overflow-hidden mb-[-200px] mt-[-100px] md:mb-[-400px] md:mt-[-200px]">
+            <MacbookScroll
+              title={
+                <span className="text-3xl md:text-5xl font-bold text-neutral-800 dark:text-white">
+                  Introducing <br /> NeuroScope Research
+                </span>
+              }
+              video="/research-areas.mp4"
+              showGradient={true}
+              badge={
+                <motion.a
+                  href="https://neuroscope-mri.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-10 w-10 transform -rotate-12 inline-block shadow-2xl rounded-full overflow-hidden"
+                  whileHover={{ scale: 1.1, rotate: -12 }}
+                >
+                  <img
+                    src="/vishesh-ai-project.png"
+                    alt="NeuroScope Badge"
+                    className="h-full w-full object-cover"
+                  />
+                </motion.a>
+              }
+            />
+          </div>
+
+          {/* Hero Parallax Showcase */}
+          <div className="w-full my-16">
+            <HeroParallax products={products} />
+          </div>
+
+          {/* Search and Filter Bar */}
+          <div className="mb-8 space-y-4">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+              {/* Search Bar */}
+              <div className="relative w-full md:w-96">
+                <input
+                  type="text"
+                  placeholder="Search projects by name, description, or technology..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  className="w-full px-4 py-3 pl-11 bg-secondary/20 border border-border/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-foreground placeholder:text-foreground/50"
+                />
+                <svg
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground/40"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground transition-colors"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+
+              {/* Sort and Results Info */}
+              <div className="flex items-center gap-4 w-full md:w-auto">
+                <div className="text-sm text-foreground/60 whitespace-nowrap">
+                  {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'}
+                </div>
+
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as "recent" | "name" | "featured")}
+                  className="px-4 py-2.5 bg-secondary/20 border border-border/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-foreground cursor-pointer"
+                >
+                  <option value="featured">Sort: Featured First</option>
+                  <option value="name">Sort: Name (A-Z)</option>
+                  <option value="recent">Sort: Most Recent</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Active Filters Display */}
+            {(searchQuery || activeCategory !== "All") && (
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-sm text-foreground/60">Active filters:</span>
+                {searchQuery && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm border border-primary/20">
+                    Search: "{searchQuery}"
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="hover:text-primary/80"
+                    >
+                      ×
+                    </button>
+                  </span>
+                )}
+                {activeCategory !== "All" && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm border border-primary/20">
+                    Category: {activeCategory}
+                    <button
+                      onClick={() => setActiveCategory("All")}
+                      className="hover:text-primary/80"
+                    >
+                      ×
+                    </button>
+                  </span>
+                )}
+                <button
+                  onClick={() => {
+                    setSearchQuery("");
+                    setActiveCategory("All");
+                  }}
+                  className="text-sm text-foreground/60 hover:text-foreground underline"
+                >
+                  Clear all
+                </button>
+              </div>
+            )}
+          </div>
+
           <Tabs defaultValue="All" className="w-full" onValueChange={handleCategoryChange}>
-            <motion.div 
+            <motion.div
               className="flex justify-center mb-10 overflow-x-auto pb-2 scrollbar-hide"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -761,7 +1086,7 @@ const Projects: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 + (index * 0.1), duration: 0.4 }}
                   >
-                    <TabsTrigger 
+                    <TabsTrigger
                       value={category}
                       className="px-4 py-2 rounded-full text-sm whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-white"
                     >
@@ -771,32 +1096,53 @@ const Projects: React.FC = () => {
                 ))}
               </TabsList>
             </motion.div>
-            
+
             {categories.map(category => (
               <TabsContent key={category} value={category} className="mt-0">
-                <motion.div 
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                <motion.div
                   variants={containerVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                 >
-                  {currentProjects.map((project, index) => (
-                    <ProjectCard key={index} project={project} />
-                  ))}
+                  <BentoGrid className="mb-8">
+                    {currentProjects.map((project, index) => (
+                      <BentoGridItem
+                        key={index}
+                        title={project.title}
+                        description={
+                          <div className="flex flex-col gap-2">
+                            <span className="line-clamp-2 text-sm">{project.description}</span>
+                            <div className="flex flex-wrap gap-1">
+                              {project.technologies.slice(0, 3).map((t, i) => (<span key={i} className="text-[10px] px-2 py-0.5 bg-secondary/50 rounded-full">{t}</span>))}
+                            </div>
+                          </div>
+                        }
+                        header={
+                          <div className="relative w-full h-full min-h-[10rem]">
+                            <img src={project.image} alt={project.title} className="flex flex-1 w-full h-full rounded-xl object-cover transition duration-200 group-hover/bento:scale-105" />
+                            {project.featured && <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded shadow-md z-10">Featured</span>}
+                          </div>
+                        }
+                        icon={project.icon}
+                        className=""
+                        onClick={() => { const url = project.liveUrl || project.githubUrl; if (url) window.open(url, "_blank"); }}
+                      />
+                    ))}
+                  </BentoGrid>
                 </motion.div>
-                
+
                 {/* Pagination */}
                 {totalPages > 1 && (
                   <Pagination className="my-8">
                     <PaginationContent>
                       <PaginationItem>
-                        <PaginationPrevious 
+                        <PaginationPrevious
                           onClick={() => currentPage > 1 && paginate(currentPage - 1)}
                           className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
                         />
                       </PaginationItem>
-                      
+
                       {Array.from({ length: totalPages }, (_, i) => (
                         <PaginationItem key={i}>
                           <PaginationLink
@@ -808,9 +1154,9 @@ const Projects: React.FC = () => {
                           </PaginationLink>
                         </PaginationItem>
                       ))}
-                      
+
                       <PaginationItem>
-                        <PaginationNext 
+                        <PaginationNext
                           onClick={() => currentPage < totalPages && paginate(currentPage + 1)}
                           className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
                         />
@@ -823,8 +1169,111 @@ const Projects: React.FC = () => {
           </Tabs>
         </div>
       </AnimatedSection>
-    </div>
+    </MainLayout>
   );
 };
 
 export default Projects;
+
+export const products = [
+  {
+    title: "NeuroScope MRI Analysis",
+    link: "https://neuroscope-mri.vercel.app/",
+    thumbnail: "/vishesh-ai-project.png",
+    video: "/research-areas.mp4",
+  },
+  {
+    title: "Moonbeam",
+    link: "https://gomoonbeam.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
+  },
+  {
+    title: "Cursor",
+    link: "https://cursor.so",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/cursor.png",
+  },
+  {
+    title: "Rogue",
+    link: "https://userogue.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/rogue.png",
+  },
+
+  {
+    title: "Editorially",
+    link: "https://editorially.org",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/editorially.png",
+  },
+  {
+    title: "Editrix AI",
+    link: "https://editrix.ai",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/editrix.png",
+  },
+  {
+    title: "Pixel Perfect",
+    link: "https://app.pixelperfect.quest",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
+  },
+
+  {
+    title: "Algochurn",
+    link: "https://algochurn.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/algochurn.png",
+  },
+  {
+    title: "Aceternity UI",
+    link: "https://ui.aceternity.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/aceternityui.png",
+  },
+  {
+    title: "Tailwind Master Kit",
+    link: "https://tailwindmasterkit.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
+  },
+  {
+    title: "SmartBridge",
+    link: "https://smartbridgetech.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
+  },
+  {
+    title: "Renderwork Studio",
+    link: "https://renderwork.studio",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
+  },
+
+  {
+    title: "Creme Digital",
+    link: "https://cremedigital.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/cremedigital.png",
+  },
+  {
+    title: "Golden Bells Academy",
+    link: "https://goldenbellsacademy.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png",
+  },
+  {
+    title: "Invoker Labs",
+    link: "https://invoker.lol",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/invoker.png",
+  },
+  {
+    title: "E Free Invoice",
+    link: "https://efreeinvoice.com",
+    thumbnail:
+      "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
+  },
+];
+

@@ -37,19 +37,52 @@ const GitHubActivitySection: React.FC = () => {
     const fetchGitHubData = async () => {
       try {
         setLoading(true);
-        
+        setError(null);
+
         // Fetch repositories
         const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`);
-        if (!reposResponse.ok) throw new Error('Failed to fetch repositories');
+
+        // Check for rate limiting
+        if (reposResponse.status === 403) {
+          const rateLimitReset = reposResponse.headers.get('X-RateLimit-Reset');
+          const resetTime = rateLimitReset ? new Date(parseInt(rateLimitReset) * 1000).toLocaleTimeString() : 'soon';
+          throw new Error(`GitHub API rate limit exceeded. Try again at ${resetTime}`);
+        }
+
+        if (!reposResponse.ok) {
+          throw new Error(`Failed to fetch repositories (${reposResponse.status})`);
+        }
+
         const reposData = await reposResponse.json();
+
+        // Check if response is an error message
+        if (reposData.message) {
+          throw new Error(reposData.message);
+        }
+
         setRepositories(reposData);
-        
+
         // Fetch activity
         const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=10`);
-        if (!eventsResponse.ok) throw new Error('Failed to fetch events');
+
+        if (eventsResponse.status === 403) {
+          const rateLimitReset = eventsResponse.headers.get('X-RateLimit-Reset');
+          const resetTime = rateLimitReset ? new Date(parseInt(rateLimitReset) * 1000).toLocaleTimeString() : 'soon';
+          throw new Error(`GitHub API rate limit exceeded. Try again at ${resetTime}`);
+        }
+
+        if (!eventsResponse.ok) {
+          throw new Error(`Failed to fetch events (${eventsResponse.status})`);
+        }
+
         const eventsData = await eventsResponse.json();
+
+        if (eventsData.message) {
+          throw new Error(eventsData.message);
+        }
+
         setEvents(eventsData);
-        
+
       } catch (err: any) {
         console.error('Error fetching GitHub data:', err);
         setError(err.message || 'Failed to fetch GitHub data');
@@ -57,19 +90,19 @@ const GitHubActivitySection: React.FC = () => {
         setLoading(false);
       }
     };
-    
+
     fetchGitHubData();
   }, []);
-  
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
     }).format(date);
   };
-  
+
   const getEventIcon = (eventType: string) => {
     switch (eventType) {
       case 'PushEvent':
@@ -84,7 +117,7 @@ const GitHubActivitySection: React.FC = () => {
         return <Github size={18} className="text-primary" />;
     }
   };
-  
+
   const getEventDescription = (event: GitHubEvent) => {
     switch (event.type) {
       case 'PushEvent':
@@ -101,8 +134,8 @@ const GitHubActivitySection: React.FC = () => {
   };
 
   return (
-    <AnimatedSection 
-      id="github-activity" 
+    <AnimatedSection
+      id="github-activity"
       className="section-container py-20 bg-gradient-to-b from-background to-secondary/10"
       animation="fade"
     >
@@ -117,14 +150,35 @@ const GitHubActivitySection: React.FC = () => {
             See my latest projects and contributions on GitHub
           </p>
         </div>
-        
+
+
         {error && (
-          <div className="bg-destructive/10 text-destructive p-4 rounded-lg mb-8">
-            <p className="font-medium">Error: {error}</p>
-            <p className="text-sm mt-2">This could be due to GitHub API rate limits or network issues.</p>
+          <div className="bg-destructive/10 text-destructive p-6 rounded-lg mb-8 border border-destructive/20">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-destructive" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="font-medium">Unable to load GitHub data</p>
+                <p className="text-sm mt-2">{error}</p>
+                <p className="text-sm mt-3 opacity-80">
+                  You can still view my work on{' '}
+                  <a
+                    href={`https://github.com/${username}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-destructive/80"
+                  >
+                    GitHub directly
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         )}
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Recent Repositories */}
           <div>
@@ -132,7 +186,7 @@ const GitHubActivitySection: React.FC = () => {
               <Github className="mr-2 text-primary" size={20} />
               Recent Repositories
             </h3>
-            
+
             {loading ? (
               Array(3).fill(0).map((_, i) => (
                 <Card key={i} className="mb-4">
@@ -154,10 +208,10 @@ const GitHubActivitySection: React.FC = () => {
               </Card>
             ) : (
               repositories.map(repo => (
-                <a 
-                  key={repo.name} 
-                  href={repo.html_url} 
-                  target="_blank" 
+                <a
+                  key={repo.name}
+                  href={repo.html_url}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="block mb-4 transition-transform hover:translate-x-1"
                 >
@@ -188,11 +242,11 @@ const GitHubActivitySection: React.FC = () => {
                 </a>
               ))
             )}
-            
+
             <div className="mt-4 text-center">
-              <a 
-                href={`https://github.com/${username}`} 
-                target="_blank" 
+              <a
+                href={`https://github.com/${username}`}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-primary hover:underline"
               >
@@ -201,14 +255,14 @@ const GitHubActivitySection: React.FC = () => {
               </a>
             </div>
           </div>
-          
+
           {/* Recent Activity */}
           <div>
             <h3 className="text-xl font-semibold mb-6 flex items-center">
               <Calendar className="mr-2 text-primary" size={20} />
               Recent Activity
             </h3>
-            
+
             {loading ? (
               Array(5).fill(0).map((_, i) => (
                 <div key={i} className="mb-4 flex items-start">
@@ -266,7 +320,7 @@ const getLanguageColor = (language: string): string => {
     'C++': '#f34b7d',
     'C#': '#178600',
   };
-  
+
   return colors[language] || '#8e8e8e';
 };
 

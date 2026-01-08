@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Code, Database, Globe, Sparkles, Terminal, Coffee, MapPin, Clock } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ArrowRight, Sparkles, MapPin, Clock, Award } from 'lucide-react';
 import Background3D from './Background3D';
-import DownloadCVButton from './DownloadCVButton';
-import ModernLogo from './ModernLogo';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
+import { EncryptedText } from './ui/encrypted-text';
+import { BorderMagicButton } from './ui/border-magic-button';
 
 interface SkillConstellation {
   name: string;
@@ -28,54 +28,27 @@ const skills: SkillConstellation[] = [
 ];
 
 const EnhancedHeroSection: React.FC = () => {
-  const [typedText, setTypedText] = useState("");
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [activeWord, setActiveWord] = useState(0);
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
-  const [terminalLines, setTerminalLines] = useState<string[]>([]);
-  
-  const fullText = "Full-stack developer specializing in web development and database management";
+
+  const rotatingWords = ['Developer', 'Designer', 'Problem Solver', 'Tech Enthusiast'];
   const isMobile = useIsMobile();
   const heroRef = useRef<HTMLElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  // Typing effect
+  // Rotating words effect
   useEffect(() => {
-    if (typedText.length < fullText.length) {
-      const timeout = setTimeout(() => {
-        setTypedText(fullText.substring(0, typedText.length + 1));
-      }, 50);
-      return () => clearTimeout(timeout);
-    }
-  }, [typedText, fullText]);
-
-  // Terminal animation
-  useEffect(() => {
-    const commands = [
-      "~ $ whoami",
-      "vishesh.sanghvi",
-      "~ $ cat skills.txt",
-      "React, Node.js, Python, PHP...",
-      "~ $ git status",
-      "On branch main. Ready to code! ✨"
-    ];
-    
-    let currentIndex = 0;
     const interval = setInterval(() => {
-      if (currentIndex < commands.length) {
-        setTerminalLines(prev => [...prev, commands[currentIndex]]);
-        currentIndex++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 800);
-    
+      setActiveWord((prev) => (prev + 1) % rotatingWords.length);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -105,15 +78,15 @@ const EnhancedHeroSection: React.FC = () => {
     >
       {/* Enhanced 3D animated background */}
       <Background3D className="absolute inset-0 z-0" />
-      
-      {/* Floating particles */}
+
+      {/* Floating particles - Restored from Old Version */}
       <div className="absolute inset-0 z-5">
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-primary/30 rounded-full"
-            initial={{ 
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+            initial={{
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
               y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)
             }}
             animate={{
@@ -130,7 +103,7 @@ const EnhancedHeroSection: React.FC = () => {
         ))}
       </div>
 
-      {/* Skills constellation */}
+      {/* Skills constellation - Restored from Old Version */}
       {!isMobile && (
         <div className="absolute inset-0 z-5">
           <svg className="w-full h-full opacity-30">
@@ -153,7 +126,7 @@ const EnhancedHeroSection: React.FC = () => {
               );
             })}
           </svg>
-          
+
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
@@ -186,179 +159,181 @@ const EnhancedHeroSection: React.FC = () => {
         </div>
       )}
 
-      {/* Main content */}
-      <div className="container max-w-5xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left side - Main content */}
-          <div className="lg:col-span-8">
-            <div className="text-center lg:text-left mb-8">
-              <motion.div
-                className="flex items-center justify-center lg:justify-start mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <ModernLogo variant="tech" size="lg" showText={false} />
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-primary tracking-wide">
-                    Hello, I'm
-                  </p>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground/80 bg-clip-text text-transparent">
-                    Vishesh Sanghvi
-                  </h1>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                className="inline-flex items-center gap-2 bg-secondary/50 backdrop-blur-sm text-foreground/80 text-sm px-4 py-2 rounded-full mb-6"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                <Sparkles size={16} className="text-primary" />
-                BDA Student | Full-Stack Alchemist | React, PHP, Python
-              </motion.div>
-              
-              <motion.div
-                className="text-base sm:text-lg text-foreground/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                <span className="text-balance">{typedText}</span>
-                <motion.span
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                  className="text-primary"
-                >
-                  |
-                </motion.span>
-                <p className="mt-3 text-foreground/70">
-                  Turning code into impact—crafting sleek frontends with React & Flutter, 
-                  powering backends with PHP, and decoding data with Python.
-                </p>
-              </motion.div>
 
-              {/* Status indicators */}
-              <motion.div
-                className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
+
+      {/* Main content - Upgraded New Version */}
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+
+          {/* Pre-heading badge */}
+          <motion.div
+            className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-md border border-primary/20 text-primary px-4 py-2 rounded-full mb-6 text-sm font-medium"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <Sparkles size={16} className="animate-pulse" />
+            Available for Opportunities
+          </motion.div>
+
+          {/* Main Heading with Encrypted Text Effect */}
+          <motion.h1
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <span className="block text-foreground mb-2">Hi, I'm</span>
+            <span className="block">
+              <EncryptedText
+                text="Vishesh Sanghvi"
+                revealDelayMs={40}
+                revealedClassName="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent"
+                encryptedClassName="text-foreground/30"
+              />
+            </span>
+          </motion.h1>
+
+          {/* Dynamic role with rotating words */}
+          <motion.div
+            className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground/80 mb-8 h-12 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <span className="mr-3">Full-Stack</span>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={activeWord}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-primary"
               >
-                <div className="flex items-center gap-2 text-sm text-foreground/70">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  Available for work
-                </div>
-                <div className="flex items-center gap-2 text-sm text-foreground/70">
-                  <MapPin size={12} />
-                  Mumbai, India
-                </div>
-                <div className="flex items-center gap-2 text-sm text-foreground/70">
-                  <Clock size={12} />
-                  {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </div>
-              </motion.div>
-              
-              {/* Action buttons */}
-              <motion.div
-                className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-5"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 }}
-              >
-                <DownloadCVButton className="transform transition hover:scale-105 active:scale-95" />
-                <Link
-                  to="/projects"
-                  className="px-6 py-3 bg-secondary/80 text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95 backdrop-blur-sm relative overflow-hidden group"
-                >
-                  <span className="absolute inset-0 w-0 bg-primary/10 transition-all duration-300 group-hover:w-full"></span>
-                  <span className="relative">View Projects</span>
-                </Link>
-                <a
-                  href="#contact"
-                  className="px-6 py-3 bg-secondary/50 text-foreground rounded-lg font-medium transition-all hover:scale-105 hover:shadow-md active:scale-95 backdrop-blur-sm relative overflow-hidden group"
-                >
-                  <span className="absolute inset-0 w-0 bg-primary/10 transition-all duration-300 group-hover:w-full"></span>
-                  <span className="relative">Contact Me</span>
-                </a>
-              </motion.div>
+                {rotatingWords[activeWord]}
+              </motion.span>
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Professional description */}
+          <motion.p
+            className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto mb-10 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+          >
+            Crafting innovative digital experiences with <span className="text-primary font-semibold">React</span>, <span className="text-primary font-semibold">PHP</span>, and <span className="text-primary font-semibold">Python</span>.
+            Holding an <span className="font-semibold">MSc in Big Data Analytics</span> from University of Mumbai,
+            transforming complex data into actionable insights.
+          </motion.p>
+
+          {/* Key highlights */}
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-6 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 }}
+          >
+            <div className="flex items-center gap-2 text-sm text-foreground/70 bg-background/50 backdrop-blur-sm px-4 py-2 rounded-full border border-border/50">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              Open to Work
             </div>
-          </div>
+            <div className="flex items-center gap-2 text-sm text-foreground/70 bg-background/50 backdrop-blur-sm px-4 py-2 rounded-full border border-border/50">
+              <MapPin size={14} />
+              Mumbai, India
+            </div>
+            <div className="flex items-center gap-2 text-sm text-foreground/70 bg-background/50 backdrop-blur-sm px-4 py-2 rounded-full border border-border/50">
+              <Clock size={14} />
+              {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} IST
+            </div>
+            <div className="flex items-center gap-2 text-sm text-foreground/70 bg-background/50 backdrop-blur-sm px-4 py-2 rounded-full border border-border/50">
+              <Award size={14} />
+              3+ Years Experience
+            </div>
+          </motion.div>
 
-          {/* Right side - Terminal & Stats */}
-          <div className="lg:col-span-4">
-            {/* Interactive terminal */}
-            <motion.div
-              className="bg-gray-900 rounded-lg p-4 mb-6 font-mono text-sm"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.2 }}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-gray-400 ml-2">terminal</span>
-              </div>
-              <div className="space-y-1">
-                <AnimatePresence>
-                  {terminalLines.filter(line => line != null && line !== undefined).map((line, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={line && line.startsWith('~') ? 'text-green-400' : 'text-gray-300'}
-                    >
-                      {line}
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </motion.div>
+          {/* CTA Buttons with Border Magic Effect */}
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1 }}
+          >
+            <Link to="/projects">
+              <BorderMagicButton
+                className="px-8 py-3 text-base font-semibold bg-slate-950 dark:bg-background group"
+                containerClassName="h-14"
+                borderClassName="bg-[conic-gradient(from_90deg_at_50%_50%,hsl(var(--primary))_0%,hsl(var(--primary)/0.5)_50%,hsl(var(--primary))_100%)]"
+                duration="3s"
+              >
+                <span className="flex items-center gap-2">
+                  View My Work
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                </span>
+              </BorderMagicButton>
+            </Link>
 
-            {/* Enhanced stats */}
-            <motion.div
-              className="grid grid-cols-2 gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4 }}
+            <BorderMagicButton
+              as="a"
+              href="/CV_Vishesh_Sanghvi.pdf"
+              className="px-8 py-3 text-base font-semibold bg-background/95"
+              containerClassName="h-14"
+              borderClassName="bg-[conic-gradient(from_90deg_at_50%_50%,hsl(var(--primary)/0.3)_0%,hsl(var(--primary))_50%,hsl(var(--primary)/0.3)_100%)]"
+              duration="2.5s"
             >
-              {[
-                { icon: <Coffee size={20} />, value: "3+", label: "Years Coding" },
-                { icon: <Code size={20} />, value: "30+", label: "Projects" },
-                { icon: <Database size={20} />, value: "50+", label: "Certifications" },
-                { icon: <Globe size={20} />, value: "24/7", label: "Available" }
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  className="glass-panel p-4 rounded-lg backdrop-blur-sm text-center hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <div className="text-primary mb-2 flex justify-center">
-                    {stat.icon}
-                  </div>
-                  <p className="text-xl font-bold text-primary">{stat.value}</p>
-                  <p className="text-xs text-foreground/70">{stat.label}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+              Download CV
+            </BorderMagicButton>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            className="flex items-center justify-center gap-4 mt-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3 }}
+          >
+            <a
+              href="https://github.com/visheshsanghvi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/50 hover:scale-110 transition-all duration-300"
+              aria-label="GitHub"
+            >
+              <Github size={20} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/vishesh-sanghvi/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/50 hover:scale-110 transition-all duration-300"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={20} />
+            </a>
+            <a
+              href="mailto:visheshsanghvi112@gmail.com"
+              className="w-12 h-12 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/50 hover:scale-110 transition-all duration-300"
+              aria-label="Email"
+            >
+              <Mail size={20} />
+            </a>
+          </motion.div>
+
         </div>
       </div>
 
       {/* Scroll indicator */}
       <motion.button
         onClick={handleScrollToNext}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-secondary/50 hover:bg-secondary/80 transition-colors backdrop-blur-sm flex items-center justify-center cursor-pointer group"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-background/50 hover:bg-background/70 border border-border/50 hover:border-primary/50 transition-all backdrop-blur-sm flex items-center justify-center cursor-pointer group"
         aria-label="Scroll down"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        animate={{ y: [0, -5, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
       >
-        <ChevronDown className="text-foreground/80 group-hover:text-foreground transition-colors" />
+        <ChevronDown className="text-foreground/70 group-hover:text-primary transition-colors" size={24} />
       </motion.button>
     </motion.section>
   );
